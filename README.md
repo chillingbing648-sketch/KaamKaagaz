@@ -1,4 +1,4 @@
-# KaamKaagaz
+# 📄 KaamKaagaz
 
 <p align="center">
   <strong>Kaagaz samjho. Kaam karo.</strong><br/>
@@ -6,21 +6,21 @@
 </p>
 
 <p align="center">
-  <a href="https://chillingbing648-sketch.github.io/KaamKaagaz/"><img src="https://img.shields.io/badge/Live%20App-Visit%20KaamKaagaz-111827?style=for-the-badge" alt="Live App"></a>
-  <a href="https://github.com/chillingbing648-sketch/KaamKaagaz/actions"><img src="https://img.shields.io/github/actions/workflow/status/chillingbing648-sketch/KaamKaagaz/deploy.yml?branch=main&style=for-the-badge&label=Deployment" alt="Deployment status"></a>
+  <a href="https://chillingbing648-sketch.github.io/KaamKaagaz/"><img src="https://img.shields.io/badge/%E2%96%B6%20LIVE-KAAMKAAGAZ-0f172a?style=for-the-badge&labelColor=7c3aed" alt="Live KaamKaagaz"></a>
+  <a href="https://github.com/chillingbing648-sketch/KaamKaagaz"><img src="https://img.shields.io/github/stars/chillingbing648-sketch/KaamKaagaz?style=for-the-badge&label=STARS&color=f59e0b" alt="GitHub stars"></a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js&logoColor=white" alt="Next.js">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React">
-  <img src="https://img.shields.io/badge/TypeScript-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
-  <img src="https://img.shields.io/badge/GitHub_Pages-Deployed-222?style=flat-square&logo=githubpages&logoColor=white" alt="GitHub Pages">
+  <img src="https://img.shields.io/badge/NEXT.JS-15-000000?style=flat-square&logo=next.js&logoColor=white" alt="Next.js 15">
+  <img src="https://img.shields.io/badge/REACT-19-149ECA?style=flat-square&logo=react&logoColor=white" alt="React 19">
+  <img src="https://img.shields.io/badge/TYPESCRIPT-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/TAILWIND-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4">
+  <img src="https://img.shields.io/badge/GITHUB_PAGES-DEPLOYED-222222?style=flat-square&logo=githubpages&logoColor=white" alt="GitHub Pages">
 </p>
 
 ---
 
-## What is KaamKaagaz?
+## `>_` What is KaamKaagaz?
 
 **KaamKaagaz** is a civic-tech web application designed to make complicated government paperwork easier to understand and act on.
 
@@ -43,7 +43,7 @@ The current service library includes:
 
 ---
 
-## ✨ Core Features
+## `// core_features`
 
 ### 🔎 Conversational Document Search
 Search using natural language instead of having to know the exact official service name.
@@ -71,7 +71,7 @@ Checklist progress can be maintained in the browser through localStorage without
 
 ---
 
-## 🛠️ Tech Stack
+## `npm run stack`
 
 <p>
   <img src="https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js 15">
@@ -106,9 +106,30 @@ KaamKaagaz is intentionally lightweight:
 - Reusable React components render the document workflows
 - Dynamic-looking service routes are statically generated at build time
 
+
 ---
 
-## 📁 Project Structure
+## `architecture.exe`
+
+KaamKaagaz deliberately avoids a backend for the current scope.
+
+    User Query
+         ↓
+    Conversational Search
+         ↓
+    Typed Process Library — data/processes.ts
+         ↓
+    Documents + Steps + Checklist
+         ↓
+    Next.js Static Export
+         ↓
+    GitHub Pages
+
+**No database. No accounts. No server API. Just structured information, components and a static build.**
+
+---
+
+## `tree /project`
 
 ```text
 KaamKaagaz/
@@ -157,7 +178,7 @@ KaamKaagaz/
 
 ---
 
-## 🚀 Run Locally
+## `localhost:3000`
 
 ### Install
 
@@ -193,7 +214,7 @@ out/
 
 ---
 
-## 🌍 GitHub Pages Deployment
+## `deploy.sh`
 
 KaamKaagaz is configured for automatic GitHub Pages deployment using **Next.js static export + GitHub Actions**.
 
@@ -224,8 +245,9 @@ The configuration uses:
 - `output: "export"`
 - `basePath: "/KaamKaagaz"`
 - `trailingSlash: true`
+- Node.js 20
 - GitHub Actions
-- GitHub Pages artifact deployment
+- A dedicated `gh-pages` publishing branch
 - Automatic deployment from `main`
 
 ### One-time GitHub setting
@@ -234,15 +256,15 @@ After the workflow is pushed:
 
 1. Open the repository's **Settings**.
 2. Open **Pages**.
-3. Under **Build and deployment → Source**, select **GitHub Actions**.
-4. Push to `main` or manually run the deployment workflow from **Actions**.
-5. GitHub will publish the generated `out/` directory.
+3. Under **Build and deployment → Source**, select **Deploy from a branch**.
+4. Select branch **`gh-pages`** and folder **`/(root)`**.
+5. Save, then push to `main`.
 
-After the first successful run, future pushes to `main` automatically rebuild and redeploy the site.
+After the first successful run, future pushes to `main` automatically rebuild and publish the site.
 
 ---
 
-## 🎯 Accuracy Philosophy
+## `data_integrity.md`
 
 KaamKaagaz is intended to **simplify access to information, not replace official government instructions**.
 
@@ -259,7 +281,7 @@ Government procedures, fees, timelines and requirements can change. Users should
 
 ---
 
-## 🔐 Privacy & Security
+## `privacy`
 
 KaamKaagaz is currently a lightweight client-side application.
 
@@ -271,7 +293,7 @@ Checklist progress may be stored locally in the user's browser using `localStora
 
 ---
 
-## 🧑‍💻 Development Principles
+## `dev.config`
 
 KaamKaagaz aims to keep the experience:
 
@@ -288,7 +310,7 @@ The interface is designed for students, parents, first-time applicants and anyon
 
 ---
 
-## 📌 Current Scope
+## `status`
 
 The current service library includes:
 
@@ -300,7 +322,7 @@ The architecture is designed so additional document workflows can be added throu
 
 ---
 
-## 🤝 Contributing
+## `contribute()`
 
 Contributions, corrections and improvements are welcome.
 
@@ -319,7 +341,7 @@ For government requirements, include the authoritative source whenever possible.
 
 ---
 
-## 📄 License
+## `license`
 
 This repository currently does not declare an open-source license.
 
@@ -327,7 +349,7 @@ Unless a license is added, the source code should not be assumed to be freely re
 
 ---
 
-## 👤 Author
+## `author`
 
 **Harsh Dubey**
 
