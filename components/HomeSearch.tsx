@@ -1,0 +1,180 @@
+"use client";
+
+import { useId, useState } from "react";
+import Link from "next/link";
+import { useLanguage } from "@/lib/i18n/context";
+import { Process } from "@/data/processes";
+import { ProcessCard } from "./ProcessCard";
+import { getLocalizedProcess } from "@/lib/i18n/localize";
+
+// Common natural conversational filler words in Hindi, Marathi, and English
+const STOP_WORDS = new Set([
+  "mujhe", "mera", "meri", "humko", "karna", "kare", "karna", "hai", "banana", "banao", "chahiye",
+  "karo", "ka", "ki", "ke", "ko", "se", "me", "mein", "par",
+  "mala", "majha", "majhi", "amhi", "karaycha", "aahe", "kadha", "kadhaycha", "hawa", "pahije", "kay", "kase",
+  "i", "want", "to", "make", "get", "need", "apply", "for", "a", "an", "the", "how", "do",
+  "मुझे", "करना", "है", "बनवाना", "बनाना", "चाहिए", "का", "की", "के", "में", "से",
+  "मला", "करायचे", "आहे", "काढायचे", "काढायचा", "पाहिजे", "हवा", "कसा", "करावा"
+]);
+
+function matches(item: Process, q: string) {
+  const queryLower = q.toLowerCase().trim();
+  if (!queryLower) return true;
+
+  // Extract core keywords from query by removing conversational stopwords
+  const rawWords = queryLower.split(/[\s,]+/);
+  const filteredWords = rawWords.filter((w) => !STOP_WORDS.has(w));
+  const searchWords = filteredWords.length > 0 ? filteredWords : rawWords;
+
+  // Build searchable text haystack from all localized fields and keywords
+  const haystack = [
+    item.title,
+    item.category,
+    item.description,
+    item.localizedTitle?.en,
+    item.localizedTitle?.hi,
+    item.localizedTitle?.mr,
+    item.localizedCategory?.en,
+    item.localizedCategory?.hi,
+    item.localizedCategory?.mr,
+    item.localizedDescription?.en,
+    item.localizedDescription?.hi,
+    item.localizedDescription?.mr,
+    ...(item.keywords || []),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  // If any meaningful keyword from user's sentence matches the haystack
+  return searchWords.some((word) => haystack.includes(word));
+}
+
+export function HomeSearch({ items }: { items: Process[] }) {
+  const [query, setQuery] = useState("");
+  const inputId = useId();
+  const { language, t } = useLanguage();
+  const q = query.trim();
+
+  const results = q ? items.filter((i) => matches(i, q)) : items;
+
+  return (
+    <div>
+      <div className="relative">
+        <label htmlFor={inputId} className="block text-base sm:text-lg font-semibold text-ink mb-2">
+          {t.home.heroQuestion}
+        </label>
+        <div className="relative flex items-center">
+          <div className="pointer-events-none absolute left-4 text-muted">
+            <svg
+              aria-hidden="true"
+              className="size-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
+          <input
+            id={inputId}
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t.home.searchPlaceholder}
+            autoComplete="off"
+            className="h-14 w-full rounded-xl border-2 border-line bg-surface pl-12 pr-10 text-base sm:text-lg text-ink shadow-xs placeholder:text-muted/70 transition-all focus:border-accent focus:bg-white focus:outline-none"
+          />
+          {query && (
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              aria-label="Clear search"
+              className="absolute right-3.5 flex size-7 items-center justify-center rounded-full text-muted hover:bg-paper hover:text-ink cursor-pointer"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Popular Kaam quick action buttons */}
+      <div className="mt-5">
+        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted mb-2.5">
+          <span>⚡ {t.home.popularKaam}</span>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {items.map((process) => {
+            const loc = getLocalizedProcess(process, language);
+            const isSelected = query.toLowerCase() === process.title.toLowerCase();
+            return (
+              <button
+                key={process.slug}
+                type="button"
+                onClick={() => setQuery(process.title)}
+                className={`inline-flex min-h-10 items-center rounded-lg border px-3.5 py-1.5 text-sm font-medium transition-all cursor-pointer ${
+                  isSelected
+                    ? "border-accent bg-accent text-white shadow-xs"
+                    : "border-line bg-surface text-ink hover:border-accent hover:bg-accent-soft"
+                }`}
+              >
+                {loc.title}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mt-8 border-t border-line/70 pt-6">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+            {q ? `${t.home.results} (${results.length})` : t.home.popularServices}
+          </h2>
+          {q && (
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              className="text-xs font-semibold text-accent hover:underline cursor-pointer"
+            >
+              {t.home.showAllServices}
+            </button>
+          )}
+        </div>
+
+        <div aria-live="polite">
+          {results.length > 0 ? (
+            <ul className="space-y-3">
+              {results.map((p) => (
+                <li key={p.slug}>
+                  <ProcessCard process={p} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="rounded-xl border border-line bg-surface p-6 text-center">
+              <span className="text-3xl">🔍</span>
+              <p className="mt-2 font-bold text-ink">
+                {t.home.noResults} “{q}”
+              </p>
+              <p className="mt-1 text-sm text-muted max-w-md mx-auto">
+                {t.home.noResultsHint}
+              </p>
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                className="mt-4 inline-flex min-h-11 items-center rounded-lg border border-line bg-surface px-4 py-2 font-semibold text-accent hover:bg-accent-soft transition-colors cursor-pointer"
+              >
+                {t.home.showAllServices}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
