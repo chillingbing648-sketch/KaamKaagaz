@@ -19,22 +19,24 @@ export function MarkDone({
 
   return (
     <div className="flex flex-wrap items-center gap-3.5">
+      {/* Primary interactive toggle button */}
       <button
         type="button"
         aria-pressed={isDone}
         onClick={() => toggle(docId)}
-        className={`min-h-12 rounded-xl px-6 font-bold shadow-xs transition-all duration-200 cursor-pointer ${
+        className={`inline-flex min-h-[48px] items-center justify-center rounded-xl px-6 font-bold text-sm sm:text-base shadow-xs transition-all duration-150 cursor-pointer active:scale-[0.98] ${
           isDone
-            ? "border-2 border-done bg-done-soft text-done hover:bg-done/15"
-            : "border-2 border-accent bg-accent text-white hover:bg-accent/90 shadow-sm"
+            ? "border-2 border-done/60 bg-done-soft text-done hover:bg-done/15"
+            : "border-2 border-accent bg-accent text-white hover:bg-accent-hover shadow-sm"
         }`}
       >
         {isDone ? t.document.markReadyUndo : `✓ ${t.document.markReady}`}
       </button>
 
+      {/* Secondary outlined button */}
       <Link
         href={`/checklist/${slug}`}
-        className="inline-flex min-h-11 items-center text-sm font-semibold text-accent underline underline-offset-4 hover:text-accent/80"
+        className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-line bg-paper/60 px-5 text-sm font-bold text-ink hover:bg-surface hover:border-accent hover:text-accent transition-all shadow-2xs"
       >
         {t.process.openChecklist} →
       </Link>

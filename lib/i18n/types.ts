@@ -16,6 +16,39 @@ export interface LocaleTranslations {
     howItWorks: string;
     selectLanguage: string;
     skipToContent: string;
+    onThisPage: string;
+    startHere: string;
+    quickAccess: string;
+    officialPortals: string;
+    journeyStatus: string;
+  };
+  journey: {
+    situation: string;
+    eligibility: string;
+    documents: string;
+    checklist: string;
+    apply: string;
+  };
+  contextRail: {
+    trustGuaranteeTitle: string;
+    trustGuaranteeDesc: string;
+    readyToApply: string;
+    continueChecklist: string;
+    viewAllServices: string;
+    allDocsReady: string;
+    docsRemaining: string;
+    openOfficialPortal: string;
+    jumpToSection: string;
+  };
+  connectionArea: {
+    title: string;
+    subtitle: string;
+    officialPortalsTitle: string;
+    officialPortalsSubtitle: string;
+    civicTrustTitle: string;
+    civicTrustSubtitle: string;
+    needAssistanceTitle: string;
+    needAssistanceSubtitle: string;
   };
   home: {
     heroQuestion: string;

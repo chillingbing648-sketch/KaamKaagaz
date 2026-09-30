@@ -116,9 +116,9 @@ export function HomeSearch({ items }: { items: Process[] }) {
                 key={process.slug}
                 type="button"
                 onClick={() => setQuery(isSelected ? "" : process.title)}
-                className={`inline-flex min-h-10 items-center rounded-lg border px-3.5 py-1.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                className={`inline-flex min-h-[44px] items-center rounded-lg border px-4 py-2 text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                   isSelected
-                    ? "border-accent bg-accent text-white shadow-xs"
+                    ? "border-accent bg-accent text-white shadow-xs font-bold"
                     : "border-line bg-surface text-ink hover:border-accent hover:bg-accent-soft hover:text-accent shadow-2xs"
                 }`}
               >

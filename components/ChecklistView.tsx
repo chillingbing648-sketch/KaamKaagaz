@@ -5,35 +5,44 @@ import { Process } from "@/data/processes";
 import { useLanguage } from "@/lib/i18n/context";
 import { getLocalizedProcess } from "@/lib/i18n/localize";
 import { Checklist } from "./Checklist";
+import { Breadcrumb } from "./Breadcrumb";
+import { ContextRail } from "./ContextRail";
 
 export function ChecklistView({ process }: { process: Process }) {
   const { language, t } = useLanguage();
   const loc = getLocalizedProcess(process, language);
 
   return (
-    <div>
-      <div className="mb-6">
-        <Link
-          href={`/process/${process.slug}`}
-          className="inline-flex min-h-10 items-center gap-1.5 text-sm font-semibold text-accent hover:underline underline-offset-4"
-        >
-          <span aria-hidden="true">←</span>
-          <span>
-            {t.document.backTo} {loc.title}
+    <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
+      {/* Main Working Area */}
+      <div className="min-w-0 flex-1 lg:max-w-3xl space-y-6">
+        <Breadcrumb
+          items={[
+            { label: t.nav.services, href: "/#services" },
+            { label: loc.title, href: `/process/${process.slug}` },
+            { label: t.checklist.title, isCurrent: true },
+          ]}
+        />
+
+        <header>
+          <span className="inline-block rounded-md bg-paper px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-muted border border-line/60">
+            {t.checklist.title}
           </span>
-        </Link>
+          <h1 className="mt-2 text-3xl sm:text-4xl font-black tracking-tight text-ink">
+            {loc.title}
+          </h1>
+          <p className="mt-2 text-sm text-muted">
+            {t.checklist.savedLocallyNotice}
+          </p>
+        </header>
+
+        <Checklist process={process} />
       </div>
 
-      <div className="mb-6">
-        <span className="text-xs font-bold uppercase tracking-wider text-muted">
-          {t.checklist.title}
-        </span>
-        <h1 className="mt-1 text-3xl sm:text-4xl font-black tracking-tight text-ink">
-          {loc.title}
-        </h1>
+      {/* Contextual Side Rail */}
+      <div className="mt-12 lg:mt-0 w-full lg:w-80 shrink-0 lg:sticky lg:top-24">
+        <ContextRail mode="checklist" process={process} />
       </div>
-
-      <Checklist process={process} />
     </div>
   );
 }

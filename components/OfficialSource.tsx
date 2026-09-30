@@ -3,6 +3,14 @@
 import { OfficialSource as Source } from "@/data/processes";
 import { useLanguage } from "@/lib/i18n/context";
 
+function getDomain(urlStr: string) {
+  try {
+    return new URL(urlStr).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+
 export function OfficialSource({
   source,
   lastChecked,
@@ -14,42 +22,74 @@ export function OfficialSource({
   const links = [{ name: source.name, url: source.url }, ...(source.more ?? [])];
 
   return (
-    <div className="rounded-xl border-2 border-accent/20 bg-accent-soft/40 p-4 sm:p-5 shadow-2xs">
-      <div className="flex items-center gap-2">
-        <span className="text-xl">🏛️</span>
-        <h3 className="text-base sm:text-lg font-bold text-accent">
-          {t.officialSource.title}
-        </h3>
+    <div className="rounded-xl border-2 border-accent/25 bg-accent-soft/30 p-5 sm:p-6 shadow-2xs">
+      <div className="flex items-center justify-between gap-2 border-b border-accent/15 pb-3 mb-3">
+        <div className="flex items-center gap-2">
+          <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white text-sm font-black shadow-2xs">
+            🏛️
+          </span>
+          <div>
+            <span className="text-[10px] uppercase font-black tracking-wider text-accent block">
+              AUTHORITY REFERENCE
+            </span>
+            <h3 className="text-base sm:text-lg font-bold text-ink">
+              {t.officialSource.title}
+            </h3>
+          </div>
+        </div>
+
+        <span className="text-[11px] font-semibold text-muted bg-surface px-2.5 py-1 rounded-md border border-line/60 shrink-0">
+          🛡️ Verified
+        </span>
       </div>
 
-      <p className="mt-2 text-xs sm:text-sm text-ink/80 leading-relaxed">
+      <p className="text-xs sm:text-sm text-ink/80 leading-relaxed mb-4">
         {t.officialSource.explanationNote}
       </p>
 
-      <ul className="mt-3.5 space-y-2">
-        {links.map((l) => (
-          <li key={l.url}>
-            <a
-              href={l.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-accent/30 bg-white px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-accent shadow-2xs hover:bg-accent hover:text-white transition-all"
-            >
-              <span>{l.name}</span>
-              <span aria-hidden="true" className="text-xs">↗</span>
-              <span className="sr-only"> {t.officialSource.openInNewTab}</span>
-            </a>
-          </li>
-        ))}
+      {/* Official authority links with domain pills */}
+      <ul className="space-y-2.5">
+        {links.map((l) => {
+          const domain = getDomain(l.url);
+          return (
+            <li key={l.url}>
+              <a
+                href={l.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col sm:flex-row sm:items-center justify-between gap-2 rounded-xl border border-accent/30 bg-surface p-3.5 shadow-2xs hover:border-accent hover:bg-accent-soft hover:shadow-xs transition-all min-h-[48px]"
+              >
+                <div>
+                  <span className="font-bold text-sm text-ink group-hover:text-accent transition-colors block">
+                    {l.name}
+                  </span>
+                  {domain && (
+                    <span className="font-mono text-[11px] text-muted block mt-0.5">
+                      {domain}
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-1.5 self-start sm:self-center shrink-0">
+                  <span className="inline-flex min-h-[36px] items-center gap-1 rounded-lg bg-accent text-white px-3 py-1 text-xs font-bold shadow-2xs group-hover:bg-accent-hover transition-colors">
+                    <span>View official portal</span>
+                    <span aria-hidden="true">↗</span>
+                  </span>
+                  <span className="sr-only"> {t.officialSource.openInNewTab}</span>
+                </div>
+              </a>
+            </li>
+          );
+        })}
       </ul>
 
-      <div className="mt-4 pt-3 border-t border-accent/15 flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
+      {/* Verification footer metadata */}
+      <div className="mt-4 pt-3.5 border-t border-accent/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-muted">
         <span>
           {t.officialSource.lastReviewed}{" "}
           <strong className="text-ink font-semibold">{lastChecked}</strong>
         </span>
         <span className="text-[11px] text-muted">
-          🛡️ {t.officialSource.verifyNotice}
+          {t.officialSource.verifyNotice}
         </span>
       </div>
     </div>

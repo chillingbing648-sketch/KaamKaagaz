@@ -38,7 +38,7 @@ export function DocumentList({
           </div>
           <Link
             href={`/checklist/${process.slug}`}
-            className="inline-flex min-h-9 items-center text-sm font-semibold text-accent underline underline-offset-4 hover:text-accent/80"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-line bg-paper px-3.5 py-2 text-xs sm:text-sm font-bold text-ink hover:bg-surface hover:border-accent hover:text-accent transition-all shadow-2xs"
           >
             {t.process.openChecklist} →
           </Link>

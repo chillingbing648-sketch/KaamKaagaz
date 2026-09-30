@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans_Devanagari } from "next/font/google";
 import { LanguageProvider } from "@/lib/i18n/context";
 import { Navbar } from "@/components/Navbar";
+import { ConnectionArea } from "@/components/ConnectionArea";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
 
@@ -41,7 +42,7 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${notoDevanagari.variable}`}>
-      <body className="min-h-screen antialiased flex flex-col justify-between font-sans">
+      <body className="min-h-screen antialiased flex flex-col justify-between font-sans bg-paper text-ink">
         <LanguageProvider>
           <a
             href="#main"
@@ -49,10 +50,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             Skip to content
           </a>
-          <div>
+          <div className="flex-1">
             <Navbar />
-            <main id="main" className="mx-auto max-w-2xl px-4 py-6 sm:py-10">
+            <main id="main" className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-10">
               {children}
+              <ConnectionArea />
             </main>
           </div>
           <Footer />

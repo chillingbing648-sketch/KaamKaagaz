@@ -55,7 +55,7 @@ export function LanguageSwitcher() {
         aria-expanded={isOpen}
         aria-label={t.nav.selectLanguage}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex min-h-10 items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-semibold text-ink shadow-2xs hover:border-accent hover:bg-accent-soft focus-visible:outline-2 focus-visible:outline-accent transition-all cursor-pointer"
+        className="flex min-h-[44px] items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-semibold text-ink shadow-2xs hover:border-accent hover:bg-accent-soft focus-visible:outline-2 focus-visible:outline-accent transition-all cursor-pointer"
       >
         <span className="text-base leading-none">🌐</span>
         <span className="font-medium tracking-tight">

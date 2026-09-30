@@ -23,7 +23,7 @@ export function SituationSelector({
     <div className="rounded-xl border border-line bg-surface p-4 sm:p-5 shadow-2xs">
       <div className="flex items-center justify-between gap-2 mb-1">
         <div className="flex items-center gap-2">
-          <span className="flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent text-xs font-bold">
+          <span className="flex size-7 items-center justify-center rounded-lg bg-accent-soft text-accent text-sm font-bold">
             🎯
           </span>
           <h3 className="text-base sm:text-lg font-bold text-ink">
@@ -43,11 +43,11 @@ export function SituationSelector({
       </div>
 
       <p className="text-xs sm:text-sm text-muted mb-3.5 leading-relaxed">
-        Requirements vary depending on your specific case. Choose your situation to see exactly what you need to prepare:
+        Requirements vary depending on your specific case. Choose your situation to filter applicable documents:
       </p>
 
-      {/* Situation Radio-Card Options */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+      {/* Situation Selectable Options */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" role="radiogroup" aria-label={t.process.situationsTitle}>
         {situations.map((sit) => {
           const isSelected = sit.id === selectedId;
           const nameStr = getStr(sit.name, language);
@@ -60,30 +60,35 @@ export function SituationSelector({
               role="radio"
               aria-checked={isSelected}
               onClick={() => onSelect(isSelected ? null : sit.id)}
-              className={`flex items-start gap-3 rounded-lg border p-3 text-left transition-all cursor-pointer ${
+              className={`flex items-start gap-3 rounded-xl p-3.5 text-left transition-all cursor-pointer min-h-[52px] ${
                 isSelected
-                  ? "border-accent bg-accent-soft/50 shadow-2xs ring-1 ring-accent"
-                  : "border-line bg-paper/60 hover:border-line/90 hover:bg-paper"
+                  ? "border-2 border-accent bg-accent-soft shadow-xs ring-2 ring-accent/20"
+                  : "border border-line bg-paper/50 hover:border-line/90 hover:bg-paper"
               }`}
             >
               <div className="pt-0.5 shrink-0">
                 <span
-                  className={`flex size-4 items-center justify-center rounded-full border transition-colors ${
+                  className={`flex size-5 items-center justify-center rounded-full border text-[11px] font-black transition-colors ${
                     isSelected
                       ? "border-accent bg-accent text-white"
-                      : "border-muted/50 bg-white"
+                      : "border-muted/40 bg-surface text-transparent"
                   }`}
                 >
-                  {isSelected && (
-                    <span className="size-1.5 rounded-full bg-white" />
-                  )}
+                  ✓
                 </span>
               </div>
               <div className="min-w-0 flex-1">
-                <p className={`text-xs sm:text-sm font-bold leading-tight ${isSelected ? "text-accent" : "text-ink"}`}>
-                  {nameStr}
-                </p>
-                <p className="mt-0.5 text-xs text-muted line-clamp-2 leading-relaxed">
+                <div className="flex items-center justify-between gap-1">
+                  <p className={`text-sm font-bold leading-tight ${isSelected ? "text-accent" : "text-ink"}`}>
+                    {nameStr}
+                  </p>
+                  {isSelected && (
+                    <span className="text-[10px] uppercase font-black tracking-wider text-accent bg-surface px-1.5 py-0.5 rounded border border-accent/25 shrink-0">
+                      Selected
+                    </span>
+                  )}
+                </div>
+                <p className="mt-1 text-xs text-muted line-clamp-2 leading-relaxed">
                   {descStr}
                 </p>
               </div>
@@ -94,15 +99,15 @@ export function SituationSelector({
 
       {/* Contextual guidance note when a situation is selected */}
       {activeSituation && (
-        <div className="mt-3.5 rounded-lg border border-accent/20 bg-accent-soft/40 p-3.5 text-xs sm:text-sm text-ink animate-in fade-in duration-150">
-          <div className="flex items-start gap-2">
-            <span className="text-base shrink-0">💡</span>
+        <div className="mt-4 rounded-xl border border-accent/30 bg-accent-soft p-4 text-xs sm:text-sm text-ink animate-in fade-in duration-150">
+          <div className="flex items-start gap-2.5">
+            <span className="text-lg shrink-0">💡</span>
             <div className="min-w-0 flex-1">
               <p className="font-bold text-accent">
-                {getStr(activeSituation.name, language)}: Key Note
+                {getStr(activeSituation.name, language)}: Specific Guidance
               </p>
               {activeSituation.notes && (
-                <p className="mt-1 text-ink/90 leading-relaxed">
+                <p className="mt-1 text-ink/90 leading-relaxed font-medium">
                   {getStr(activeSituation.notes, language)}
                 </p>
               )}

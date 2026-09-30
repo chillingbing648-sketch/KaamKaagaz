@@ -8,29 +8,37 @@ export function ProcessSteps({ steps }: { steps: ProcessStep[] }) {
   const { language } = useLanguage();
 
   return (
-    <ol className="space-y-4">
-      {steps.map((s, i) => {
-        const title = s.localized ? getStr(s.localized.title, language, s.title) : s.title;
-        const description = s.localized ? getStr(s.localized.description, language, s.description) : s.description;
+    <div className="relative pl-6 sm:pl-8">
+      {/* Continuous vertical timeline connector line */}
+      <div className="absolute top-4 bottom-4 left-3 sm:left-4 -translate-x-1/2 w-0.5 bg-line" />
 
-        return (
-          <li
-            key={i}
-            className="flex gap-3.5 rounded-xl border border-line bg-surface p-4 shadow-2xs"
-          >
-            <span
-              aria-hidden="true"
-              className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-white shadow-xs"
-            >
-              {i + 1}
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="text-base font-bold text-ink">{title}</p>
-              <p className="mt-1 text-sm text-muted leading-relaxed">{description}</p>
-            </div>
-          </li>
-        );
-      })}
-    </ol>
+      <ol className="space-y-6">
+        {steps.map((s, i) => {
+          const title = s.localized ? getStr(s.localized.title, language, s.title) : s.title;
+          const description = s.localized ? getStr(s.localized.description, language, s.description) : s.description;
+
+          return (
+            <li key={i} className="relative flex items-start gap-4">
+              {/* Timeline circle node */}
+              <span
+                aria-hidden="true"
+                className="absolute -left-6 sm:-left-8 flex size-6 sm:size-7 items-center justify-center rounded-full bg-accent text-xs font-black text-white ring-4 ring-paper shadow-2xs"
+              >
+                {i + 1}
+              </span>
+
+              <div className="min-w-0 flex-1 pt-0.5">
+                <h3 className="text-base font-bold text-ink">
+                  {title}
+                </h3>
+                <p className="mt-1 text-xs sm:text-sm text-muted leading-relaxed">
+                  {description}
+                </p>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
   );
 }
