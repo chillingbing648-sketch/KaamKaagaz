@@ -100,3 +100,138 @@ export function useChecklist(slug: string, validIds: string[]) {
   const percent = total === 0 ? 0 : Math.round((count / total) * 100);
   return { done, toggle, reset, count, total, percent };
 }
+
+// ---------------------------------------------------------------------------
+// STUDENT ADMISSIONS MULTI-STATE CHECKLIST
+// ---------------------------------------------------------------------------
+export type AdmissionChecklistStatus =
+  | "READY"
+  | "MISSING"
+  | "NEEDS_UPDATE"
+  | "PENDING"
+  | "NOT_SURE"
+  | "NOT_APPLICABLE";
+
+const ADMISSION_KEY = "kaamkaagaz:admissions_checklist:v1";
+type AdmissionState = Record<string, AdmissionChecklistStatus>;
+const ADM_EMPTY: AdmissionState = {};
+
+const admListeners = new Set<() => void>();
+let admCachedRaw: string | null | undefined;
+let admCachedValue: AdmissionState = ADM_EMPTY;
+
+function parseAdmission(raw: string | null): AdmissionState {
+  if (!raw) return ADM_EMPTY;
+  try {
+    const data: unknown = JSON.parse(raw);
+    if (!data || typeof data !== "object" || Array.isArray(data)) return ADM_EMPTY;
+    const out: AdmissionState = {};
+    for (const [k, v] of Object.entries(data as Record<string, unknown>)) {
+      if (
+        typeof v === "string" &&
+        ["READY", "MISSING", "NEEDS_UPDATE", "PENDING", "NOT_SURE", "NOT_APPLICABLE"].includes(v)
+      ) {
+        out[k] = v as AdmissionChecklistStatus;
+      }
+    }
+    return out;
+  } catch {
+    return ADM_EMPTY;
+  }
+}
+
+function readAdmission(): AdmissionState {
+  try {
+    const raw = window.localStorage.getItem(ADMISSION_KEY);
+    if (raw !== admCachedRaw) {
+      admCachedRaw = raw;
+      admCachedValue = parseAdmission(raw);
+    }
+  } catch {
+    // fallback in memory
+  }
+  return admCachedValue;
+}
+
+function writeAdmission(next: AdmissionState) {
+  admCachedValue = next;
+  try {
+    const raw = JSON.stringify(next);
+    window.localStorage.setItem(ADMISSION_KEY, raw);
+    admCachedRaw = raw;
+  } catch {
+    admCachedRaw = undefined;
+  }
+  admListeners.forEach((l) => l());
+}
+
+function subscribeAdmission(cb: () => void) {
+  admListeners.add(cb);
+  const onStorage = (e: StorageEvent) => {
+    if (e.key === ADMISSION_KEY) cb();
+  };
+  window.addEventListener("storage", onStorage);
+  return () => {
+    admListeners.delete(cb);
+    window.removeEventListener("storage", onStorage);
+  };
+}
+
+export function useAdmissionChecklist(validIds: string[]) {
+  const state = useSyncExternalStore(subscribeAdmission, readAdmission, () => ADM_EMPTY);
+
+  const statuses = useMemo(() => {
+    const res: Record<string, AdmissionChecklistStatus> = {};
+    validIds.forEach((id) => {
+      res[id] = state[id] || "NOT_SURE";
+    });
+    return res;
+  }, [state, validIds]);
+
+  const setStatus = useCallback((id: string, status: AdmissionChecklistStatus) => {
+    const current = { ...readAdmission() };
+    current[id] = status;
+    writeAdmission(current);
+  }, []);
+
+  const resetAll = useCallback(() => {
+    writeAdmission({});
+  }, []);
+
+  const counts = useMemo(() => {
+    let ready = 0;
+    let missing = 0;
+    let needsUpdate = 0;
+    let pending = 0;
+    let notSure = 0;
+    let notApplicable = 0;
+
+    validIds.forEach((id) => {
+      const s = statuses[id];
+      if (s === "READY") ready++;
+      else if (s === "MISSING") missing++;
+      else if (s === "NEEDS_UPDATE") needsUpdate++;
+      else if (s === "PENDING") pending++;
+      else if (s === "NOT_APPLICABLE") notApplicable++;
+      else notSure++;
+    });
+
+    const activeTotal = validIds.length - notApplicable;
+    const percent = activeTotal <= 0 ? 0 : Math.round((ready / activeTotal) * 100);
+
+    return {
+      ready,
+      missing,
+      needsUpdate,
+      pending,
+      notSure,
+      notApplicable,
+      total: validIds.length,
+      activeTotal,
+      percent,
+    };
+  }, [statuses, validIds]);
+
+  return { statuses, setStatus, resetAll, counts };
+}
+

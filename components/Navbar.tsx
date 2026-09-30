@@ -12,11 +12,16 @@ export function Navbar() {
   const { language, t } = useLanguage();
   const pathname = usePathname();
   const [checklistMenuOpen, setChecklistMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<"services" | "how-it-works" | "checklist" | null>(null);
+  const [activeSection, setActiveSection] = useState<"services" | "admissions" | "how-it-works" | "checklist" | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   // Section awareness on homepage via IntersectionObserver, and pathname awareness on other routes
   useEffect(() => {
+    if (pathname.startsWith("/admissions")) {
+      setActiveSection("admissions");
+      return;
+    }
+
     if (pathname.startsWith("/checklist")) {
       setActiveSection("checklist");
       return;
@@ -29,6 +34,7 @@ export function Navbar() {
 
     if (pathname === "/") {
       const servicesEl = document.getElementById("services");
+      const admissionsEl = document.getElementById("admissions-section");
       const howItWorksEl = document.getElementById("how-it-works");
 
       // Set initial section
@@ -40,6 +46,8 @@ export function Navbar() {
             if (entry.isIntersecting) {
               if (entry.target.id === "how-it-works") {
                 setActiveSection("how-it-works");
+              } else if (entry.target.id === "admissions-section") {
+                setActiveSection("admissions");
               } else if (entry.target.id === "services") {
                 setActiveSection("services");
               }
@@ -53,6 +61,7 @@ export function Navbar() {
       );
 
       if (servicesEl) observer.observe(servicesEl);
+      if (admissionsEl) observer.observe(admissionsEl);
       if (howItWorksEl) observer.observe(howItWorksEl);
 
       return () => {
@@ -122,22 +131,35 @@ export function Navbar() {
           <Link
             href="/#services"
             onClick={() => handleNavClick("services", "services")}
-            className={`inline-flex min-h-[38px] items-center px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+            className={`inline-flex min-h-[38px] items-center px-3.5 py-1.5 rounded-lg text-xs sm:text-sm transition-all ${
               activeSection === "services"
-                ? "text-accent bg-surface shadow-2xs border border-accent/25 font-bold"
-                : "text-muted hover:text-ink hover:bg-surface/50 border border-transparent"
+                ? "text-accent bg-accent-soft border border-accent/30 shadow-2xs font-bold"
+                : "text-muted hover:text-ink hover:bg-surface/50 border border-transparent font-semibold"
             }`}
           >
             {t.nav.services}
           </Link>
 
           <Link
+            href="/admissions"
+            onClick={() => setActiveSection("admissions")}
+            className={`inline-flex min-h-[38px] items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm transition-all ${
+              activeSection === "admissions"
+                ? "text-accent bg-accent-soft border border-accent/30 shadow-2xs font-bold"
+                : "text-muted hover:text-ink hover:bg-surface/50 border border-transparent font-semibold"
+            }`}
+          >
+            <span aria-hidden="true">🎓</span>
+            <span>{t.nav.admissions}</span>
+          </Link>
+
+          <Link
             href="/#how-it-works"
             onClick={() => handleNavClick("how-it-works", "how-it-works")}
-            className={`inline-flex min-h-[38px] items-center px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+            className={`inline-flex min-h-[38px] items-center px-3.5 py-1.5 rounded-lg text-xs sm:text-sm transition-all ${
               activeSection === "how-it-works"
-                ? "text-accent bg-surface shadow-2xs border border-accent/25 font-bold"
-                : "text-muted hover:text-ink hover:bg-surface/50 border border-transparent"
+                ? "text-accent bg-accent-soft border border-accent/30 shadow-2xs font-bold"
+                : "text-muted hover:text-ink hover:bg-surface/50 border border-transparent font-semibold"
             }`}
           >
             {t.nav.howItWorks}
@@ -148,7 +170,7 @@ export function Navbar() {
             <div
               className={`inline-flex items-center rounded-lg border transition-all ${
                 activeSection === "checklist"
-                  ? "text-accent bg-surface border-accent/30 shadow-2xs font-bold"
+                  ? "text-accent bg-accent-soft border-accent/30 shadow-2xs font-bold"
                   : "border-transparent bg-transparent text-muted hover:bg-surface/50 hover:text-ink font-semibold"
               }`}
             >
@@ -218,11 +240,11 @@ export function Navbar() {
       </div>
 
       {/* Mobile Sub-Navigation Bar for touch accessibility (Zone 2 for mobile) */}
-      <div className="md:hidden border-t border-line/70 bg-paper/95 px-3 py-1.5 flex items-center justify-around text-xs">
+      <div className="md:hidden border-t border-line/70 bg-paper/95 px-2 py-1.5 grid grid-cols-4 gap-1 text-xs">
         <Link
           href="/#services"
           onClick={() => handleNavClick("services", "services")}
-          className={`flex min-h-[44px] items-center px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+          className={`flex min-h-[44px] items-center justify-center px-1.5 py-1.5 rounded-lg text-center font-semibold transition-colors ${
             activeSection === "services"
               ? "text-accent bg-accent-soft font-bold border border-accent/20"
               : "text-muted hover:text-ink"
@@ -231,9 +253,20 @@ export function Navbar() {
           {t.nav.services}
         </Link>
         <Link
+          href="/admissions"
+          onClick={() => setActiveSection("admissions")}
+          className={`flex min-h-[44px] items-center justify-center px-1.5 py-1.5 rounded-lg text-center font-semibold transition-colors ${
+            activeSection === "admissions"
+              ? "text-accent bg-accent-soft font-bold border border-accent/20"
+              : "text-muted hover:text-ink"
+          }`}
+        >
+          🎓 Admissions
+        </Link>
+        <Link
           href="/#how-it-works"
           onClick={() => handleNavClick("how-it-works", "how-it-works")}
-          className={`flex min-h-[44px] items-center px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+          className={`flex min-h-[44px] items-center justify-center px-1.5 py-1.5 rounded-lg text-center font-semibold transition-colors ${
             activeSection === "how-it-works"
               ? "text-accent bg-accent-soft font-bold border border-accent/20"
               : "text-muted hover:text-ink"
@@ -244,7 +277,7 @@ export function Navbar() {
         <Link
           href="/checklist"
           onClick={() => setActiveSection("checklist")}
-          className={`flex min-h-[44px] items-center px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+          className={`flex min-h-[44px] items-center justify-center px-1.5 py-1.5 rounded-lg text-center font-semibold transition-colors ${
             activeSection === "checklist"
               ? "text-accent bg-accent-soft font-bold border border-accent/20"
               : "text-muted hover:text-ink"

@@ -71,10 +71,35 @@ export function ConnectionArea() {
                   <span className="text-muted group-hover:text-accent">↗</span>
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://cetcell.mahacet.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between font-semibold text-ink hover:text-accent"
+                >
+                  <span>Maharashtra State CET Cell</span>
+                  <span className="text-muted group-hover:text-accent">↗</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://mahafyjcadmissions.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between font-semibold text-ink hover:text-accent"
+                >
+                  <span>Maharashtra 11th / FYJC</span>
+                  <span className="text-muted group-hover:text-accent">↗</span>
+                </a>
+              </li>
             </ul>
           </div>
-          <div className="mt-4 pt-3 border-t border-line/60 text-[11px] text-muted">
-            Direct government portals only.
+          <div className="mt-4 pt-3 border-t border-line/60 text-[11px] text-muted flex items-center justify-between">
+            <span>Direct government portals only.</span>
+            <Link href="/admissions#portal-directory" className="text-accent font-bold hover:underline">
+              All 7+ portals →
+            </Link>
           </div>
         </div>
 

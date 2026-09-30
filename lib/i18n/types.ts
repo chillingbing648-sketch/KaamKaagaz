@@ -12,6 +12,7 @@ export interface LocaleTranslations {
     home: string;
     services: string;
     allServices: string;
+    admissions: string;
     checklist: string;
     howItWorks: string;
     selectLanguage: string;

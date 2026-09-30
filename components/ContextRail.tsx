@@ -4,10 +4,11 @@ import Link from "next/link";
 import { Process, DocumentRequirement, processes } from "@/data/processes";
 import { useLanguage } from "@/lib/i18n/context";
 import { getLocalizedProcess, getLocalizedDocument } from "@/lib/i18n/localize";
-import { useChecklist } from "@/lib/checklist";
+import { useChecklist, useAdmissionChecklist } from "@/lib/checklist";
 import { ProgressBar } from "./ProgressBar";
+import { studentDocuments } from "@/data/admissions";
 
-export type RailMode = "home" | "process" | "document" | "checklist" | "legal";
+export type RailMode = "home" | "process" | "document" | "checklist" | "legal" | "admissions";
 
 interface ContextRailProps {
   mode: RailMode;
@@ -83,6 +84,15 @@ export function ContextRail({
                 </Link>
               );
             })}
+            <div className="pt-2 border-t border-line/60 mt-1.5">
+              <Link
+                href="/admissions"
+                className="group flex items-center justify-between py-1.5 px-2 rounded-lg text-xs font-bold text-accent bg-accent-soft/50 hover:bg-accent-soft transition-colors"
+              >
+                <span className="truncate pr-2">🎓 Student Admissions</span>
+                <span className="text-accent text-xs">→</span>
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -165,6 +175,10 @@ export function ContextRail({
 
   if (mode === "legal") {
     return <LegalRail />;
+  }
+
+  if (mode === "admissions") {
+    return <AdmissionsRail />;
   }
 
   return null;
@@ -501,3 +515,163 @@ function LegalRail() {
     </aside>
   );
 }
+
+// -------------------------------------------------------------
+// ADMISSIONS CONTEXT RAIL
+// -------------------------------------------------------------
+function AdmissionsRail() {
+  const validIds = studentDocuments.map((d) => d.id);
+  const { counts } = useAdmissionChecklist(validIds);
+
+  const sections = [
+    { id: "finder", label: "🧭 Admission Finder" },
+    { id: "portal-directory", label: "🏛️ Portal Directory" },
+    { id: "admission-roadmaps", label: "🗺️ Admission Roadmaps" },
+    { id: "documents", label: "📄 Document Helper" },
+    { id: "scholarships", label: "💰 MahaDBT Scholarships" },
+    { id: "common-problems", label: "💡 Common Problems" },
+    { id: "admission-terms", label: "📖 Admission Terms" },
+    { id: "checklist", label: "✓ My Checklist" },
+  ];
+
+  return (
+    <aside aria-label="Student admissions navigation and status" className="space-y-4">
+      {/* 1. Admission Checklist Live Widget */}
+      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-muted">
+            Readiness Progress
+          </span>
+          <span className="rounded-full bg-accent-soft px-2 py-0.5 text-xs font-bold text-accent">
+            {counts.ready} / {counts.activeTotal} Ready
+          </span>
+        </div>
+
+        <ProgressBar percent={counts.percent} label="Admission documents readiness" />
+
+        <div className="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between text-xs">
+          <span className="text-muted">
+            {counts.missing > 0 ? `${counts.missing} missing` : "All documents reviewed"}
+          </span>
+          <a href="#checklist" className="font-bold text-accent hover:underline">
+            Manage list →
+          </a>
+        </div>
+      </div>
+
+      {/* 2. On This Page: Admission Ecosystem anchors */}
+      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+        <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2.5 flex items-center gap-1">
+          <span>📑</span>
+          <span>Admission Sections</span>
+        </p>
+        <nav aria-label="Admissions quick section navigation">
+          <ul className="space-y-1 text-xs">
+            {sections.map((sec) => (
+              <li key={sec.id}>
+                <a
+                  href={`#${sec.id}`}
+                  className="block py-1 px-1.5 rounded text-muted hover:text-ink hover:bg-paper transition-colors font-medium"
+                >
+                  {sec.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      {/* 3. Key Official Admission Portals */}
+      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs text-xs">
+        <div className="flex items-center gap-1.5 text-muted font-bold uppercase tracking-wider text-[11px] mb-2.5">
+          <span>🏛️</span>
+          <span>Official Portals (AY 2026–27)</span>
+        </div>
+        <ul className="space-y-2">
+          <li>
+            <a
+              href="https://mahafyjcadmissions.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between py-1 px-1 rounded hover:bg-paper transition-colors"
+            >
+              <div>
+                <span className="font-semibold text-ink group-hover:text-accent block">Maharashtra 11th / FYJC</span>
+                <span className="text-[10px] text-muted font-mono">mahafyjcadmissions.in</span>
+              </div>
+              <span className="text-muted group-hover:text-accent">↗</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://cetcell.mahacet.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between py-1 px-1 rounded hover:bg-paper transition-colors"
+            >
+              <div>
+                <span className="font-semibold text-ink group-hover:text-accent block">State CET Cell (CAP)</span>
+                <span className="text-[10px] text-muted font-mono">cetcell.mahacet.org</span>
+              </div>
+              <span className="text-muted group-hover:text-accent">↗</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://muadmission.samarth.edu.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between py-1 px-1 rounded hover:bg-paper transition-colors"
+            >
+              <div>
+                <span className="font-semibold text-ink group-hover:text-accent block">Mumbai Univ. Samarth</span>
+                <span className="text-[10px] text-muted font-mono">muadmission.samarth.edu.in</span>
+              </div>
+              <span className="text-muted group-hover:text-accent">↗</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://mucdoeadm.samarth.edu.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between py-1 px-1 rounded hover:bg-paper transition-colors"
+            >
+              <div>
+                <span className="font-semibold text-ink group-hover:text-accent block">Mumbai Univ. CDOE</span>
+                <span className="text-[10px] text-muted font-mono">mucdoeadm.samarth.edu.in</span>
+              </div>
+              <span className="text-muted group-hover:text-accent">↗</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://mahadbt.maharashtra.gov.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between py-1 px-1 rounded hover:bg-paper transition-colors"
+            >
+              <div>
+                <span className="font-semibold text-ink group-hover:text-accent block">MahaDBT Scholarships</span>
+                <span className="text-[10px] text-muted font-mono">mahadbt.maharashtra.gov.in</span>
+              </div>
+              <span className="text-muted group-hover:text-accent">↗</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      {/* 4. Trust Assurance */}
+      <div className="rounded-xl border border-accent/20 bg-accent-soft/30 p-3.5 text-xs leading-relaxed">
+        <p className="font-bold text-accent mb-1 flex items-center gap-1">
+          <span>🛡️</span>
+          <span>Zero Commission / Direct Entry</span>
+        </p>
+        <p className="text-ink/80 text-[11px]">
+          KaamKaagaz provides pure wayfinding. We never ask for entrance registration fees or sell student data.
+        </p>
+      </div>
+    </aside>
+  );
+}
+

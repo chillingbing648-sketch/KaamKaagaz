@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 import { Process } from "@/data/processes";
 import { ProcessCard } from "./ProcessCard";
@@ -49,6 +50,22 @@ function matches(item: Process, q: string) {
   return searchWords.some((word) => haystack.includes(word));
 }
 
+const ADMISSIONS_KEYWORDS = [
+  "admission", "admissions", "student", "students", "college", "fyjc", "11th", "cet", "mht-cet", "cap", "mba", "mca",
+  "engineering", "pharmacy", "bba", "bms", "bca", "mumbai university", "mu", "samarth", "cdoe", "idol", "phd", "pet",
+  "scholarship", "mahadbt", "freeship", "caste validity", "apaar", "abc id", "gap certificate",
+  "प्रवेश", "एडमिशन", "कॉलेज", "11वीं", "सीईटी", "कैप", "छात्र", "विद्यार्थी", "स्कॉलरशिप", "दाखिला"
+];
+
+function matchesAdmissions(q: string): boolean {
+  const queryLower = q.toLowerCase().trim();
+  if (!queryLower) return true;
+  const rawWords = queryLower.split(/[\s,]+/);
+  return rawWords.some((word) =>
+    ADMISSIONS_KEYWORDS.some((kw) => kw.includes(word) || word.includes(kw))
+  );
+}
+
 export function HomeSearch({ items }: { items: Process[] }) {
   const [query, setQuery] = useState("");
   const inputId = useId();
@@ -56,6 +73,7 @@ export function HomeSearch({ items }: { items: Process[] }) {
   const q = query.trim();
 
   const results = q ? items.filter((i) => matches(i, q)) : items;
+  const showAdmissions = matchesAdmissions(q);
 
   return (
     <div>
@@ -126,6 +144,15 @@ export function HomeSearch({ items }: { items: Process[] }) {
               </button>
             );
           })}
+
+          {/* Student Admissions Major Kaam Pill */}
+          <Link
+            href="/admissions"
+            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border-2 border-accent/40 bg-accent-soft px-4 py-2 text-xs sm:text-sm font-bold text-accent hover:border-accent hover:bg-accent hover:text-white shadow-2xs transition-all"
+          >
+            <span>🎓 Student Admissions</span>
+            <span aria-hidden="true" className="text-xs">→</span>
+          </Link>
         </div>
       </div>
 
@@ -133,7 +160,9 @@ export function HomeSearch({ items }: { items: Process[] }) {
       <div className="mt-8 border-t border-line/70 pt-6">
         <div className="flex items-center justify-between mb-3.5">
           <h2 className="text-xs font-bold uppercase tracking-wider text-muted">
-            {q ? `${t.home.results} (${results.length})` : t.home.popularServices}
+            {q
+              ? `${t.home.results} (${results.length + (showAdmissions ? 1 : 0)})`
+              : t.home.popularServices}
           </h2>
           {q && (
             <button
@@ -147,14 +176,56 @@ export function HomeSearch({ items }: { items: Process[] }) {
         </div>
 
         <div aria-live="polite">
-          {results.length > 0 ? (
-            <ul className="space-y-3">
-              {results.map((p) => (
-                <li key={p.slug}>
-                  <ProcessCard process={p} />
-                </li>
-              ))}
-            </ul>
+          {results.length > 0 || showAdmissions ? (
+            <div className="space-y-4">
+              {/* If query or empty, show matching standard services */}
+              {results.length > 0 && (
+                <ul className="space-y-3">
+                  {results.map((p) => (
+                    <li key={p.slug}>
+                      <ProcessCard process={p} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {/* Major Student Admissions Card */}
+              {showAdmissions && (
+                <div id="admissions-section" className="pt-2">
+                  <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
+                    <span>🎓 Higher Education & Admissions Ecosystem</span>
+                  </div>
+                  <Link
+                    href="/admissions"
+                    className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border-2 border-accent/40 bg-accent-soft/25 p-4 sm:p-5 shadow-2xs transition-all hover:border-accent hover:bg-accent-soft/50 hover:shadow-xs focus-visible:outline-2 focus-visible:outline-accent"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <span className="inline-block rounded-md bg-accent text-white px-2 py-0.5 text-[10px] font-black uppercase tracking-wider">
+                          🎓 MAJOR KAAM
+                        </span>
+                        <span className="text-[11px] font-bold text-accent bg-surface px-2 py-0.5 rounded border border-accent/20">
+                          AY 2026–27
+                        </span>
+                      </div>
+                      <h3 className="text-lg sm:text-xl font-black text-ink group-hover:text-accent transition-colors">
+                        Student Admissions
+                      </h3>
+                      <p className="mt-1 text-xs sm:text-sm text-ink/80 leading-relaxed">
+                        Find the right portal (FYJC, CET Cell CAP, Mumbai University Samarth, CDOE, PhD) · Step-by-Step Roadmaps · Documents & “Do I Need This?” Helper · MahaDBT Scholarships
+                      </p>
+                    </div>
+
+                    <div className="flex items-center sm:self-center shrink-0">
+                      <span className="inline-flex min-h-[44px] items-center gap-1.5 rounded-xl bg-accent text-white px-4 py-2 text-xs sm:text-sm font-bold shadow-xs group-hover:bg-accent-hover transition-colors">
+                        <span>Enter Admissions</span>
+                        <span aria-hidden="true">→</span>
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              )}
+            </div>
           ) : (
             <div className="rounded-xl border border-line bg-surface p-6 text-center shadow-2xs">
               <span className="text-3xl">🔍</span>

@@ -12,6 +12,7 @@ export const en: LocaleTranslations = {
     home: "KaamKaagaz",
     services: "Services",
     allServices: "All Services",
+    admissions: "Student Admissions",
     checklist: "My Checklist",
     howItWorks: "How It Works",
     selectLanguage: "Choose language",

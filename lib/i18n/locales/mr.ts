@@ -12,6 +12,7 @@ export const mr: LocaleTranslations = {
     home: "कामकागद",
     services: "सेवा",
     allServices: "सर्व सेवा",
+    admissions: "विद्यार्थी प्रवेश (Admissions)",
     checklist: "माझी चेकलिस्ट",
     howItWorks: "हे कसे चालते",
     selectLanguage: "भाषा निवडा",
