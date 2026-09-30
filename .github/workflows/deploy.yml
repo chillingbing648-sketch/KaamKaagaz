@@ -1,34 +1,28 @@
-name: Deploy KaamKaagaz to GitHub Pages
+name: Build & Deploy KaamKaagaz
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: github-pages
+  group: pages
   cancel-in-progress: true
 
 jobs:
   deploy:
+    name: Build and publish
     runs-on: ubuntu-latest
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - name: Checkout source
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
@@ -36,17 +30,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build static Next.js site
+      - name: Type-check
+        run: npm run lint
+
+      - name: Build static site
         run: npm run build
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+      - name: Prepare GitHub Pages
+        run: touch out/.nojekyll
 
-      - name: Upload static export
-        uses: actions/upload-pages-artifact@v4
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./out
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          force_orphan: true
+          commit_message: "deploy: publish KaamKaagaz"
