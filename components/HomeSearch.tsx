@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useState } from "react";
-import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 import { Process } from "@/data/processes";
 import { ProcessCard } from "./ProcessCard";
@@ -9,7 +8,7 @@ import { getLocalizedProcess } from "@/lib/i18n/localize";
 
 // Common natural conversational filler words in Hindi, Marathi, and English
 const STOP_WORDS = new Set([
-  "mujhe", "mera", "meri", "humko", "karna", "kare", "karna", "hai", "banana", "banao", "chahiye",
+  "mujhe", "mera", "meri", "humko", "karna", "kare", "hai", "banana", "banao", "chahiye",
   "karo", "ka", "ki", "ke", "ko", "se", "me", "mein", "par",
   "mala", "majha", "majhi", "amhi", "karaycha", "aahe", "kadha", "kadhaycha", "hawa", "pahije", "kay", "kase",
   "i", "want", "to", "make", "get", "need", "apply", "for", "a", "an", "the", "how", "do",
@@ -61,7 +60,7 @@ export function HomeSearch({ items }: { items: Process[] }) {
   return (
     <div>
       <div className="relative">
-        <label htmlFor={inputId} className="block text-base sm:text-lg font-semibold text-ink mb-2">
+        <label htmlFor={inputId} className="block text-base sm:text-lg font-bold text-ink mb-2">
           {t.home.heroQuestion}
         </label>
         <div className="relative flex items-center">
@@ -88,14 +87,14 @@ export function HomeSearch({ items }: { items: Process[] }) {
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.home.searchPlaceholder}
             autoComplete="off"
-            className="h-14 w-full rounded-xl border-2 border-line bg-surface pl-12 pr-10 text-base sm:text-lg text-ink shadow-xs placeholder:text-muted/70 transition-all focus:border-accent focus:bg-white focus:outline-none"
+            className="h-14 w-full rounded-xl border border-line bg-surface pl-12 pr-10 text-base sm:text-lg text-ink shadow-2xs placeholder:text-muted/70 transition-all focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none"
           />
           {query && (
             <button
               type="button"
               onClick={() => setQuery("")}
               aria-label="Clear search"
-              className="absolute right-3.5 flex size-7 items-center justify-center rounded-full text-muted hover:bg-paper hover:text-ink cursor-pointer"
+              className="absolute right-3.5 flex size-8 items-center justify-center rounded-full text-muted hover:bg-paper hover:text-ink transition-colors cursor-pointer"
             >
               ✕
             </button>
@@ -103,9 +102,9 @@ export function HomeSearch({ items }: { items: Process[] }) {
         </div>
       </div>
 
-      {/* Popular Kaam quick action buttons */}
-      <div className="mt-5">
-        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted mb-2.5">
+      {/* Popular Kaam quick pills */}
+      <div className="mt-4">
+        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted mb-2">
           <span>⚡ {t.home.popularKaam}</span>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -116,11 +115,11 @@ export function HomeSearch({ items }: { items: Process[] }) {
               <button
                 key={process.slug}
                 type="button"
-                onClick={() => setQuery(process.title)}
-                className={`inline-flex min-h-10 items-center rounded-lg border px-3.5 py-1.5 text-sm font-medium transition-all cursor-pointer ${
+                onClick={() => setQuery(isSelected ? "" : process.title)}
+                className={`inline-flex min-h-10 items-center rounded-lg border px-3.5 py-1.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                   isSelected
                     ? "border-accent bg-accent text-white shadow-xs"
-                    : "border-line bg-surface text-ink hover:border-accent hover:bg-accent-soft"
+                    : "border-line bg-surface text-ink hover:border-accent hover:bg-accent-soft hover:text-accent shadow-2xs"
                 }`}
               >
                 {loc.title}
@@ -130,9 +129,10 @@ export function HomeSearch({ items }: { items: Process[] }) {
         </div>
       </div>
 
+      {/* Results Header & List */}
       <div className="mt-8 border-t border-line/70 pt-6">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-muted">
+        <div className="flex items-center justify-between mb-3.5">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-muted">
             {q ? `${t.home.results} (${results.length})` : t.home.popularServices}
           </h2>
           {q && (
@@ -156,18 +156,18 @@ export function HomeSearch({ items }: { items: Process[] }) {
               ))}
             </ul>
           ) : (
-            <div className="rounded-xl border border-line bg-surface p-6 text-center">
+            <div className="rounded-xl border border-line bg-surface p-6 text-center shadow-2xs">
               <span className="text-3xl">🔍</span>
               <p className="mt-2 font-bold text-ink">
                 {t.home.noResults} “{q}”
               </p>
-              <p className="mt-1 text-sm text-muted max-w-md mx-auto">
+              <p className="mt-1 text-xs sm:text-sm text-muted max-w-md mx-auto leading-relaxed">
                 {t.home.noResultsHint}
               </p>
               <button
                 type="button"
                 onClick={() => setQuery("")}
-                className="mt-4 inline-flex min-h-11 items-center rounded-lg border border-line bg-surface px-4 py-2 font-semibold text-accent hover:bg-accent-soft transition-colors cursor-pointer"
+                className="mt-4 inline-flex min-h-10 items-center rounded-lg border border-line bg-surface px-4 py-2 text-xs sm:text-sm font-bold text-accent hover:bg-accent-soft transition-colors cursor-pointer"
               >
                 {t.home.showAllServices}
               </button>

@@ -1,8 +1,22 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Noto_Sans_Devanagari } from "next/font/google";
 import { LanguageProvider } from "@/lib/i18n/context";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const notoDevanagari = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-devanagari",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -26,12 +40,12 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen antialiased flex flex-col justify-between">
+    <html lang="en" className={`${inter.variable} ${notoDevanagari.variable}`}>
+      <body className="min-h-screen antialiased flex flex-col justify-between font-sans">
         <LanguageProvider>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-surface focus:px-4 focus:py-2 focus:shadow-md focus:font-semibold focus:text-accent"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-md focus:bg-surface focus:px-4 focus:py-2.5 focus:shadow-md focus:font-semibold focus:text-accent"
           >
             Skip to content
           </a>

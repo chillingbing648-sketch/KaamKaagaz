@@ -10,8 +10,10 @@ export interface LocaleTranslations {
   };
   nav: {
     home: string;
+    services: string;
     allServices: string;
     checklist: string;
+    howItWorks: string;
     selectLanguage: string;
     skipToContent: string;
   };
@@ -25,6 +27,16 @@ export interface LocaleTranslations {
     noResultsHint: string;
     showAllServices: string;
     needHelpQuestion: string;
+  };
+  howItWorks: {
+    title: string;
+    subtitle: string;
+    step1Title: string;
+    step1Desc: string;
+    step2Title: string;
+    step2Desc: string;
+    step3Title: string;
+    step3Desc: string;
   };
   process: {
     documentsRequired: string;
@@ -79,6 +91,7 @@ export interface LocaleTranslations {
     clearTicks: string;
     clearConfirm: string;
     continueApplication: string;
+    selectServiceToView: string;
   };
   officialSource: {
     title: string;
@@ -86,6 +99,15 @@ export interface LocaleTranslations {
     lastReviewed: string;
     verifyNotice: string;
     openInNewTab: string;
+  };
+  legal: {
+    privacyTitle: string;
+    termsTitle: string;
+    disclaimerTitle: string;
+    securityTitle: string;
+    cookiesTitle: string;
+    accessibilityTitle: string;
+    independentNotice: string;
   };
   notFound: {
     title: string;

@@ -10,8 +10,10 @@ export const mr: LocaleTranslations = {
   },
   nav: {
     home: "कामकागद",
+    services: "सेवा",
     allServices: "सर्व सेवा",
     checklist: "माझी चेकलिस्ट",
+    howItWorks: "हे कसे चालते",
     selectLanguage: "भाषा निवडा",
     skipToContent: "थेट मजकुरावर जा",
   },
@@ -25,6 +27,16 @@ export const mr: LocaleTranslations = {
     noResultsHint: "सध्या येथे पॅन कार्ड, पासपोर्ट आणि उत्पन्नाचा दाखला यांची माहिती उपलब्ध आहे.",
     showAllServices: "सर्व सेवा दाखवा",
     needHelpQuestion: "कोणतं काम करायचं आहे?",
+  },
+  howItWorks: {
+    title: "कामकागद कसे काम करते",
+    subtitle: "तुमच्या आणि क्लिष्ट सरकारी कागदपत्रांमधील एक सोपा, विश्वासू दुवा.",
+    step1Title: "१. तुमचे काम निवडा",
+    step1Desc: "तुम्हाला जे काम करायचे आहे ते शोधा किंवा निवडा — पॅन कार्ड, पासपोर्ट किंवा उत्पन्नाचा दाखला.",
+    step2Title: "२. आवश्यक कागदपत्रे समजा",
+    step2Desc: "कोणती कागदपत्रे ग्राह्य आहेत, त्यांची गरज का आहे आणि ती कशी तयार करावी हे समजून घ्या.",
+    step3Title: "३. आत्मविश्वासाने अर्ज करा",
+    step3Desc: "तुमच्या स्थानिक चेकलिस्टमध्ये खुणा करा, अधिकृत शुल्क तपासा आणि थेट सरकारी पोर्टलवर अर्ज करा.",
   },
   process: {
     documentsRequired: "आवश्यक कागदपत्रे (What you need)",
@@ -79,6 +91,7 @@ export const mr: LocaleTranslations = {
     clearTicks: "सर्व खुणा काढून टाका",
     clearConfirm: "तुम्हाला या चेकलिस्टवरील सर्व खुणा काढून टाकायच्या आहेत का?",
     continueApplication: "अर्ज प्रक्रिया सुरू ठेवा",
+    selectServiceToView: "तुमची जतन केलेली चेकलिस्ट पाहण्यासाठी सेवा निवडा",
   },
   officialSource: {
     title: "अधिकृत स्रोत (Official Source)",
@@ -86,6 +99,15 @@ export const mr: LocaleTranslations = {
     lastReviewed: "कामकागदने शेवटची तपासणी केलेली तारीख:",
     verifyNotice: "कोणत्याही अनधिकृत दलालाला पैसे देऊ नका. केवळ अधिकृत संकेतस्थळाचा वापर करा.",
     openInNewTab: "(नवीन टॅबमध्ये उघडेल)",
+  },
+  legal: {
+    privacyTitle: "गोपनीयता धोरण (Privacy)",
+    termsTitle: "वापराच्या अटी (Terms)",
+    disclaimerTitle: "नागरी अस्वीकरण (Disclaimer)",
+    securityTitle: "सुरक्षा धोरण (Security)",
+    cookiesTitle: "कुकीज धोरण (Cookies)",
+    accessibilityTitle: "सुलभता विधान (Accessibility)",
+    independentNotice: "कामकागद ही एक विनामूल्य नागरी मार्गदर्शिका आहे. आम्ही नागरिकांची कोणतीही कागदपत्रे साठवत नाही आणि जाहिराती दाखवत नाही.",
   },
   notFound: {
     title: "पृष्ठ आढळले नाही",

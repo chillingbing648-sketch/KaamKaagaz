@@ -49,7 +49,7 @@ export function ProcessView({ process }: { process: Process }) {
         </p>
 
         {loc.scopeNote && (
-          <div className="mt-4 rounded-xl border border-note-line bg-note-bg/70 p-4 text-xs sm:text-sm text-note-ink leading-relaxed">
+          <div className="mt-4 rounded-xl border border-warning-line bg-warning-soft/50 p-4 text-xs sm:text-sm text-warning leading-relaxed">
             <span className="font-bold">⚠️ {t.process.scopeNoteTitle}: </span>
             {loc.scopeNote}
           </div>
@@ -60,7 +60,9 @@ export function ProcessView({ process }: { process: Process }) {
       {(loc.whoCanApplyText || (loc.eligibilityList && loc.eligibilityList.length > 0)) && (
         <section aria-labelledby="eligibility-heading" className="rounded-xl border border-line bg-surface p-4 sm:p-5 shadow-2xs">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-lg">👤</span>
+            <span className="flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent text-xs font-bold">
+              👤
+            </span>
             <h2 id="eligibility-heading" className="text-base sm:text-lg font-bold text-ink">
               {t.process.whoCanApply}
             </h2>
