@@ -69,17 +69,45 @@ function matchesAdmissions(q: string): boolean {
 export function HomeSearch({
   items,
   midSection,
+  selectedCategory,
+  onSelectCategory,
 }: {
   items: Process[];
   midSection?: React.ReactNode;
+  selectedCategory?: string | null;
+  onSelectCategory?: (category: string | null) => void;
 }) {
   const [query, setQuery] = useState("");
+  const [internalCategory, setInternalCategory] = useState<string | null>(null);
   const inputId = useId();
   const { language, t } = useLanguage();
   const q = query.trim();
 
-  const results = q ? items.filter((i) => matches(i, q)) : items;
-  const showAdmissions = matchesAdmissions(q);
+  const activeCategory = selectedCategory !== undefined ? selectedCategory : internalCategory;
+  const setActiveCategory = onSelectCategory || setInternalCategory;
+
+  // Filter items by category if one is active
+  const categoryFilteredItems = items.filter((p) => {
+    if (!activeCategory || activeCategory === "all") return true;
+    const catLower = p.category.toLowerCase();
+    if (activeCategory === "identity") return catLower.includes("identity");
+    if (activeCategory === "certificates") return catLower.includes("certificate") || catLower.includes("record") || catLower.includes("residence");
+    if (activeCategory === "education") return catLower.includes("education") || catLower.includes("academic");
+    return true;
+  });
+
+  const results = q ? categoryFilteredItems.filter((i) => matches(i, q)) : categoryFilteredItems;
+  const showAdmissions = (
+    (!activeCategory || activeCategory === "all" || activeCategory === "education") &&
+    (matchesAdmissions(q) || activeCategory === "education" || !q)
+  );
+
+  const categoryTabs = [
+    { id: "all", label: t.home?.allKaam || "All kaam", count: items.length },
+    { id: "identity", label: t.home?.categoryIdentity || "Identity", count: items.filter((p) => p.category.toLowerCase().includes("identity")).length },
+    { id: "certificates", label: t.home?.categoryCertificates || "Certificates", count: items.filter((p) => p.category.toLowerCase().includes("certificate") || p.category.toLowerCase().includes("record") || p.category.toLowerCase().includes("residence")).length },
+    { id: "education", label: t.home?.categoryEducation || "Education", count: items.filter((p) => p.category.toLowerCase().includes("education") || p.category.toLowerCase().includes("academic")).length },
+  ];
 
   return (
     <div className="space-y-10">
@@ -89,13 +117,16 @@ export function HomeSearch({
           <span className="text-xs font-semibold text-muted tracking-wide">
             {t.home.popularKaam}
           </span>
-          {query && (
+          {(query || (activeCategory && activeCategory !== "all")) && (
             <button
               type="button"
-              onClick={() => setQuery("")}
+              onClick={() => {
+                setQuery("");
+                setActiveCategory(null);
+              }}
               className="text-xs font-medium text-accent hover:underline cursor-pointer"
             >
-              Reset filter
+              {t.home?.resetFilter || "Reset filter"}
             </button>
           )}
         </div>
@@ -124,21 +155,60 @@ export function HomeSearch({
             href="/admissions"
             className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-accent/30 bg-accent-soft px-3.5 py-1.5 text-xs sm:text-sm font-bold text-accent hover:border-accent hover:bg-accent hover:text-white shadow-2xs transition-all"
           >
-            <span>Student Admissions</span>
+            <span>{t.home?.categoryAdmissions || "Student Admissions"}</span>
             <span aria-hidden="true" className="text-xs">→</span>
           </Link>
         </div>
       </div>
 
-      {/* 2. Optional Mid-section (e.g. How It Works) */}
+      {/* 2. Optional Mid-section (How It Works) */}
       {midSection && (
         <div className="scroll-mt-24">
           {midSection}
         </div>
       )}
 
-      {/* 3. Search Anything Section (Secondary accelerator) */}
-      <div id="search-section" className="scroll-mt-24">
+      {/* 3. Search Anything & Category Navigation Section */}
+      <div id="search-section" className="scroll-mt-24 space-y-4">
+        {/* Category Navigation Tabs */}
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-semibold text-muted tracking-wide">
+              {t.home?.filterByCategory || "Filter by category"}
+            </span>
+            {activeCategory && activeCategory !== "all" && (
+              <button
+                type="button"
+                onClick={() => setActiveCategory("all")}
+                className="text-xs font-medium text-accent hover:underline cursor-pointer"
+              >
+                {t.home?.resetFilter || "Reset filter"}
+              </button>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {categoryTabs.map((tab) => {
+              const isSelected = (!activeCategory && tab.id === "all") || activeCategory === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveCategory(tab.id === "all" ? null : tab.id)}
+                  className={`inline-flex min-h-[38px] items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+                    isSelected
+                      ? "border-accent bg-accent text-white shadow-xs font-bold"
+                      : "border-line bg-surface text-ink hover:border-accent hover:text-accent shadow-2xs"
+                  }`}
+                >
+                  <span>{tab.label}</span>
+                  <span className={`text-[10px] rounded-full px-1.5 py-0.2 ${isSelected ? "bg-white/20 text-white" : "bg-paper text-muted"}`}>
+                    {tab.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
         <div className="relative">
           <label htmlFor={inputId} className="block text-sm sm:text-base font-bold text-ink mb-2">
             {t.home.heroQuestion}

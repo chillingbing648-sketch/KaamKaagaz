@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Process } from "@/data/processes";
 import { useLanguage } from "@/lib/i18n/context";
@@ -13,13 +13,14 @@ import { CommonMistakes } from "./CommonMistakes";
 import { FAQSection } from "./FAQSection";
 import { OfficialSource } from "./OfficialSource";
 import { Breadcrumb } from "./Breadcrumb";
-import { JourneyRoadmap } from "./JourneyRoadmap";
+import { JourneyRoadmap, JourneyStage } from "./JourneyRoadmap";
 import { ContextRail } from "./ContextRail";
 import { useChecklist } from "@/lib/checklist";
 
 export function ProcessView({ process }: { process: Process }) {
   const { language, t } = useLanguage();
   const [selectedSituationId, setSelectedSituationId] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string>("overview");
 
   const loc = getLocalizedProcess(process, language);
 
@@ -27,9 +28,56 @@ export function ProcessView({ process }: { process: Process }) {
   const activeSituation = process.situations?.find((s) => s.id === selectedSituationId);
   const activeDocIds = activeSituation?.applicableDocIds;
 
-  // Track readiness for top-level process summary
+  // Track readiness for top-level process summary using targetDocIds (situation-aware)
   const allDocIds = process.documents.map((d) => d.id);
-  const { count: readyCount, total: totalDocs, percent: readyPercent } = useChecklist(process.slug, allDocIds);
+  const targetDocIds = activeDocIds && activeDocIds.length > 0 ? activeDocIds : allDocIds;
+  const { count: readyCount, total: totalDocs, percent: readyPercent } = useChecklist(process.slug, targetDocIds);
+
+  // Active section tracking for continuous unified process journey
+  useEffect(() => {
+    const sectionIds = [
+      "overview",
+      "situations",
+      "documents",
+      "eligibility",
+      "steps",
+      "fees-timelines",
+      "common-mistakes",
+      "faqs",
+      "official-source",
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-15% 0px -55% 0px",
+        threshold: [0.1],
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const currentJourneyStage: JourneyStage = (
+    activeSection === "overview" ? "overview" :
+    activeSection === "situations" ? "situation" :
+    activeSection === "documents" ? "documents" :
+    activeSection === "eligibility" ? "eligibility" :
+    activeSection === "steps" ? "steps" :
+    activeSection === "fees-timelines" || activeSection === "common-mistakes" ? "fees" :
+    "apply"
+  );
 
   return (
     <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
@@ -44,7 +92,10 @@ export function ProcessView({ process }: { process: Process }) {
         />
 
         {/* Process Journey Roadmap: answers 'Where am I in the journey?' */}
-        <JourneyRoadmap currentStage={selectedSituationId ? "documents" : "situation"} />
+        <JourneyRoadmap
+          currentStage={currentJourneyStage}
+          hasSituations={Boolean(process.situations && process.situations.length > 0)}
+        />
 
         {/* 1. Header: What is this? Top hierarchy */}
         <header id="overview" className="scroll-mt-24">
@@ -113,23 +164,38 @@ export function ProcessView({ process }: { process: Process }) {
 
         {/* 2. Which situation are you in? */}
         {process.situations && process.situations.length > 0 && (
-          <section id="situations" aria-label="Applicant situation selector" className="scroll-mt-24">
+          <section id="situations" aria-label="Applicant situation selector" className="scroll-mt-24 space-y-3">
             <SituationSelector
               situations={process.situations}
               selectedId={selectedSituationId}
               onSelect={setSelectedSituationId}
             />
+            <div className="flex justify-end pt-1">
+              <a href="#documents" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
+                <span>{t.process.nextStepPrompt || "Next: Check required documents"}</span>
+                <span aria-hidden="true">↓</span>
+              </a>
+            </div>
           </section>
         )}
 
         {/* 3. What do you need? (Document List with integrated checklist) */}
-        <section id="documents" aria-labelledby="docs-heading" className="scroll-mt-24">
+        <section id="documents" aria-labelledby="docs-heading" className="scroll-mt-24 space-y-3">
           <div className="flex items-baseline justify-between mb-3.5">
             <h2 id="docs-heading" className="text-xl sm:text-2xl font-bold text-ink">
               {t.process.documentsRequired}
             </h2>
           </div>
           <DocumentList process={process} activeDocIds={activeDocIds} />
+          <div className="mt-4 pt-3 border-t border-line/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+            <span className="text-muted">
+              {readyPercent === 100 ? (t.process.allDocsReady || "All documents ready") : `${totalDocs - readyCount} ${t.contextRail.docsRemaining || "remaining"}`}
+            </span>
+            <a href="#steps" className="inline-flex items-center gap-1.5 font-semibold text-accent hover:underline">
+              <span>{t.process.nextStepPrompt || "Next: View application steps & fees"}</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
         </section>
 
         {/* 4. How do you prepare? (Eligibility criteria, application steps, fees & timelines) */}
@@ -154,11 +220,23 @@ export function ProcessView({ process }: { process: Process }) {
             </h2>
           </div>
           <ProcessSteps steps={process.steps} />
+          <div className="mt-3 flex justify-end">
+            <a href="#fees-timelines" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
+              <span>Next: Check official fees and timelines</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
         </section>
 
         {/* 6. Official Fees & Timelines */}
         <section id="fees-timelines" aria-labelledby="fees-heading" className="scroll-mt-24">
           <FeesAndTimelines fees={process.fees} timelines={process.timelines} />
+          <div className="mt-3 flex justify-end">
+            <a href="#official-source" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
+              <span>Next: Verify on official government portal</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
         </section>
 
         {/* 7. Common Mistakes */}
@@ -190,6 +268,8 @@ export function ProcessView({ process }: { process: Process }) {
           mode="process"
           process={process}
           activeSituationId={selectedSituationId}
+          activeDocIds={activeDocIds}
+          activeSectionId={activeSection}
         />
       </div>
     </div>

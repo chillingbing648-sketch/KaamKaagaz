@@ -62,12 +62,22 @@ export interface LocaleTranslations {
     showAllServices: string;
     needHelpQuestion: string;
     exploreKaam: string;
+    allKaam: string;
+    filterByCategory: string;
+    resetFilter: string;
     categoryIdentity: string;
     categoryCertificates: string;
     categoryEducation: string;
     categoryAdmissions: string;
     categoryScholarships: string;
     categoryStudentDocs: string;
+    tagIdentity: string;
+    tagCertificates: string;
+    tagEducation: string;
+    tagAdmissions: string;
+    tagScholarships: string;
+    tagStudentDocs: string;
+    countsLabel: string;
   };
   howItWorks: {
     title: string;
@@ -133,6 +143,9 @@ export interface LocaleTranslations {
     clearConfirm: string;
     continueApplication: string;
     selectServiceToView: string;
+    myPaperwork: string;
+    personalWorkspace: string;
+    remaining: string;
   };
   officialSource: {
     title: string;
@@ -147,6 +160,22 @@ export interface LocaleTranslations {
     situations: string;
     lastVerified: string;
     readiness: string;
+    whoItsFor: string;
+  };
+  admissionsNavigator: {
+    title: string;
+    subtitle: string;
+    stepPathway: string;
+    stepPathwayDesc: string;
+    stepRoute: string;
+    stepRouteDesc: string;
+    stepPortal: string;
+    stepPortalDesc: string;
+    stepKaagaz: string;
+    stepKaagazDesc: string;
+    stepReadiness: string;
+    stepReadinessDesc: string;
+    nextStep: string;
   };
   diagnostic: {
     somethingWrong: string;
@@ -154,6 +183,7 @@ export interface LocaleTranslations {
     theSituation: string;
     whyItHappens: string;
     whatToDo: string;
+    officialSourcePrompt: string;
   };
   trust: {
     verified: string;

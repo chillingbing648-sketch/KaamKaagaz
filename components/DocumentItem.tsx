@@ -81,15 +81,15 @@ export function DocumentItem({
         {/* Format & Validity metadata chips */}
         {localized.formatAndPrep && (
           <div className="mt-2.5 flex flex-wrap gap-2 text-xs">
-            <span className="inline-flex items-center rounded-md bg-paper px-2 py-0.5 font-medium text-muted border border-line/60">
-              📄 {localized.formatAndPrep.submission.split(",")[0].slice(0, 35)}
+            <span className="inline-flex items-center gap-1 rounded-md bg-paper px-2 py-0.5 font-medium text-muted border border-line/60">
+              <span className="text-muted font-mono text-[10px]">FORMAT:</span> {localized.formatAndPrep.submission.split(",")[0].slice(0, 35)}
             </span>
-            <span className="inline-flex items-center rounded-md bg-paper px-2 py-0.5 font-medium text-muted border border-line/60">
-              ✍️ {localized.formatAndPrep.selfAttestation.slice(0, 30)}
+            <span className="inline-flex items-center gap-1 rounded-md bg-paper px-2 py-0.5 font-medium text-muted border border-line/60">
+              <span className="text-muted font-mono text-[10px]">SIGN:</span> {localized.formatAndPrep.selfAttestation.slice(0, 30)}
             </span>
             {localized.formatAndPrep.validityOrRecentness && (
-              <span className="inline-flex items-center rounded-md bg-accent-soft px-2 py-0.5 font-medium text-accent border border-accent/20">
-                ⏳ {localized.formatAndPrep.validityOrRecentness.slice(0, 32)}
+              <span className="inline-flex items-center gap-1 rounded-md bg-accent-soft px-2 py-0.5 font-medium text-accent border border-accent/20">
+                <span className="text-accent font-mono text-[10px]">VALIDITY:</span> {localized.formatAndPrep.validityOrRecentness.slice(0, 32)}
               </span>
             )}
           </div>

@@ -15,12 +15,16 @@ interface ContextRailProps {
   process?: Process;
   document?: DocumentRequirement;
   activeSituationId?: string | null;
+  activeDocIds?: string[];
+  activeSectionId?: string;
 }
 
 export function ContextRail({
   mode,
   process,
   document: currentDoc,
+  activeDocIds,
+  activeSectionId,
 }: ContextRailProps) {
   const { language, t } = useLanguage();
 
@@ -162,7 +166,13 @@ export function ContextRail({
   }
 
   if (mode === "process" && process) {
-    return <ProcessRail process={process} />;
+    return (
+      <ProcessRail
+        process={process}
+        activeDocIds={activeDocIds}
+        activeSectionId={activeSectionId}
+      />
+    );
   }
 
   if (mode === "document" && process && currentDoc) {
@@ -178,7 +188,7 @@ export function ContextRail({
   }
 
   if (mode === "admissions") {
-    return <AdmissionsRail />;
+    return <AdmissionsRail activeSectionId={activeSectionId} />;
   }
 
   return null;
@@ -187,21 +197,30 @@ export function ContextRail({
 // -------------------------------------------------------------
 // PROCESS CONTEXT RAIL
 // -------------------------------------------------------------
-function ProcessRail({ process }: { process: Process }) {
+function ProcessRail({
+  process,
+  activeDocIds,
+  activeSectionId,
+}: {
+  process: Process;
+  activeDocIds?: string[];
+  activeSectionId?: string;
+}) {
   const { language, t } = useLanguage();
   const loc = getLocalizedProcess(process, language);
-  const ids = process.documents.map((d) => d.id);
-  const { count, total, percent } = useChecklist(process.slug, ids);
+  const allIds = process.documents.map((d) => d.id);
+  const targetIds = activeDocIds && activeDocIds.length > 0 ? activeDocIds : allIds;
+  const { count, total, percent } = useChecklist(process.slug, targetIds);
 
   const sections = [
     { id: "overview", label: "Overview" },
-    { id: "eligibility", label: t.process.whoCanApply },
-    { id: "situations", label: t.process.situationsTitle },
+    ...(process.situations && process.situations.length > 0 ? [{ id: "situations", label: t.process.situationsTitle }] : []),
     { id: "documents", label: t.process.documentsRequired },
+    ...(loc.eligibilityList && loc.eligibilityList.length > 0 ? [{ id: "eligibility", label: t.process.whoCanApply }] : []),
     { id: "steps", label: t.process.stepsTitle },
     { id: "fees-timelines", label: t.process.feesTitle },
-    { id: "common-mistakes", label: t.process.commonMistakesTitle },
-    { id: "faqs", label: t.process.faqsTitle },
+    ...(process.commonMistakes && process.commonMistakes.length > 0 ? [{ id: "common-mistakes", label: t.process.commonMistakesTitle }] : []),
+    ...(process.faqs && process.faqs.length > 0 ? [{ id: "faqs", label: t.process.faqsTitle }] : []),
     { id: "official-source", label: t.officialSource.title },
   ];
 
@@ -244,16 +263,23 @@ function ProcessRail({ process }: { process: Process }) {
         </p>
         <nav aria-label="On this page navigation">
           <ul className="space-y-1 text-xs">
-            {sections.map((sec) => (
-              <li key={sec.id}>
-                <a
-                  href={`#${sec.id}`}
-                  className="block py-1 px-1.5 rounded text-muted hover:text-ink hover:bg-paper transition-colors font-medium"
-                >
-                  {sec.label}
-                </a>
-              </li>
-            ))}
+            {sections.map((sec) => {
+              const isActive = activeSectionId === sec.id;
+              return (
+                <li key={sec.id}>
+                  <a
+                    href={`#${sec.id}`}
+                    className={`block py-1.5 px-2 rounded transition-colors text-xs ${
+                      isActive
+                        ? "bg-accent-soft text-accent font-bold shadow-2xs"
+                        : "text-muted hover:text-ink hover:bg-paper font-medium"
+                    }`}
+                  >
+                    {sec.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>
@@ -518,14 +544,14 @@ function LegalRail() {
 // -------------------------------------------------------------
 // ADMISSIONS CONTEXT RAIL
 // -------------------------------------------------------------
-function AdmissionsRail() {
+function AdmissionsRail({ activeSectionId }: { activeSectionId?: string }) {
   const validIds = studentDocuments.map((d) => d.id);
   const { counts } = useAdmissionChecklist(validIds);
 
   const sections = [
     { id: "finder", label: "Admission Finder" },
-    { id: "portal-directory", label: "Portal Directory" },
     { id: "admission-roadmaps", label: "Admission Roadmaps" },
+    { id: "portal-directory", label: "Portal Directory" },
     { id: "documents", label: "Document Helper" },
     { id: "scholarships", label: "MahaDBT Scholarships" },
     { id: "common-problems", label: "Common Problems" },
@@ -565,16 +591,23 @@ function AdmissionsRail() {
         </p>
         <nav aria-label="Admissions quick section navigation">
           <ul className="space-y-1 text-xs">
-            {sections.map((sec) => (
-              <li key={sec.id}>
-                <a
-                  href={`#${sec.id}`}
-                  className="block py-1 px-1.5 rounded text-muted hover:text-ink hover:bg-paper transition-colors font-medium"
-                >
-                  {sec.label}
-                </a>
-              </li>
-            ))}
+            {sections.map((sec) => {
+              const isActive = activeSectionId === sec.id;
+              return (
+                <li key={sec.id}>
+                  <a
+                    href={`#${sec.id}`}
+                    className={`block py-1 px-1.5 rounded transition-colors font-medium ${
+                      isActive
+                        ? "bg-accent-soft text-accent font-semibold"
+                        : "text-muted hover:text-ink hover:bg-paper"
+                    }`}
+                  >
+                    {sec.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>

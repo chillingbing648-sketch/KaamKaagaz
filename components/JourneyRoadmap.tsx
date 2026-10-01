@@ -2,25 +2,37 @@
 
 import { useLanguage } from "@/lib/i18n/context";
 
-export type JourneyStage = "situation" | "requirements" | "documents" | "checklist" | "apply";
+export type JourneyStage =
+  | "overview"
+  | "situation"
+  | "documents"
+  | "eligibility"
+  | "steps"
+  | "fees"
+  | "apply";
 
 interface JourneyRoadmapProps {
   currentStage: JourneyStage;
+  hasSituations?: boolean;
 }
 
-export function JourneyRoadmap({ currentStage }: JourneyRoadmapProps) {
+export function JourneyRoadmap({ currentStage, hasSituations = true }: JourneyRoadmapProps) {
   const { t } = useLanguage();
 
-  const stages: { id: JourneyStage; label: string; anchor?: string }[] = [
-    { id: "situation", label: t.journey.situation, anchor: "#situations" },
-    { id: "requirements", label: t.journey.eligibility, anchor: "#eligibility" },
+  const allStages: { id: JourneyStage; label: string; anchor: string }[] = [
+    { id: "overview", label: "Overview", anchor: "#overview" },
+    ...(hasSituations ? [{ id: "situation" as JourneyStage, label: t.journey.situation, anchor: "#situations" }] : []),
     { id: "documents", label: t.journey.documents, anchor: "#documents" },
-    { id: "checklist", label: t.journey.checklist, anchor: "#checklist" },
-    { id: "apply", label: t.journey.apply, anchor: "#official-source" },
+    { id: "eligibility", label: t.journey.eligibility, anchor: "#eligibility" },
+    { id: "steps", label: t.process.stepsTitle, anchor: "#steps" },
+    { id: "fees", label: t.process.feesTitle, anchor: "#fees-timelines" },
+    { id: "apply", label: t.officialSource.title, anchor: "#official-source" },
   ];
 
-  const stageOrder: JourneyStage[] = ["situation", "requirements", "documents", "checklist", "apply"];
-  const currentIndex = stageOrder.indexOf(currentStage);
+  const stages = allStages;
+  const stageOrder = stages.map((s) => s.id);
+  const rawIndex = stageOrder.indexOf(currentStage);
+  const currentIndex = rawIndex >= 0 ? rawIndex : 0;
 
   return (
     <div className="rounded-xl border border-line bg-paper/60 p-3 sm:p-4 mb-6 shadow-2xs">

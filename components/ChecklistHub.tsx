@@ -36,7 +36,7 @@ function ServiceChecklistCard({ process }: { process: Process }) {
           {'█'.repeat(Math.round(percent / 10))}{'░'.repeat(10 - Math.round(percent / 10))} {percent}%
         </div>
         <span className="text-muted font-medium">
-          {total - count > 0 ? `${total - count} remaining` : "All documents ready ✓"}
+          {total - count > 0 ? `${total - count} ${t.checklist.remaining}` : "All documents ready ✓"}
         </span>
       </div>
 
@@ -66,6 +66,7 @@ function ServiceChecklistCard({ process }: { process: Process }) {
 }
 
 function AdmissionChecklistCard() {
+  const { t } = useLanguage();
   const validIds = studentDocuments.map((d) => d.id);
   const { counts } = useAdmissionChecklist(validIds);
 
@@ -89,7 +90,7 @@ function AdmissionChecklistCard() {
           {'█'.repeat(Math.round(counts.percent / 10))}{'░'.repeat(10 - Math.round(counts.percent / 10))} {counts.percent}%
         </div>
         <span className="text-muted font-medium">
-          {counts.missing > 0 ? `${counts.missing} remaining` : "All reviewed ✓"}
+          {counts.missing > 0 ? `${counts.missing} ${t.checklist.remaining}` : "All reviewed ✓"}
         </span>
       </div>
 
@@ -133,11 +134,11 @@ export function ChecklistHub() {
         />
 
         <header>
-          <span className="inline-block rounded-md bg-paper px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-muted border border-line/60">
-            Personal workspace
+          <span className="inline-block rounded-md bg-paper px-2.5 py-1 text-xs font-semibold tracking-wide text-muted border border-line/60">
+            {t.checklist.personalWorkspace}
           </span>
           <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold text-ink">
-            {t.checklist.title}
+            {t.checklist.myPaperwork}
           </h1>
           <p className="mt-2 text-sm text-muted">
             {t.checklist.savedLocallyNotice}

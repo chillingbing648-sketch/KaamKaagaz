@@ -53,17 +53,17 @@ export function ProcessCard({
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-2.5 border-t border-line/50 text-[11px] text-muted">
         {docCount > 0 && (
           <span className="flex items-center gap-1">
-            <span className="font-mono text-ink-light">{docCount}</span> docs
+            <span className="font-mono text-ink-light">{docCount}</span> {t.processSnapshot.documents}
           </span>
         )}
         {stepCount > 0 && (
           <span className="flex items-center gap-1">
-            <span className="font-mono text-ink-light">{stepCount}</span> steps
+            <span className="font-mono text-ink-light">{stepCount}</span> {t.processSnapshot.steps}
           </span>
         )}
         {situationCount > 0 && (
           <span className="flex items-center gap-1">
-            <span className="font-mono text-ink-light">{situationCount}</span> situations
+            <span className="font-mono text-ink-light">{situationCount}</span> {t.processSnapshot.situations}
           </span>
         )}
         {lastChecked && (
@@ -73,7 +73,7 @@ export function ProcessCard({
         )}
         {total > 0 && (
           <span className={`flex items-center gap-1 font-semibold ${percent === 100 ? "text-done" : "text-accent"}`}>
-            {percent}% ready
+            {percent}% {t.processSnapshot.readiness}
           </span>
         )}
       </div>

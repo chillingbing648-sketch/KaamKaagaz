@@ -79,8 +79,9 @@ export function DocumentView({
               <p className="mt-1.5 text-sm sm:text-base text-muted leading-relaxed">
                 {locDoc.purpose}
               </p>
-              <p className="mt-2 text-[11px] text-muted">
-                ℹ️ {t.document.whyNeededDisclaimer}
+              <p className="mt-2 text-[11px] text-muted flex items-start gap-1">
+                <span className="font-mono text-muted">◌</span>
+                <span>{t.document.whyNeededDisclaimer}</span>
               </p>
             </section>
           )}
