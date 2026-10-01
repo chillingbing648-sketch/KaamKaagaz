@@ -14,6 +14,13 @@ A multilingual civic-tech web application that turns complicated Indian governme
 
 </div>
 
+
+<br>
+
+<p align="center">
+  <img src="./assets/kaamkaagaz-product-map.svg" alt="KAAMKAAGAZ preview — discover, understand, prepare and follow the official process" width="1100">
+</p>
+
 ---
 
 
