@@ -1,38 +1,77 @@
-
 <div align="center">
 
-<img src="./assets/kaamkaagaz-header.svg" alt="KaamKaagaz — civic-tech paperwork guidance for India" width="100%">
+# 📄 KaamKaagaz
 
-<br>
+### **Kaagaz samjho. Kaam karo.**
 
-<a href="https://chillingbing648-sketch.github.io/KaamKaagaz/">
-  <img src="https://img.shields.io/badge/✦%20LIVE%20KAAMKAAGAZ-0F172A?style=for-the-badge&labelColor=C8561B" alt="Live KaamKaagaz">
-</a>
-<a href="https://github.com/chillingbing648-sketch/KaamKaagaz">
-  <img src="https://img.shields.io/github/stars/chillingbing648-sketch/KaamKaagaz?style=for-the-badge&label=STARS&color=F59E0B" alt="GitHub stars">
-</a>
-<a href="https://github.com/chillingbing648-sketch/KaamKaagaz/actions">
-  <img src="https://img.shields.io/github/actions/workflow/status/chillingbing648-sketch/KaamKaagaz/deploy.yml?style=for-the-badge&label=BUILD" alt="Build status">
-</a>
+A multilingual civic-tech web application that turns complicated Indian government paperwork into clear, structured guidance — helping users understand **what they need, where to go, what to do next, and which official source to verify**.
 
-<br><br>
-
-<img src="https://img.shields.io/badge/Next.js-15.1-black?style=flat-square&logo=next.js&logoColor=white" alt="Next.js 15.1">
-<img src="https://img.shields.io/badge/React-19-149ECA?style=flat-square&logo=react&logoColor=white" alt="React 19">
-<img src="https://img.shields.io/badge/TypeScript-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 5.6">
-<img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4">
-<img src="https://img.shields.io/badge/Static_Export-Ready-166534?style=flat-square" alt="Static export">
-<img src="https://img.shields.io/badge/GitHub_Pages-Deployed-222222?style=flat-square&logo=githubpages&logoColor=white" alt="GitHub Pages">
-
-<br><br>
-
-<strong>Kaagaz samjho. Kaam karo.</strong><br>
-<sub>Paperwork, made simple.</sub>
+<p>
+  <a href="https://chillingbing648-sketch.github.io/KaamKaagaz/"><strong>✦ Open Live App</strong></a>
+  &nbsp; · &nbsp;
+  <a href="https://github.com/chillingbing648-sketch/KaamKaagaz"><strong>⌘ View Source</strong></a>
+</p>
 
 </div>
 
 ---
 
+## ⚙️ Technology at a Glance
+
+<table>
+<tr>
+<td width="25%" valign="top">
+
+### ⚛ Framework
+**Next.js 15.1**  
+React 19 · App Router
+
+The application framework, routing model, static generation and React rendering layer.
+
+</td>
+<td width="25%" valign="top">
+
+### 🟦 Language
+**TypeScript 5.6**  
+React / TSX
+
+Typed process schemas, reusable components, localized data and application logic.
+
+</td>
+<td width="25%" valign="top">
+
+### 🎨 Styling
+**Tailwind CSS 4**  
+Responsive utility system
+
+The civic-tech visual system, responsive layout, states, focus treatment and reduced-motion rules.
+
+</td>
+<td width="25%" valign="top">
+
+### ☁️ Delivery
+**Static Export**  
+GitHub Actions · GitHub Pages
+
+Next.js exports the app to static files, then CI publishes the generated `out/` build.
+
+</td>
+</tr>
+</table>
+
+<p align="center"><sub><strong>Runtime foundations:</strong> localStorage · Structured TypeScript data · npm · GitHub Actions</sub></p>
+
+---
+
+## 🗺️ Product Map
+
+<p align="center">
+  <img src="./assets/kaamkaagaz-product-map.svg" alt="KaamKaagaz product flow from search to official process" width="1100">
+</p>
+
+<p align="center"><sub>Discover → understand → prepare → follow the official process.</sub></p>
+
+---
 ## `>_` The Problem
 
 Government paperwork is rarely difficult because the form itself is difficult.
@@ -540,20 +579,6 @@ Conceptually:
 For source-sensitive fields, use the relevant authoritative portal and update the verification metadata.
 
 ---
-
-## 🛠️ Technology Stack
-
-| Layer | Technology | Role |
-|---|---|---|
-| UI | **React 19** | Component-driven interface |
-| Framework | **Next.js 15.1** | App Router, routing and static generation/export |
-| Language | **TypeScript 5.6** | Typed domain and application logic |
-| Styling | **Tailwind CSS 4** | Utility-based responsive UI |
-| State | **React client state + external store hooks** | Search and persistent checklist interactions |
-| Persistence | **localStorage** | Account-free browser checklist state |
-| Data | **Structured TypeScript** | Process and document knowledge base |
-| Delivery | **GitHub Actions** | Automated build and deployment |
-| Hosting | **GitHub Pages** | Static production hosting |
 
 ---
 
