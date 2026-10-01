@@ -16,52 +16,36 @@ A multilingual civic-tech web application that turns complicated Indian governme
 
 ---
 
-## ⚙️ Technology at a Glance
 
-<table>
-<tr>
-<td width="25%" valign="top">
+## 🧰 Built With
 
-### ⚛ Frameworks
-**Next.js 15.1**  
-React 19 · App Router
+<div align="center">
 
-</td>
-<td width="25%" valign="top">
-
-### 🟦 Language
-**TypeScript 5.6**  
-React / TSX
-
-</td>
-<td width="25%" valign="top">
-
-### 🎨 Styling
-**Tailwind CSS 4**  
-Responsive utility system
-
-</td>
-<td width="25%" valign="top">
-
-### ☁️ Delivery
-**Static Export**  
-GitHub Actions · GitHub Pages
-
-</td>
-</tr>
-</table>
-
-<p align="center"><sub><strong>Runtime foundations:</strong> localStorage · Structured TypeScript data · npm · GitHub Actions</sub></p>
-
----
-
-## 🗺️ Product Map
-
-<p align="center">
-  <img src="./assets/kaamkaagaz-product-map.svg" alt="KaamKaagaz product flow from search to official process" width="1100">
+<p>
+  <img src="https://img.shields.io/badge/Next.js-15.1-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 15.1">
+  <img src="https://img.shields.io/badge/React-19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19">
+  <img src="https://img.shields.io/badge/TypeScript-5.6-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript 5.6">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4">
+  <img src="https://img.shields.io/badge/JavaScript-ES2024-F7DF1E?style=for-the-badge&logo=javascript&logoColor=111111" alt="JavaScript">
 </p>
 
-<p align="center"><sub>Discover → understand → prepare → follow the official process.</sub></p>
+<p>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/Node.js-20%2B-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="npm">
+  <img src="https://img.shields.io/badge/PostCSS-DD3A0A?style=for-the-badge&logo=postcss&logoColor=white" alt="PostCSS">
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/App_Router-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js App Router">
+  <img src="https://img.shields.io/badge/Static_Export-166534?style=for-the-badge" alt="Static Export">
+  <img src="https://img.shields.io/badge/localStorage-7C3AED?style=for-the-badge" alt="localStorage">
+  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions">
+  <img src="https://img.shields.io/badge/GitHub_Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white" alt="GitHub Pages">
+</p>
+
+</div>
 
 ---
 
