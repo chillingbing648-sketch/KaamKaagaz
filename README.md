@@ -1,139 +1,456 @@
-# 📄 KaamKaagaz
 
-<p align="center">
-  <strong>Kaagaz samjho. Kaam karo.</strong><br/>
-  <sub>Paperwork, made simple.</sub>
-</p>
+<div align="center">
 
-<p align="center">
-  <a href="https://chillingbing648-sketch.github.io/KaamKaagaz/"><img src="https://img.shields.io/badge/%E2%96%B6%20LIVE-KAAMKAAGAZ-0f172a?style=for-the-badge&labelColor=7c3aed" alt="Live KaamKaagaz"></a>
-  <a href="https://github.com/chillingbing648-sketch/KaamKaagaz"><img src="https://img.shields.io/github/stars/chillingbing648-sketch/KaamKaagaz?style=for-the-badge&label=STARS&color=f59e0b" alt="GitHub stars"></a>
-</p>
+<img src="./assets/kaamkaagaz-header.svg" alt="KaamKaagaz — civic-tech paperwork guidance for India" width="100%">
 
-<p align="center">
-  <img src="https://img.shields.io/badge/NEXT.JS-15-000000?style=flat-square&logo=next.js&logoColor=white" alt="Next.js 15">
-  <img src="https://img.shields.io/badge/REACT-19-149ECA?style=flat-square&logo=react&logoColor=white" alt="React 19">
-  <img src="https://img.shields.io/badge/TYPESCRIPT-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">
-  <img src="https://img.shields.io/badge/TAILWIND-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4">
-  <img src="https://img.shields.io/badge/GITHUB_PAGES-DEPLOYED-222222?style=flat-square&logo=githubpages&logoColor=white" alt="GitHub Pages">
-</p>
+<br>
+
+<a href="https://chillingbing648-sketch.github.io/KaamKaagaz/">
+  <img src="https://img.shields.io/badge/✦%20LIVE%20KAAMKAAGAZ-0F172A?style=for-the-badge&labelColor=C8561B" alt="Live KaamKaagaz">
+</a>
+<a href="https://github.com/chillingbing648-sketch/KaamKaagaz">
+  <img src="https://img.shields.io/github/stars/chillingbing648-sketch/KaamKaagaz?style=for-the-badge&label=STARS&color=F59E0B" alt="GitHub stars">
+</a>
+<a href="https://github.com/chillingbing648-sketch/KaamKaagaz/actions">
+  <img src="https://img.shields.io/github/actions/workflow/status/chillingbing648-sketch/KaamKaagaz/deploy.yml?style=for-the-badge&label=BUILD" alt="Build status">
+</a>
+
+<br><br>
+
+<img src="https://img.shields.io/badge/Next.js-15.1-black?style=flat-square&logo=next.js&logoColor=white" alt="Next.js 15.1">
+<img src="https://img.shields.io/badge/React-19-149ECA?style=flat-square&logo=react&logoColor=white" alt="React 19">
+<img src="https://img.shields.io/badge/TypeScript-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript 5.6">
+<img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4">
+<img src="https://img.shields.io/badge/Static_Export-Ready-166534?style=flat-square" alt="Static export">
+<img src="https://img.shields.io/badge/GitHub_Pages-Deployed-222222?style=flat-square&logo=githubpages&logoColor=white" alt="GitHub Pages">
+
+<br><br>
+
+<strong>Kaagaz samjho. Kaam karo.</strong><br>
+<sub>Paperwork, made simple.</sub>
+
+</div>
 
 ---
 
-## `>_` What is KaamKaagaz?
+## `>_` The Problem
 
-**KaamKaagaz** is a civic-tech web application designed to make complicated government paperwork easier to understand and act on.
+Government paperwork is rarely difficult because the form itself is difficult.
 
-Instead of forcing users to decode official portals, forms, terminology and scattered instructions, KaamKaagaz turns common document-related tasks into clear, structured guidance.
+The real friction is usually:
 
-> **Find the kaam → understand the documents → prepare correctly → follow the process.**
+~~~text
+What do I need?
+      ↓
+Which document counts?
+      ↓
+Where do I apply?
+      ↓
+What happens next?
+      ↓
+What could go wrong?
+~~~
 
-The current service library includes:
+**KaamKaagaz** turns that scattered information into a single, structured path from **question → documents → process → checklist → official source**.
 
-- PAN Card
-- Passport
-- Income Certificate
-- Document requirements
-- Step-by-step application processes
-- Fees and timelines
-- Common mistakes and preparation guidance
-- Official source and portal links
-- Personal application checklists
+It is designed as a practical civic-tech interface for people who do not want to decode a government portal before they can even begin.
+
+> **Find the kaam. Understand the kaagaz. Follow the process.**
+
+---
+
+## `✦` What KaamKaagaz Is
+
+KaamKaagaz is a **static, multilingual government-paperwork guidance application** built with Next.js, React and TypeScript.
+
+The current experience combines:
+
+- document and process guides
+- conversational-style search
+- document requirements and preparation guidance
+- step-by-step workflows
+- fees and timeline information
+- common mistakes and FAQs
+- official source links
+- persistent browser checklists
 - English, हिन्दी and मराठी content
+- a dedicated higher-education / admissions flow
+
+The application is intentionally **not** an official government portal and does not replace the instructions of the relevant authority.
 
 ---
 
-## `// core_features`
+## 🌐 Live Experience
 
-### 🔎 Conversational Document Search
-Search using natural language instead of having to know the exact official service name.
+<div align="center">
 
-### 📋 Document Checklists
-Understand what documents are required, what they are used for and how they should be prepared.
+<a href="https://chillingbing648-sketch.github.io/KaamKaagaz/">
+  <img src="https://img.shields.io/badge/OPEN%20KAAMKAAGAZ-From%20Question%20to%20Action-C8561B?style=for-the-badge" alt="Open KaamKaagaz">
+</a>
 
-### 🧭 Step-by-Step Processes
-Break complicated application workflows into smaller, actionable steps.
+<br><br>
 
-### 💰 Fees & Timelines
-Surface documented fee and processing information alongside the relevant service.
+<sub>Static deployment: Next.js export → GitHub Actions → gh-pages → GitHub Pages</sub>
 
-### ⚠️ Common Mistakes
-Highlight practical mistakes that can cause delays, rejected uploads or unnecessary visits.
-
-### 🌐 Multilingual Guidance
-Localized content is available in English, हिन्दी and मराठी.
-
-### 🔗 Official Sources
-Relevant guidance points users toward authoritative government portals and sources.
-
-### ✅ Persistent Checklists
-Checklist progress can be maintained in the browser through localStorage without requiring an account.
+</div>
 
 ---
 
-## `npm run stack`
+## 🗺️ Product Map
 
-<p>
-  <img src="https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js 15">
-  <img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19">
-  <img src="https://img.shields.io/badge/TypeScript_5.6-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript 5.6">
-  <img src="https://img.shields.io/badge/Tailwind_CSS_4-0F172A?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4" alt="Tailwind CSS 4">
-  <img src="https://img.shields.io/badge/App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js App Router">
-  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions">
-  <img src="https://img.shields.io/badge/GitHub_Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white" alt="GitHub Pages">
+<p align="center">
+  <img src="./assets/kaamkaagaz-product-map.svg" alt="KaamKaagaz product flow from search to official process" width="1100">
 </p>
 
-| Technology | Purpose |
+<p align="center">
+  <sub>A documentation-first workflow: discover → understand → prepare → follow the official process.</sub>
+</p>
+
+---
+
+## ⚡ Core Product Surface
+
+| Area | What it does |
 |---|---|
-| **Next.js 15** | React framework, routing and static generation |
-| **React 19** | UI and component architecture |
-| **TypeScript 5.6** | Type-safe development |
-| **Tailwind CSS 4** | Utility-first styling |
-| **Next.js App Router** | File-based application routing |
-| **GitHub Actions** | Automated build and deployment |
-| **GitHub Pages** | Static production hosting |
-| **localStorage** | Client-side checklist persistence |
-
-### Architecture
-
-KaamKaagaz is intentionally lightweight:
-
-- No application database
-- No user account system
-- No server-side API dependency
-- No fake API layer
-- Service information is maintained as structured TypeScript data
-- Reusable React components render the document workflows
-- Dynamic-looking service routes are statically generated at build time
-
+| 🔎 **Conversational Search** | Matches natural queries such as “mujhe PAN banana hai” against service names, descriptions, keywords and localized content. |
+| 📄 **Document Guides** | Explains what a document is, why it is needed, examples, preparation, digital-copy expectations and special notes where documented. |
+| 🧭 **Process View** | Breaks a task into structured steps instead of presenting one large block of instructions. |
+| 💰 **Fees & Timelines** | Keeps fee entries and processing information alongside the relevant process. |
+| ⚠️ **Common Mistakes** | Surfaces avoidable errors before a user submits an application. |
+| ❓ **FAQs** | Gives focused answers to recurring process questions. |
+| 🔗 **Official Sources** | Keeps authoritative source links attached to the process rather than hiding them behind generic references. |
+| ✅ **Persistent Checklists** | Saves checklist progress locally in the browser without requiring an account. |
+| 🌐 **English / हिन्दी / मराठी** | Localized service content and interface support for three languages. |
+| 🎓 **Admissions Hub** | A dedicated education workflow covering major admissions and scholarship pathways. |
 
 ---
 
-## `architecture.exe`
+## 🎓 The Admissions Layer
 
-KaamKaagaz deliberately avoids a backend for the current scope.
+KaamKaagaz also extends beyond individual documents into a larger **student-admissions ecosystem**.
 
-    User Query
-         ↓
-    Conversational Search
-         ↓
-    Typed Process Library — data/processes.ts
-         ↓
-    Documents + Steps + Checklist
-         ↓
-    Next.js Static Export
-         ↓
-    GitHub Pages
+The current interface exposes guidance around pathways such as:
 
-**No database. No accounts. No server API. Just structured information, components and a static build.**
+~~~text
+FYJC
+CET Cell / CAP
+Mumbai University Samarth
+CDOE
+PhD
+MahaDBT Scholarships
+Caste / Gap / Student Documents
+~~~
+
+The admissions experience follows the same philosophy as the document library:
+
+> **Do not make the user know the portal before they can understand the process.**
+
+The repository already treats admissions as a separate product surface rather than forcing every workflow into one generic document template.
 
 ---
 
-## `tree /project`
+## 🧠 Search That Feels Conversational
 
-```text
+There is no hosted AI or remote search API behind the homepage search.
+
+Instead, the current implementation uses a deterministic client-side matcher:
+
+~~~text
+User sentence
+     ↓
+Normalize query
+     ↓
+Remove common filler / stop words
+     ↓
+Match meaningful terms
+     ↓
+Search across:
+  • title
+  • category
+  • description
+  • localized fields
+  • keywords
+     ↓
+Render matching services
+~~~
+
+This is deliberately transparent and cheap to run.
+
+It also means the search behavior is **predictable, inspectable and editable in source** rather than hiding core discovery behind a model.
+
+---
+
+## 🧱 Information Architecture
+
+KaamKaagaz is built around a structured process model rather than page-specific hardcoding.
+
+A process can describe:
+
+~~~text
+Process
+├── Identity
+├── Slug
+├── Category
+├── Description
+├── Localized content
+├── Eligibility
+├── Situations
+├── Documents
+├── Steps
+├── Fees
+├── Timelines
+├── Common mistakes
+├── FAQs
+├── Last-checked metadata
+└── Official source
+~~~
+
+That makes the interface reusable across different government procedures.
+
+---
+
+## 🏗️ Architecture
+
+~~~text
+                           KAAMKAAGAZ
+                               │
+                    Next.js App Router
+                               │
+          ┌────────────────────┼────────────────────┐
+          │                    │                    │
+          ▼                    ▼                    ▼
+      Home Search         Process Views        Admissions
+          │                    │                    │
+          └──────────────┬─────┴──────────────┬─────┘
+                         │                    │
+                         ▼                    ▼
+                 Structured TypeScript     Localized
+                     Data Model             Content
+                         │                    │
+                         └─────────┬──────────┘
+                                   ▼
+                           React Components
+                                   │
+                    ┌──────────────┴──────────────┐
+                    ▼                             ▼
+               localStorage                 Static Export
+                    │                             │
+                    ▼                             ▼
+             Checklist State              GitHub Pages
+~~~
+
+### Runtime model
+
+~~~text
+Request
+  ↓
+Static Next.js route
+  ↓
+Structured process data
+  ↓
+Reusable React view
+  ↓
+Localized content
+  ↓
+Checklist / interaction
+  ↓
+Official source
+~~~
+
+The current architecture does **not** depend on an application database, server-side API or user account system.
+
+---
+
+## 🧬 The Data Model
+
+The central dataset lives in:
+
+`data/processes.ts`
+
+Its TypeScript interfaces explicitly model document-processing concepts such as:
+
+~~~text
+LocalizedString
+LocalizedList
+DocumentRequirement
+DocumentFormatAndPrep
+OfficialSource
+Situation
+FeeItem
+CommonMistake
+FAQ
+ProcessStep
+Process
+~~~
+
+This is one of the most important architectural choices in the project.
+
+The UI is reusable because the **information model is richer than the individual page**.
+
+---
+
+## ✅ Data Integrity Philosophy
+
+KaamKaagaz is designed around an **official-source-first** rule.
+
+The repository's data layer distinguishes plain-language explanations from source-sensitive information, and process records retain metadata such as:
+
+~~~text
+examplesConfirmedOfficial
+lastChecked
+officialNotes
+verifiedSource
+officialSource
+~~~
+
+The project aims to:
+
+1. prefer authoritative government sources
+2. keep source links visible
+3. distinguish explanatory guidance from official requirements
+4. avoid inventing requirements or fees
+5. make changing procedures visible
+6. encourage verification before submission
+
+Government rules, fees, documents and timelines can change. Users should verify current requirements with the relevant authority before acting.
+
+---
+
+## 🌍 Localization
+
+KaamKaagaz currently supports:
+
+| Language | Coverage |
+|---|---|
+| 🇬🇧 **English** | Core interface + process content |
+| 🇮🇳 **हिन्दी** | Localized process and interface content |
+| 🇮🇳 **मराठी** | Localized process and interface content |
+
+The data model makes localization part of the structure rather than treating translated text as an afterthought.
+
+---
+
+## 💾 Local-First Checklists
+
+The checklist layer is deliberately account-free.
+
+~~~text
+Checklist interaction
+        ↓
+useSyncExternalStore
+        ↓
+localStorage
+        ↓
+Browser-local progress
+~~~
+
+There are separate storage models for:
+
+- standard document checklists
+- admissions checklists
+- checklist migration from the legacy storage key
+- cross-tab storage updates
+
+No checklist data needs to be sent to a KaamKaagaz backend because the current application has no such backend.
+
+---
+
+## ♿ Accessibility & Interaction
+
+Accessibility is treated as part of the interface foundation rather than a final cosmetic pass.
+
+The current UI includes:
+
+- visible `:focus-visible` states
+- semantic labels for interactive controls
+- `aria-live` result updates
+- keyboard-accessible controls
+- minimum-height touch targets on important controls
+- reduced-motion handling through `prefers-reduced-motion`
+- language-aware text rendering
+
+The accessibility roadmap remains active because a civic-tech product should work for as many people as its information is intended to serve.
+
+---
+
+## 🎨 Design System
+
+The visual language intentionally combines **official clarity with editorial warmth**.
+
+~~~text
+Paper background
+      +
+Strong ink typography
+      +
+Saffron / terracotta accent
+      +
+Quiet borders
+      +
+Compact information hierarchy
+      +
+Generous touch targets
+      +
+Minimal decoration
+      =
+KaamKaagaz
+~~~
+
+The goal is not to make government paperwork look glamorous.
+
+The goal is to make it feel **less intimidating**.
+
+---
+
+## 🧩 Developer Map
+
+When making a change, these are the first places to inspect:
+
+| File | Responsibility |
+|---|---|
+| `app/page.tsx` | Homepage composition and primary search surface |
+| `data/processes.ts` | Core service/process schema and content |
+| `components/HomeSearch.tsx` | Search matching, service discovery and admissions entry point |
+| `components/HomeHero.tsx` | Homepage positioning and brand messaging |
+| `lib/checklist.ts` | Persistent checklist state |
+| `lib/i18n/` | Language system and localized content helpers |
+| `app/process/[slug]/` | Dynamic process experiences |
+| `app/checklist/[slug]/` | Checklist routes |
+| `app/admissions/` | Admissions experience |
+| `app/globals.css` | Tailwind theme tokens, typography, focus, motion and global UI rules |
+| `next.config.mjs` | Static export + GitHub Pages path configuration |
+| `.github/workflows/deploy.yml` | Type-check, build and deployment pipeline |
+
+### Change map
+
+~~~text
+Change service information?
+→ data/processes.ts
+
+Change search behavior?
+→ components/HomeSearch.tsx
+
+Change checklist persistence?
+→ lib/checklist.ts
+
+Change language behavior?
+→ lib/i18n/
+
+Change visual system?
+→ app/globals.css
+
+Change deployment?
+→ next.config.mjs + .github/workflows/deploy.yml
+~~~
+
+---
+
+## 📁 Project Structure
+
+~~~text
 KaamKaagaz/
+│
 ├── app/
+│   ├── admissions/
 │   ├── checklist/
 │   │   └── [slug]/
 │   ├── process/
@@ -143,6 +460,7 @@ KaamKaagaz/
 │   └── page.tsx
 │
 ├── components/
+│   ├── Admissions/
 │   ├── Checklist.tsx
 │   ├── ChecklistView.tsx
 │   ├── DocumentItem.tsx
@@ -160,11 +478,16 @@ KaamKaagaz/
 │   └── ProcessView.tsx
 │
 ├── data/
-│   └── processes.ts
+│   ├── processes.ts
+│   └── regularDocuments.ts
 │
 ├── lib/
 │   ├── checklist.ts
 │   └── i18n/
+│
+├── assets/
+│   ├── kaamkaagaz-header.svg
+│   └── kaamkaagaz-product-map.svg
 │
 ├── .github/
 │   └── workflows/
@@ -173,188 +496,295 @@ KaamKaagaz/
 ├── next.config.mjs
 ├── postcss.config.mjs
 ├── tsconfig.json
-└── package.json
-```
+├── package.json
+└── package-lock.json
+~~~
+
+> Folder names above describe the current repository architecture and the major product surfaces; individual supporting files may evolve as the project grows.
 
 ---
 
-## `localhost:3000`
+## ➕ Adding a New Process
 
-### Install
+The architecture is intentionally data-driven.
 
-```bash
+A new workflow should primarily be added to the structured dataset instead of creating another one-off page implementation.
+
+Conceptually:
+
+~~~ts
+{
+  id: "example",
+  slug: "example-service",
+  title: "Example Service",
+  category: "Category",
+  description: "...",
+  examplesConfirmedOfficial: true,
+  lastChecked: "YYYY-MM-DD",
+
+  documents: [...],
+  steps: [...],
+
+  fees: [...],
+  timelines: {...},
+  commonMistakes: [...],
+  faqs: [...],
+
+  officialSource: {
+    name: "Official Authority",
+    url: "https://..."
+  }
+}
+~~~
+
+For source-sensitive fields, use the relevant authoritative portal and update the verification metadata.
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technology | Role |
+|---|---|---|
+| UI | **React 19** | Component-driven interface |
+| Framework | **Next.js 15.1** | App Router, routing and static generation/export |
+| Language | **TypeScript 5.6** | Typed domain and application logic |
+| Styling | **Tailwind CSS 4** | Utility-based responsive UI |
+| State | **React client state + external store hooks** | Search and persistent checklist interactions |
+| Persistence | **localStorage** | Account-free browser checklist state |
+| Data | **Structured TypeScript** | Process and document knowledge base |
+| Delivery | **GitHub Actions** | Automated build and deployment |
+| Hosting | **GitHub Pages** | Static production hosting |
+
+---
+
+## 🚀 Run Locally
+
+### Requirements
+
+- Node.js 20+
+- npm
+
+### 1. Clone
+
+~~~bash
+git clone https://github.com/chillingbing648-sketch/KaamKaagaz.git
+cd KaamKaagaz
+~~~
+
+### 2. Install
+
+~~~bash
 npm install
-```
+~~~
 
-### Development
+### 3. Develop
 
-```bash
+~~~bash
 npm run dev
-```
+~~~
 
-Open `http://localhost:3000`.
+Open:
 
-### Type-check
+~~~text
+http://localhost:3000
+~~~
 
-```bash
+### 4. Type-check
+
+~~~bash
 npm run lint
-```
+~~~
 
-### Production build
+### 5. Production build
 
-```bash
+~~~bash
 npm run build
-```
+~~~
 
-Because KaamKaagaz uses Next.js static export, the production files are generated inside:
+Because the project uses Next.js static export, the generated site is written to:
 
-```text
+~~~text
 out/
-```
+~~~
 
 ---
 
-## `deploy.sh`
+## ☁️ Deployment Architecture
 
-KaamKaagaz is configured for automatic GitHub Pages deployment using **Next.js static export + GitHub Actions**.
+The repository deploys the exported site to GitHub Pages through a dedicated publishing branch.
 
-### Production URL
-
-**https://chillingbing648-sketch.github.io/KaamKaagaz/**
-
-### Deployment pipeline
-
-```text
+~~~text
+Developer
+   │
+   ▼
 git push origin main
-        ↓
+   │
+   ▼
 GitHub Actions
-        ↓
-npm ci
-        ↓
-npm run build
-        ↓
-Next.js static export
-        ↓
-out/
-        ↓
-GitHub Pages
-```
+   │
+   ├── npm ci
+   ├── npm run lint
+   └── npm run build
+             │
+             ▼
+            out/
+             │
+             ▼
+        .nojekyll
+             │
+             ▼
+      gh-pages branch
+             │
+             ▼
+       GitHub Pages
+             │
+             ▼
+   Live KaamKaagaz
+~~~
 
-The configuration uses:
+The Next.js configuration currently uses:
 
-- `output: "export"`
-- `basePath: "/KaamKaagaz"`
-- `trailingSlash: true`
-- Node.js 20
-- GitHub Actions
-- A dedicated `gh-pages` publishing branch
-- Automatic deployment from `main`
+~~~js
+output: "export"
+trailingSlash: true
+basePath: "/KaamKaagaz"
+~~~
 
-### One-time GitHub setting
-
-After the workflow is pushed:
-
-1. Open the repository's **Settings**.
-2. Open **Pages**.
-3. Under **Build and deployment → Source**, select **Deploy from a branch**.
-4. Select branch **`gh-pages`** and folder **`/(root)`**.
-5. Save, then push to `main`.
-
-After the first successful run, future pushes to `main` automatically rebuild and publish the site.
+This keeps route generation compatible with the repository's GitHub Pages path.
 
 ---
 
-## `data_integrity.md`
+## 🔐 Privacy & Boundaries
 
-KaamKaagaz is intended to **simplify access to information, not replace official government instructions**.
+The current architecture has:
 
-The project follows these principles:
+~~~text
+No database
+No account system
+No KaamKaagaz backend
+No server-side document storage
+No analytics layer
+~~~
 
-1. Prefer authoritative government sources.
-2. Keep official portal links visible where relevant.
-3. Separate practical guidance from official requirements.
-4. Avoid inventing fees, documents or application requirements.
-5. Make users aware when requirements can change.
-6. Encourage verification on the relevant official source before submission.
+Checklist progress is stored locally in the browser.
 
-Government procedures, fees, timelines and requirements can change. Users should verify current requirements with the relevant official authority.
+The project does **not** ask users to upload sensitive identity documents to a KaamKaagaz server.
 
----
-
-## `privacy`
-
-KaamKaagaz is currently a lightweight client-side application.
-
-The current architecture does not require users to create an account or submit personal documents to a KaamKaagaz backend.
-
-Checklist progress may be stored locally in the user's browser using `localStorage`.
-
-**Do not upload sensitive identity documents into the application unless a future feature explicitly provides a secure and documented mechanism for doing so.**
+That boundary is deliberate.
 
 ---
 
-## `dev.config`
+## ⚠️ Important Information Boundary
 
-KaamKaagaz aims to keep the experience:
+KaamKaagaz is a **guidance and organization layer**, not a government authority.
 
-- Clear before clever
-- Accessible before decorative
-- Practical before verbose
-- Official-source-first
-- Mobile-friendly
-- Type-safe
-- Lightweight
-- Easy to maintain
+Use the application to understand a process, prepare for it, and locate the relevant official source.
 
-The interface is designed for students, parents, first-time applicants and anyone who finds government paperwork unnecessarily difficult to navigate.
+Before submitting an application, verify:
 
----
+- current document requirements
+- current fees
+- current eligibility
+- current processing timelines
+- current official portal
+- any location-specific instructions
 
-## `status`
-
-The current service library includes:
-
-- **PAN Card**
-- **Passport**
-- **Income Certificate**
-
-The architecture is designed so additional document workflows can be added through structured TypeScript data rather than rebuilding the interface.
+The repository's structured data includes verification metadata, but no static knowledge base can guarantee that a government procedure will never change after publication.
 
 ---
 
-## `contribute()`
+## 📊 Engineering Status
 
-Contributions, corrections and improvements are welcome.
+| Area | Status |
+|---|:---:|
+| Next.js application | 🟢 |
+| Structured process data | 🟢 |
+| Dynamic process routes | 🟢 |
+| Document guidance | 🟢 |
+| Persistent checklists | 🟢 |
+| Admissions workflow | 🟢 |
+| English / हिन्दी / मराठी | 🟢 |
+| Static export | 🟢 |
+| GitHub Actions deployment | 🟢 |
+| Automated browser tests | 🟡 |
+| Expanded accessibility audit | 🟡 |
+| Content freshness automation | 🟡 |
+| Broader service library | 🟡 |
 
-If you notice:
-
-- outdated government information,
-- an incorrect source,
-- a broken official link,
-- accessibility issues,
-- translation problems,
-- or a technical bug,
-
-open an issue or submit a pull request.
-
-For government requirements, include the authoritative source whenever possible.
+**Project stage:** Active civic-tech development
 
 ---
 
-## `license`
+## 🗺️ Roadmap
+
+### Near term
+
+- Expand the structured service library
+- Improve content freshness workflows
+- Expand admissions pathways
+- Add deeper accessibility testing
+- Strengthen automated route/build checks
+
+### Later
+
+- Import/export of saved checklists
+- More advanced search semantics while keeping the core behavior explainable
+- Better source-change monitoring
+- Broader regional service coverage
+- Additional document preparation helpers
+
+The roadmap is directional; only the implemented repository state should be treated as current functionality.
+
+---
+
+## 🤝 Contributing
+
+The project benefits most from contributions that improve **accuracy, accessibility or clarity**.
+
+Good contribution examples:
+
+~~~text
+Broken official link
+      ↓
+Issue + authoritative source
+      ↓
+Corrected process data
+      ↓
+Type-check
+      ↓
+Build
+      ↓
+Pull Request
+~~~
+
+For government requirements, corrections should include the strongest available authoritative source.
+
+---
+
+## 📜 License
 
 This repository currently does not declare an open-source license.
 
-Unless a license is added, the source code should not be assumed to be freely reusable or redistributable.
+Without a license, the source should not be assumed to be freely reusable or redistributable.
 
 ---
 
-## `author`
+<div align="center">
 
-**Harsh Dubey**
+### Kaagaz samjho. Kaam karo.
 
-Built as a practical civic-tech project focused on making Indian government paperwork easier to understand.
+**KAAMKAAGAZ**
 
-<p align="center">
-  <sub>KaamKaagaz — Kaagaz samjho. Kaam karo.</sub>
-</p>
+<sub>A small civic-tech project for making complicated paperwork easier to understand.</sub>
+
+<br><br>
+
+<a href="https://chillingbing648-sketch.github.io/KaamKaagaz/"><strong>Enter the Experience ↗</strong></a>
+&nbsp;&nbsp; · &nbsp;&nbsp;
+<a href="https://github.com/chillingbing648-sketch/KaamKaagaz"><strong>Explore the Repository ↗</strong></a>
+
+<br><br>
+
+<sub>Next.js · React · TypeScript · Tailwind CSS · GitHub Actions · GitHub Pages</sub>
+
+</div>
