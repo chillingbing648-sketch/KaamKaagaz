@@ -2,14 +2,14 @@ import { LocaleTranslations } from "../types";
 
 export const en: LocaleTranslations = {
   brand: {
-    name: "KaamKaagaZ",
+    name: "KAAMKAAGAZ",
     tagline: "Kaagaz samjho. Kaam karo.",
     subTagline: "Paperwork, made simple.",
     disclaimer: "An independent civic guide. Not an official government portal. Always confirm rules with official authorities.",
-    notGovWarning: "KaamKaagaZ is an independent guide that explains requirements from official sources in plain language. We are not affiliated with any government agency or department.",
+    notGovWarning: "KAAMKAAGAZ is an independent guide that explains requirements from official sources in plain language. We are not affiliated with any government agency or department.",
   },
   nav: {
-    home: "KaamKaagaZ",
+    home: "KAAMKAAGAZ",
     services: "Services",
     allServices: "All Services",
     admissions: "Student Admissions",
@@ -43,7 +43,7 @@ export const en: LocaleTranslations = {
   },
   connectionArea: {
     title: "Official Government Ecosystem & Trust",
-    subtitle: "KaamKaagaZ connects you directly to verified authorities. We never sit between you and the government.",
+    subtitle: "KAAMKAAGAZ connects you directly to verified authorities. We never sit between you and the government.",
     officialPortalsTitle: "Official Portals",
     officialPortalsSubtitle: "Direct access to central and state departments",
     civicTrustTitle: "Civic Privacy & Trust",
@@ -63,7 +63,7 @@ export const en: LocaleTranslations = {
     needHelpQuestion: "Kaunsa kaam karna hai?",
   },
   howItWorks: {
-    title: "How KaamKaagaZ Works",
+    title: "How KAAMKAAGAZ Works",
     subtitle: "A simple 3-step bridge between you and complicated government paperwork.",
     step1Title: "1. Pick your kaam",
     step1Desc: "Search or tap what you want to achieve — Aadhaar, PAN Card, Passport, Domicile, or Student Admissions.",
@@ -97,7 +97,7 @@ export const en: LocaleTranslations = {
   document: {
     whatIsIt: "What is it?",
     whyNeeded: "Why do I need it?",
-    whyNeededDisclaimer: "Plain-language explanation from KaamKaagaZ, not an official legal statement.",
+    whyNeededDisclaimer: "Plain-language explanation from KAAMKAAGAZ, not an official legal statement.",
     commonExamples: "What can you use?",
     examplesNotice: "This list is based on official rules. Requirements can vary depending on your situation.",
     formatAndPrep: "Format & preparation",
@@ -129,8 +129,8 @@ export const en: LocaleTranslations = {
   },
   officialSource: {
     title: "Official source",
-    explanationNote: "KaamKaagaZ explains paperwork in plain language. Always verify current forms, rules, and fees directly on the official portal.",
-    lastReviewed: "Last verified by KaamKaagaZ:",
+    explanationNote: "KAAMKAAGAZ explains paperwork in plain language. Always verify current forms, rules, and fees directly on the official portal.",
+    lastReviewed: "Last verified by KAAMKAAGAZ:",
     verifyNotice: "Never pay unauthorized agents. Only use official government portals.",
     openInNewTab: "(opens in new tab)",
   },
@@ -141,7 +141,7 @@ export const en: LocaleTranslations = {
     securityTitle: "Security Policy",
     cookiesTitle: "Cookie Policy",
     accessibilityTitle: "Accessibility Statement",
-    independentNotice: "KaamKaagaZ is an independent open-access civic utility. We do not store citizen documents, run ads, or share data.",
+    independentNotice: "KAAMKAAGAZ is an independent open-access civic utility. We do not store citizen documents, run ads, or share data.",
   },
   notFound: {
     title: "Page not found",
