@@ -21,16 +21,22 @@ const notoDevanagari = Noto_Sans_Devanagari({
 
 export const metadata: Metadata = {
   title: {
-    default: "KaamKaagaz · Kaagaz samjho. Kaam karo.",
-    template: "%s · KaamKaagaz",
+    default: "KaamKaagaZ · Kaagaz samjho. Kaam karo.",
+    template: "%s · KaamKaagaZ",
   },
   description:
-    "Paperwork, made simple. Plain-language step-by-step guidance for PAN Card, Passport, and Income Certificate. Kaunsa kaam karna hai?",
+    "Paperwork, made simple. Plain-language step-by-step guidance for Aadhaar Card, PAN Card, Passport, Birth Certificate, Domicile, Caste & Student Admissions.",
   keywords: [
-    "KaamKaagaz",
+    "KaamKaagaZ",
+    "Aadhaar Card",
     "PAN Card",
     "Passport",
+    "Birth Certificate",
+    "Domicile Certificate",
+    "Caste Certificate",
+    "Leaving Certificate",
     "Income Certificate",
+    "Student Admissions",
     "Aaple Sarkar",
     "Government documents India",
     "कागज़ समझो काम करो",

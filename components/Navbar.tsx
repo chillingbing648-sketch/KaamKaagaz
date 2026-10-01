@@ -118,7 +118,7 @@ export function Navbar() {
           </span>
           <div className="flex flex-col">
             <span className="text-xl sm:text-2xl font-black tracking-tight text-ink group-hover:text-accent transition-colors">
-              KAAMKAAGAZ
+              KaamKaaga<span className="text-accent">Z</span>
             </span>
             <span className="text-[11px] font-semibold text-muted tracking-wide -mt-1 hidden sm:block">
               {t.brand.tagline}

@@ -6,6 +6,7 @@
  * - Format & preparation details reflect official portal instructions (Protean/UTIITSL, Passport Seva, Aaple Sarkar).
  * - Everything in explanation / purpose is plain-language civic guidance.
  */
+import { regularProcesses } from "./regularDocuments";
 
 export interface LocalizedString {
   en: string;
@@ -116,7 +117,7 @@ export interface Process {
   officialSource: OfficialSource;
 }
 
-export const processes: Process[] = [
+const baseProcesses: Process[] = [
   {
     id: "pan",
     slug: "pan-card",
@@ -2271,6 +2272,8 @@ export const processes: Process[] = [
     },
   },
 ];
+
+export const processes: Process[] = [...baseProcesses, ...regularProcesses];
 
 export function getProcess(slug: string): Process | undefined {
   return processes.find((p) => p.slug === slug);

@@ -2,14 +2,14 @@ import { LocaleTranslations } from "../types";
 
 export const en: LocaleTranslations = {
   brand: {
-    name: "KaamKaagaz",
+    name: "KaamKaagaZ",
     tagline: "Kaagaz samjho. Kaam karo.",
     subTagline: "Paperwork, made simple.",
     disclaimer: "An independent civic guide. Not an official government portal. Always confirm rules with official authorities.",
-    notGovWarning: "KaamKaagaz is an independent guide that explains requirements from official sources in plain language. We are not affiliated with any government agency or department.",
+    notGovWarning: "KaamKaagaZ is an independent guide that explains requirements from official sources in plain language. We are not affiliated with any government agency or department.",
   },
   nav: {
-    home: "KaamKaagaz",
+    home: "KaamKaagaZ",
     services: "Services",
     allServices: "All Services",
     admissions: "Student Admissions",
@@ -43,7 +43,7 @@ export const en: LocaleTranslations = {
   },
   connectionArea: {
     title: "Official Government Ecosystem & Trust",
-    subtitle: "KaamKaagaz connects you directly to verified authorities. We never sit between you and the government.",
+    subtitle: "KaamKaagaZ connects you directly to verified authorities. We never sit between you and the government.",
     officialPortalsTitle: "Official Portals",
     officialPortalsSubtitle: "Direct access to central and state departments",
     civicTrustTitle: "Civic Privacy & Trust",
@@ -53,20 +53,20 @@ export const en: LocaleTranslations = {
   },
   home: {
     heroQuestion: "What do you need to get done?",
-    searchPlaceholder: "Try “pan”, “passport”, “income”...",
+    searchPlaceholder: "Try “aadhaar”, “pan”, “passport”, “domicile”, “caste”...",
     popularKaam: "Popular kaam",
     results: "Matching services",
     popularServices: "Popular services",
     noResults: "No service matches",
-    noResultsHint: "Currently we cover PAN Card, Passport, and Income Certificate. Try searching for one of those.",
+    noResultsHint: "We cover Aadhaar, PAN, Passport, Birth, Domicile, Caste, Leaving, and Income Certificates. Try searching for one of those.",
     showAllServices: "Show all services",
     needHelpQuestion: "Kaunsa kaam karna hai?",
   },
   howItWorks: {
-    title: "How KaamKaagaz Works",
+    title: "How KaamKaagaZ Works",
     subtitle: "A simple 3-step bridge between you and complicated government paperwork.",
     step1Title: "1. Pick your kaam",
-    step1Desc: "Search or tap what you want to achieve — PAN Card, Passport, or Income Certificate.",
+    step1Desc: "Search or tap what you want to achieve — Aadhaar, PAN Card, Passport, Domicile, or Student Admissions.",
     step2Title: "2. Understand your kaagaz",
     step2Desc: "See exactly which documents qualify, why they are needed, and how to prepare them.",
     step3Title: "3. Complete with confidence",
@@ -97,7 +97,7 @@ export const en: LocaleTranslations = {
   document: {
     whatIsIt: "What is it?",
     whyNeeded: "Why do I need it?",
-    whyNeededDisclaimer: "Plain-language explanation from KaamKaagaz, not an official legal statement.",
+    whyNeededDisclaimer: "Plain-language explanation from KaamKaagaZ, not an official legal statement.",
     commonExamples: "What can you use?",
     examplesNotice: "This list is based on official rules. Requirements can vary depending on your situation.",
     formatAndPrep: "Format & preparation",
@@ -129,8 +129,8 @@ export const en: LocaleTranslations = {
   },
   officialSource: {
     title: "Official source",
-    explanationNote: "KaamKaagaz explains paperwork in plain language. Always verify current forms, rules, and fees directly on the official portal.",
-    lastReviewed: "Last verified by KaamKaagaz:",
+    explanationNote: "KaamKaagaZ explains paperwork in plain language. Always verify current forms, rules, and fees directly on the official portal.",
+    lastReviewed: "Last verified by KaamKaagaZ:",
     verifyNotice: "Never pay unauthorized agents. Only use official government portals.",
     openInNewTab: "(opens in new tab)",
   },
@@ -141,11 +141,11 @@ export const en: LocaleTranslations = {
     securityTitle: "Security Policy",
     cookiesTitle: "Cookie Policy",
     accessibilityTitle: "Accessibility Statement",
-    independentNotice: "KaamKaagaz is an independent open-access civic utility. We do not store citizen documents, run ads, or share data.",
+    independentNotice: "KaamKaagaZ is an independent open-access civic utility. We do not store citizen documents, run ads, or share data.",
   },
   notFound: {
     title: "Page not found",
-    message: "The requested service or document could not be found. We currently offer verified guides for PAN Card, Passport, and Income Certificate.",
+    message: "The requested service or document could not be found. We offer verified guides for Aadhaar, PAN Card, Passport, Birth, Domicile, Caste, Leaving, and Income Certificates.",
     backButton: "Back to all services",
   },
 };

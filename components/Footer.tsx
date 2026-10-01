@@ -22,7 +22,7 @@ export function Footer() {
                 क
               </span>
               <span className="text-lg font-black tracking-tight text-ink">
-                KAAMKAAGAZ
+                KaamKaaga<span className="text-accent">Z</span>
               </span>
             </Link>
             <p className="font-semibold text-xs text-accent">
