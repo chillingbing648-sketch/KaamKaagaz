@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   description:
     "Paperwork, made simple. Plain-language step-by-step guidance for Aadhaar Card, PAN Card, Passport, Birth Certificate, Domicile, Caste & Student Admissions.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: "/KaamKaagaz/favicon.svg",
+    shortcut: "/KaamKaagaz/favicon.svg",
+    apple: "/KaamKaagaz/favicon.svg",
   },
   keywords: [
     "KAAMKAAGAZ",
