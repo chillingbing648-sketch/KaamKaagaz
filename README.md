@@ -22,7 +22,7 @@ A multilingual civic-tech web application that turns complicated Indian governme
 <tr>
 <td width="25%" valign="top">
 
-### ⚛ Framework
+### ⚛ Frameworks
 **Next.js 15.1**  
 React 19 · App Router
 
@@ -72,6 +72,7 @@ Next.js exports the app to static files, then CI publishes the generated `out/` 
 <p align="center"><sub>Discover → understand → prepare → follow the official process.</sub></p>
 
 ---
+
 ## `>_` The Problem
 
 Government paperwork is rarely difficult because the form itself is difficult.
@@ -132,18 +133,6 @@ The application is intentionally **not** an official government portal and does 
 <sub>Static deployment: Next.js export → GitHub Actions → gh-pages → GitHub Pages</sub>
 
 </div>
-
----
-
-## 🗺️ Product Map
-
-<p align="center">
-  <img src="./assets/kaamkaagaz-product-map.svg" alt="KaamKaagaz product flow from search to official process" width="1100">
-</p>
-
-<p align="center">
-  <sub>A documentation-first workflow: discover → understand → prepare → follow the official process.</sub>
-</p>
 
 ---
 
