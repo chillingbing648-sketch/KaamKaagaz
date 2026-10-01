@@ -113,12 +113,15 @@ export function Navbar() {
           href="/"
           className="group inline-flex items-center gap-2.5 font-bold focus-visible:outline-2 focus-visible:outline-accent"
         >
-          <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-white font-black text-lg shadow-2xs group-hover:bg-accent-hover transition-colors">
-            क
+          <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-white shadow-2xs group-hover:bg-accent-hover transition-colors" aria-hidden="true">
+            <svg viewBox="0 0 24 24" className="size-5" fill="none">
+              <path d="M6 3.5h8l4 4V20.5H6z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/>
+              <path d="M14 3.5v4h4M9 14l2.1 2.1L15.5 11.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </span>
           <div className="flex flex-col">
             <span className="text-xl sm:text-2xl font-black tracking-tight text-ink group-hover:text-accent transition-colors">
-              KaamKaaga<span className="text-accent">Z</span>
+              {t.brand.name}
             </span>
             <span className="text-[11px] font-semibold text-muted tracking-wide -mt-1 hidden sm:block">
               {t.brand.tagline}
