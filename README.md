@@ -1,8 +1,8 @@
 <div align="center">
 
-# 📄 KAAMKAAGAZ
+<h1 align="center">📄 KaamKaaga<span style="color:#c8561B">Z</span></h1>
 
-### **Kaagaz samjho. Kaam karo.**
+<p align="center"><strong>Kaagaz samjho. Kaam karo.</strong></p>
 
 A multilingual civic-tech web application that turns complicated Indian government paperwork into clear, structured guidance — helping users understand **what they need, where to go, what to do next, and which official source to verify**.
 
@@ -100,6 +100,49 @@ The current experience combines:
 - a dedicated higher-education / admissions flow
 
 The application is intentionally **not** an official government portal and does not replace the instructions of the relevant authority.
+
+---
+
+## 🏛️ Product Identity: Government & Admissions Support
+
+KaamKaagaz is designed as a **citizen-facing guidance layer**, not as a replacement for a government department or university admission authority.
+
+That distinction directly shapes the product:
+
+| Government / admission reality | Product response |
+|---|---|
+| Rules, fees, deadlines and document requirements can change | Keep official-source links and verification dates visible |
+| Students often face multiple portals for one admission journey | Provide portal wayfinding, roadmaps and prerequisite documents in one flow |
+| Users may not know the correct government or university terminology | Use plain-language search and structured explanations |
+| Marathi, Hindi and English users may need the same information | Keep localization inside the information model |
+| Admission mistakes can delay or block an application | Surface checklists, common problems, document readiness and next steps |
+| Users must distinguish guidance from authority | Clearly state the independent/non-government boundary |
+| Sensitive documents should not be unnecessarily collected | Keep checklist state local to the user's browser |
+| Government services must remain usable across devices and abilities | Prioritize semantic controls, keyboard access, focus states, touch targets and reduced motion |
+
+The repository therefore treats **trust, source traceability, accessibility, clarity and student wayfinding as core product requirements**, not decorative features.
+
+### The user journey this architecture supports
+
+```text
+Student / Citizen
+      ↓
+“What am I trying to do?”
+      ↓
+Find the correct service or admission route
+      ↓
+Understand eligibility + required kaagaz
+      ↓
+Prepare documents
+      ↓
+Track readiness with a local checklist
+      ↓
+Open the relevant official portal
+      ↓
+Verify current rules before submission
+```
+
+This is the central theme behind the repository's document guides, admissions hub, official-source layer, localized content and checklist system.
 
 ---
 
@@ -770,7 +813,7 @@ Without a license, the source should not be assumed to be freely reusable or red
 
 ### Kaagaz samjho. Kaam karo.
 
-**KAAMKAAGAZ**
+**KaamKaagaZ**
 
 <sub>A small civic-tech project for making complicated paperwork easier to understand.</sub>
 
