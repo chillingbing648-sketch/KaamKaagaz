@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📄 KaamKaagaz
+# 📄 KAAMKAAGAZ
 
 ### **Kaagaz samjho. Kaam karo.**
 
@@ -26,16 +26,12 @@ A multilingual civic-tech web application that turns complicated Indian governme
 **Next.js 15.1**  
 React 19 · App Router
 
-The application framework, routing model, static generation and React rendering layer.
-
 </td>
 <td width="25%" valign="top">
 
 ### 🟦 Language
 **TypeScript 5.6**  
 React / TSX
-
-Typed process schemas, reusable components, localized data and application logic.
 
 </td>
 <td width="25%" valign="top">
@@ -44,16 +40,12 @@ Typed process schemas, reusable components, localized data and application logic
 **Tailwind CSS 4**  
 Responsive utility system
 
-The civic-tech visual system, responsive layout, states, focus treatment and reduced-motion rules.
-
 </td>
 <td width="25%" valign="top">
 
 ### ☁️ Delivery
 **Static Export**  
 GitHub Actions · GitHub Pages
-
-Next.js exports the app to static files, then CI publishes the generated `out/` build.
 
 </td>
 </tr>
