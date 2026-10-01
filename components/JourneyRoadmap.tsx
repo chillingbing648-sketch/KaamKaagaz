@@ -25,8 +25,8 @@ export function JourneyRoadmap({ currentStage }: JourneyRoadmapProps) {
   return (
     <div className="rounded-xl border border-line bg-paper/60 p-3 sm:p-4 mb-6 shadow-2xs">
       <div className="flex items-center justify-between mb-2.5">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-muted">
-          🗺️ {t.nav.journeyStatus}
+        <span className="text-[11px] font-semibold text-muted tracking-wide">
+          {t.nav.journeyStatus}
         </span>
         <span className="text-xs font-semibold text-accent">
           Step {currentIndex + 1} of {stages.length}

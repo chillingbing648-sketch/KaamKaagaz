@@ -25,10 +25,10 @@ export function ChecklistView({ process }: { process: Process }) {
         />
 
         <header>
-          <span className="inline-block rounded-md bg-paper px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-muted border border-line/60">
+          <span className="inline-block rounded-md bg-paper px-2.5 py-1 text-xs font-semibold tracking-wide text-muted border border-line/60">
             {t.checklist.title}
           </span>
-          <h1 className="mt-2 text-3xl sm:text-4xl font-black tracking-tight text-ink">
+          <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-ink">
             {loc.title}
           </h1>
           <p className="mt-2 text-sm text-muted">

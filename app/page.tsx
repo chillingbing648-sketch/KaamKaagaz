@@ -9,13 +9,13 @@ export default function Home() {
     <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
       {/* Main Working Area */}
       <div className="min-w-0 flex-1 lg:max-w-3xl">
+        {/* 1. Hero with category discovery */}
         <HomeHero />
-        <section id="services" aria-label="Services search and selection" className="scroll-mt-24">
-          <HomeSearch items={processes} />
+
+        {/* Discovery & Search Flow: Popular Kaam -> How It Works -> Search & Services */}
+        <section id="services" aria-label="Services exploration and search" className="scroll-mt-24">
+          <HomeSearch items={processes} midSection={<HowItWorks />} />
         </section>
-        <div className="scroll-mt-24">
-          <HowItWorks />
-        </div>
       </div>
 
       {/* Contextual Side Rail */}

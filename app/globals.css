@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* KaamKaagaz Civic-Tech Color System */
-  --color-ink: #0f172a;
-  --color-muted: #526071;
-  --color-line: #e2e6eb;
-  --color-paper: #fcfbf8;
+  /* KaamKaagaz Civic-Tech Color System — Editorial Indigo + Terracotta */
+  --color-ink: #1a1f2e;
+  --color-ink-light: #2d3446;
+  --color-muted: #5c6478;
+  --color-line: #e0e3ea;
+  --color-line-light: #eceef3;
+  --color-paper: #faf9f6;
   --color-surface: #ffffff;
   --color-accent: #c8561b;
   --color-accent-soft: #fdf5ee;
@@ -16,8 +18,15 @@
   --color-warning-soft: #fef3c7;
   --color-warning-line: #fde68a;
 
-  /* Typography tokens */
-  --font-sans: var(--font-inter), var(--font-devanagari), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", sans-serif;
+  /* Primary indigo for structural elements */
+  --color-primary: #3b4880;
+  --color-primary-soft: #eef0f7;
+  --color-primary-hover: #2e3a6b;
+
+  /* Typography tokens — editorial civic system */
+  --font-display: var(--font-instrument-sans), var(--font-devanagari), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-manrope), var(--font-devanagari), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, "SF Mono", "Cascadia Code", monospace;
 }
 
 html {
@@ -73,4 +82,27 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Trust indicator typographic system */
+.trust-verified {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-done);
+}
+.trust-official {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-primary);
+}
+.trust-important {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-warning);
 }

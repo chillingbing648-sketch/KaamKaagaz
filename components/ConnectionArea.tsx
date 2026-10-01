@@ -12,11 +12,10 @@ export function ConnectionArea() {
       className="mt-16 pt-10 pb-8 border-t-2 border-line/80 bg-paper/60 rounded-2xl p-6 sm:p-8"
     >
       <div className="max-w-3xl mb-8">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-3 py-1 text-xs font-bold text-accent mb-2">
-          <span>🏛️</span>
-          <span>CIVIC CONNECTION AREA</span>
+        <span className="inline-flex items-center gap-1.5 rounded-md bg-primary-soft px-3 py-1 text-[11px] font-mono font-semibold text-primary tracking-wide mb-2">
+          Government ecosystem
         </span>
-        <h2 className="text-xl sm:text-2xl font-black text-ink tracking-tight">
+        <h2 className="text-xl sm:text-2xl font-bold text-ink tracking-tight">
           {t.connectionArea.title}
         </h2>
         <p className="mt-1.5 text-xs sm:text-sm text-muted leading-relaxed">
@@ -30,7 +29,7 @@ export function ConnectionArea() {
           <div>
             <div className="flex items-center gap-2 mb-2 text-ink font-bold text-sm">
               <span className="flex size-7 items-center justify-center rounded-lg bg-accent-soft text-accent text-sm">
-                🏛️
+                ↗
               </span>
               <span>{t.connectionArea.officialPortalsTitle}</span>
             </div>
@@ -108,7 +107,7 @@ export function ConnectionArea() {
           <div>
             <div className="flex items-center gap-2 mb-2 text-ink font-bold text-sm">
               <span className="flex size-7 items-center justify-center rounded-lg bg-accent-soft text-accent text-sm">
-                🛡️
+                ✓
               </span>
               <span>{t.connectionArea.civicTrustTitle}</span>
             </div>
@@ -146,7 +145,7 @@ export function ConnectionArea() {
           <div>
             <div className="flex items-center gap-2 mb-2 text-ink font-bold text-sm">
               <span className="flex size-7 items-center justify-center rounded-lg bg-accent-soft text-accent text-sm">
-                ⚖️
+                ◆
               </span>
               <span>{t.connectionArea.needAssistanceTitle}</span>
             </div>

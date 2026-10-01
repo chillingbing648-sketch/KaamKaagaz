@@ -23,8 +23,8 @@ export function SituationSelector({
     <div className="rounded-xl border border-line bg-surface p-4 sm:p-5 shadow-2xs">
       <div className="flex items-center justify-between gap-2 mb-1">
         <div className="flex items-center gap-2">
-          <span className="flex size-7 items-center justify-center rounded-lg bg-accent-soft text-accent text-sm font-bold">
-            🎯
+          <span className="flex size-7 items-center justify-center rounded-lg bg-accent-soft text-accent text-sm font-semibold">
+            ?
           </span>
           <h3 className="text-base sm:text-lg font-bold text-ink">
             {t.process.situationsTitle}
@@ -83,7 +83,7 @@ export function SituationSelector({
                     {nameStr}
                   </p>
                   {isSelected && (
-                    <span className="text-[10px] uppercase font-black tracking-wider text-accent bg-surface px-1.5 py-0.5 rounded border border-accent/25 shrink-0">
+                    <span className="text-[10px] font-semibold tracking-wide text-accent bg-surface px-1.5 py-0.5 rounded border border-accent/25 shrink-0">
                       Selected
                     </span>
                   )}

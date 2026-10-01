@@ -18,10 +18,10 @@ export function Footer() {
               href="/"
               className="inline-flex items-center gap-2 font-bold focus-visible:outline-2 focus-visible:outline-accent"
             >
-              <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white font-extrabold text-sm shadow-2xs">
+              <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white font-bold text-sm shadow-2xs">
                 क
               </span>
-              <span className="text-lg font-black tracking-tight text-ink">
+              <span className="text-lg font-extrabold tracking-tight text-ink">
                 KaamKaaga<span className="text-accent">Z</span>
               </span>
             </Link>
@@ -35,7 +35,7 @@ export function Footer() {
 
           {/* Group 1: Explore */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-ink mb-3">
+            <h3 className="text-xs font-semibold tracking-wide text-ink mb-3">
               Explore
             </h3>
             <ul className="space-y-2 text-xs">
@@ -68,7 +68,7 @@ export function Footer() {
 
           {/* Group 2: Official Sources */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-ink mb-3">
+            <h3 className="text-xs font-semibold tracking-wide text-ink mb-3">
               Official Portals
             </h3>
             <ul className="space-y-2 text-xs">
@@ -110,7 +110,7 @@ export function Footer() {
 
           {/* Group 3: Trust & Legal */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-ink mb-3">
+            <h3 className="text-xs font-semibold tracking-wide text-ink mb-3">
               Trust & Legal
             </h3>
             <ul className="space-y-2 text-xs">
@@ -168,7 +168,7 @@ export function Footer() {
 
         {/* Not-Gov Warning Box */}
         <div className="mt-8 rounded-xl border border-line bg-paper p-3.5 text-xs text-muted leading-relaxed">
-          <p className="font-bold text-ink mb-0.5">⚖️ {t.officialSource.title}:</p>
+          <p className="font-bold text-ink mb-0.5">Notice: {t.officialSource.title}</p>
           <p>{t.brand.notGovWarning}</p>
         </div>
 

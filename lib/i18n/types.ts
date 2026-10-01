@@ -61,6 +61,13 @@ export interface LocaleTranslations {
     noResultsHint: string;
     showAllServices: string;
     needHelpQuestion: string;
+    exploreKaam: string;
+    categoryIdentity: string;
+    categoryCertificates: string;
+    categoryEducation: string;
+    categoryAdmissions: string;
+    categoryScholarships: string;
+    categoryStudentDocs: string;
   };
   howItWorks: {
     title: string;
@@ -133,6 +140,26 @@ export interface LocaleTranslations {
     lastReviewed: string;
     verifyNotice: string;
     openInNewTab: string;
+  };
+  processSnapshot: {
+    documents: string;
+    steps: string;
+    situations: string;
+    lastVerified: string;
+    readiness: string;
+  };
+  diagnostic: {
+    somethingWrong: string;
+    selectProblem: string;
+    theSituation: string;
+    whyItHappens: string;
+    whatToDo: string;
+  };
+  trust: {
+    verified: string;
+    official: string;
+    lastChecked: string;
+    yourProgress: string;
   };
   legal: {
     privacyTitle: string;

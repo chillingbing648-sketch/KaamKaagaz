@@ -22,10 +22,7 @@ export function FeesAndTimelines({
     <div className="space-y-4">
       {fees && fees.length > 0 && (
         <div className="rounded-xl border border-line bg-surface p-4 sm:p-5 shadow-2xs">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent text-xs font-bold">
-              💳
-            </span>
+          <div className="flex items-center mb-3">
             <h3 className="text-base sm:text-lg font-bold text-ink">
               {t.process.feesTitle}
             </h3>
@@ -52,10 +49,7 @@ export function FeesAndTimelines({
 
       {timelines && (
         <div className="rounded-xl border border-line bg-surface p-4 sm:p-5 shadow-2xs">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent text-xs font-bold">
-              ⏱️
-            </span>
+          <div className="flex items-center mb-2">
             <h3 className="text-base sm:text-lg font-bold text-ink">
               {t.process.timelinesTitle}
             </h3>

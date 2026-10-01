@@ -24,13 +24,13 @@ export function OfficialSource({
   return (
     <div className="rounded-xl border-2 border-accent/25 bg-accent-soft/30 p-5 sm:p-6 shadow-2xs">
       <div className="flex items-center justify-between gap-2 border-b border-accent/15 pb-3 mb-3">
-        <div className="flex items-center gap-2">
-          <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white text-sm font-black shadow-2xs">
-            🏛️
+        <div className="flex items-center gap-2.5">
+          <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white text-xs font-bold shadow-2xs">
+            ↗
           </span>
           <div>
-            <span className="text-[10px] uppercase font-black tracking-wider text-accent block">
-              AUTHORITY REFERENCE
+            <span className="block text-[10px] font-mono font-semibold text-accent tracking-wide">
+              Official source
             </span>
             <h3 className="text-base sm:text-lg font-bold text-ink">
               {t.officialSource.title}
@@ -38,8 +38,8 @@ export function OfficialSource({
           </div>
         </div>
 
-        <span className="text-[11px] font-semibold text-muted bg-surface px-2.5 py-1 rounded-md border border-line/60 shrink-0">
-          🛡️ Verified
+        <span className="trust-verified flex items-center gap-1 bg-done-soft px-2.5 py-1 rounded-md border border-done/20 shrink-0">
+          ✓ Verified
         </span>
       </div>
 
@@ -86,7 +86,7 @@ export function OfficialSource({
       <div className="mt-4 pt-3.5 border-t border-accent/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-muted">
         <span>
           {t.officialSource.lastReviewed}{" "}
-          <strong className="text-ink font-semibold">{lastChecked}</strong>
+          <strong className="trust-verified">{lastChecked}</strong>
         </span>
         <span className="text-[11px] text-muted">
           {t.officialSource.verifyNotice}

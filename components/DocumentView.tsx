@@ -37,10 +37,10 @@ export function DocumentView({
 
         {/* Document Header */}
         <header>
-          <span className="inline-block rounded-md bg-paper px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-muted border border-line/60">
+          <span className="inline-block rounded-md bg-paper px-2.5 py-1 text-xs font-semibold tracking-wide text-muted border border-line/60">
             {locProcess.title} · {t.process.documentsRequired}
           </span>
-          <h1 className="mt-2 text-3xl sm:text-4xl font-black tracking-tight text-ink">
+          <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-ink">
             {locDoc.name}
           </h1>
           <p className="mt-2.5 text-base sm:text-lg text-muted leading-relaxed">
@@ -50,7 +50,7 @@ export function DocumentView({
 
         {/* Readiness Checklist Action Bar */}
         <div className="p-4 sm:p-5 rounded-xl border border-line bg-surface shadow-2xs">
-          <p className="text-xs font-bold uppercase tracking-wider text-muted mb-2.5">
+          <p className="text-xs font-semibold text-muted tracking-wide mb-2.5">
             Checklist Status
           </p>
           <MarkDone
@@ -89,8 +89,8 @@ export function DocumentView({
         {/* 3. What can you use? (Accepted Examples list) */}
         <section aria-labelledby="examples-heading" className="rounded-xl border border-line bg-surface p-5 sm:p-6 shadow-2xs">
           <div className="flex items-center gap-2 mb-2">
-            <span className="flex size-7 items-center justify-center rounded-lg bg-accent-soft text-accent text-sm font-bold">
-              ✔️
+            <span className="flex size-7 items-center justify-center rounded-lg bg-accent-soft text-accent text-sm font-semibold">
+              ✓
             </span>
             <h2 id="examples-heading" className="text-base sm:text-lg font-bold text-ink">
               {t.document.commonExamples}
@@ -117,7 +117,7 @@ export function DocumentView({
         {document.officialNotes && (
           <section aria-labelledby="notes-heading" className="rounded-xl border border-line bg-paper p-4 text-xs sm:text-sm text-muted">
             <h2 id="notes-heading" className="font-bold text-ink mb-1 flex items-center gap-1.5">
-              <span>📜</span>
+              <span className="trust-important">!</span>
               <span>{t.document.importantOfficialNotes}</span>
             </h2>
             <p className="leading-relaxed">{document.officialNotes}</p>

@@ -15,23 +15,43 @@ export function ProblemGuidesView() {
 
   return (
     <section id="common-problems" aria-label="Student Problem Guides" className="scroll-mt-24">
-      <div className="flex items-center gap-2 mb-2">
-        <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white text-xs font-black shadow-2xs">
-          💡
-        </span>
-        <span className="text-xs font-bold uppercase tracking-wider text-accent">
-          REAL-WORLD TROUBLESHOOTING
+      <div className="mb-1">
+        <span className="text-xs font-mono font-semibold text-accent tracking-wide">
+          Troubleshooting
         </span>
       </div>
 
-      <h2 className="text-xl sm:text-2xl font-black text-ink tracking-tight">
-        Common Admission Problems & Concrete Next Steps
+      <h2 className="text-xl sm:text-2xl font-bold text-ink tracking-tight">
+        Something went wrong?
       </h2>
-      <p className="mt-1 text-xs sm:text-sm text-muted max-w-2xl leading-relaxed">
-        Real-world solutions for stuck applications, pending caste validity, name discrepancies, payment timeouts, and seat upgrade decisions.
+      <p className="mt-1.5 text-xs sm:text-sm text-muted max-w-2xl leading-relaxed">
+        Real-world solutions for stuck applications, pending documents, name discrepancies, and portal issues.
       </p>
 
-      <div className="mt-6 space-y-3">
+      {/* Quick Diagnostic Symptoms Selector */}
+      <div className="mt-4 mb-4 flex flex-wrap gap-2">
+        {problemGuides.map((item) => {
+          const isSelected = openProblemId === item.id;
+          const qText = getStr(item.question, language);
+          const shortText = qText.length > 35 ? qText.slice(0, 35) + "..." : qText;
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => toggleProblem(item.id)}
+              className={`inline-flex min-h-[36px] items-center rounded-lg border px-3 py-1 text-xs font-semibold transition-all cursor-pointer ${
+                isSelected
+                  ? "border-accent bg-accent text-white shadow-xs font-bold"
+                  : "border-line bg-surface text-ink hover:border-accent hover:text-accent shadow-2xs"
+              }`}
+            >
+              <span>• {shortText}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="space-y-3">
         {problemGuides.map((item) => {
           const isOpen = openProblemId === item.id;
           const questionText = getStr(item.question, language);
@@ -69,26 +89,26 @@ export function ProblemGuidesView() {
               {isOpen && (
                 <div className="border-t border-line/70 bg-paper/50 p-5 sm:p-6 rounded-b-2xl animate-in fade-in duration-150">
                   <div className="max-w-3xl space-y-4 text-xs">
-                    {/* The Situation Context */}
+                    {/* 1. SITUATION */}
                     <div className="rounded-xl border border-line bg-surface p-4">
-                      <strong className="text-[11px] font-bold uppercase tracking-wider text-muted block mb-1">
-                        🔍 The Situation:
+                      <strong className="text-[11px] font-semibold tracking-wide text-muted block mb-1">
+                        SITUATION
                       </strong>
-                      <p className="text-ink leading-relaxed">{situationText}</p>
+                      <p className="text-ink leading-relaxed font-medium">{situationText}</p>
                     </div>
 
-                    {/* Clear Civic Explanation */}
+                    {/* 2. EXPLANATION */}
                     <div className="rounded-xl border border-line bg-surface p-4">
-                      <strong className="text-[11px] font-bold uppercase tracking-wider text-muted block mb-1">
-                        📖 Plain Language Explanation:
+                      <strong className="text-[11px] font-semibold tracking-wide text-muted block mb-1">
+                        EXPLANATION
                       </strong>
                       <p className="text-ink leading-relaxed">{explanationText}</p>
                     </div>
 
-                    {/* Concrete Next Actions */}
+                    {/* 3. WHAT TO DO NEXT */}
                     <div className="rounded-xl border-2 border-accent/30 bg-accent-soft/30 p-4">
-                      <strong className="text-xs font-black uppercase tracking-wider text-accent block mb-2">
-                        🎯 What you should do next:
+                      <strong className="text-xs font-semibold tracking-wide text-accent block mb-2">
+                        WHAT TO DO NEXT
                       </strong>
                       <ol className="space-y-2 list-decimal list-inside text-ink/90 font-medium leading-relaxed">
                         {item.actionSteps.map((step, idx) => (
@@ -97,6 +117,18 @@ export function ProblemGuidesView() {
                           </li>
                         ))}
                       </ol>
+                    </div>
+
+                    {/* 4. OFFICIAL SOURCE LINK */}
+                    <div className="pt-2 border-t border-line/60 flex items-center justify-between text-xs">
+                      <span className="text-muted">Need to verify current rules?</span>
+                      <a
+                        href="#portal-directory"
+                        className="font-semibold text-accent hover:underline inline-flex items-center gap-1"
+                      >
+                        <span>Check official admission portals</span>
+                        <span>↗</span>
+                      </a>
                     </div>
                   </div>
                 </div>

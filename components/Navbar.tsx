@@ -123,7 +123,7 @@ export function Navbar() {
             <span className="text-xl sm:text-2xl font-black tracking-tight text-ink group-hover:text-accent transition-colors">
               {t.brand.name}
             </span>
-            <span className="text-[11px] font-semibold text-muted tracking-wide -mt-1 hidden sm:block">
+            <span className="text-[11px] font-medium text-muted tracking-normal -mt-1 hidden sm:block">
               {t.brand.tagline}
             </span>
           </div>

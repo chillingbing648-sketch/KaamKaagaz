@@ -29,8 +29,8 @@ export function ContextRail({
       <aside aria-label="Page context and quick navigation" className="space-y-5">
         {/* 1. Start here: 3 simple steps */}
         <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
-          <div className="flex items-center gap-1.5 mb-2.5 text-xs font-bold uppercase tracking-wider text-muted">
-            <span>🚀 {t.nav.startHere}</span>
+          <div className="flex items-center gap-1.5 mb-2.5 text-xs font-semibold text-muted tracking-wide">
+            <span>{t.nav.startHere}</span>
           </div>
           <ol className="space-y-2.5 text-xs">
             <li className="flex items-start gap-2">
@@ -66,8 +66,8 @@ export function ContextRail({
         {/* 2. Popular Kaam Quick Jump */}
         <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
           <div className="flex items-center justify-between mb-2.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-muted">
-              ⚡ {t.nav.quickAccess}
+            <span className="text-xs font-semibold text-muted tracking-wide">
+              {t.nav.quickAccess}
             </span>
           </div>
           <div className="space-y-1">
@@ -98,8 +98,8 @@ export function ContextRail({
 
         {/* 3. Official Government Portals */}
         <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
-          <div className="flex items-center gap-1.5 mb-2.5 text-xs font-bold uppercase tracking-wider text-muted">
-            <span>🏛️ {t.nav.officialPortals}</span>
+          <div className="flex items-center gap-1.5 mb-2.5 text-xs font-semibold text-muted tracking-wide">
+            <span>{t.nav.officialPortals}</span>
           </div>
           <ul className="space-y-2 text-xs">
             <li>
@@ -149,8 +149,8 @@ export function ContextRail({
 
         {/* 4. Privacy & Trust Promise */}
         <div className="rounded-xl border border-accent/20 bg-accent-soft/30 p-3.5 text-xs leading-relaxed">
-          <p className="font-bold text-accent mb-1 flex items-center gap-1">
-            <span>🛡️</span>
+          <p className="font-semibold text-accent mb-1 flex items-center gap-1">
+            <span className="trust-verified">✓</span>
             <span>{t.contextRail.trustGuaranteeTitle}</span>
           </p>
           <p className="text-ink/80 text-[11px]">
@@ -210,7 +210,7 @@ function ProcessRail({ process }: { process: Process }) {
       {/* Mini Checklist status widget */}
       <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-muted">
+          <span className="text-[11px] font-semibold text-muted tracking-wide">
             {t.checklist.title}
           </span>
           <span className="rounded-full bg-accent-soft px-2 py-0.5 text-xs font-bold text-accent">
@@ -239,9 +239,8 @@ function ProcessRail({ process }: { process: Process }) {
 
       {/* On This Page: TOC anchors */}
       <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
-        <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2.5 flex items-center gap-1">
-          <span>📑</span>
-          <span>{t.nav.onThisPage}</span>
+        <p className="text-[11px] font-semibold text-muted tracking-wide mb-2.5">
+          {t.nav.onThisPage}
         </p>
         <nav aria-label="On this page navigation">
           <ul className="space-y-1 text-xs">
@@ -261,8 +260,8 @@ function ProcessRail({ process }: { process: Process }) {
 
       {/* Official Source Direct Jump */}
       <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs text-xs">
-        <div className="flex items-center gap-1.5 text-muted font-bold uppercase tracking-wider text-[11px] mb-2">
-          <span>🏛️</span>
+        <div className="flex items-center gap-1.5 text-muted font-semibold tracking-wide text-[11px] mb-2">
+          <span className="trust-official">↗</span>
           <span>{t.officialSource.title}</span>
         </div>
         <p className="font-semibold text-ink mb-1">{process.officialSource.name}</p>
@@ -524,13 +523,13 @@ function AdmissionsRail() {
   const { counts } = useAdmissionChecklist(validIds);
 
   const sections = [
-    { id: "finder", label: "🧭 Admission Finder" },
-    { id: "portal-directory", label: "🏛️ Portal Directory" },
-    { id: "admission-roadmaps", label: "🗺️ Admission Roadmaps" },
-    { id: "documents", label: "📄 Document Helper" },
-    { id: "scholarships", label: "💰 MahaDBT Scholarships" },
-    { id: "common-problems", label: "💡 Common Problems" },
-    { id: "admission-terms", label: "📖 Admission Terms" },
+    { id: "finder", label: "Admission Finder" },
+    { id: "portal-directory", label: "Portal Directory" },
+    { id: "admission-roadmaps", label: "Admission Roadmaps" },
+    { id: "documents", label: "Document Helper" },
+    { id: "scholarships", label: "MahaDBT Scholarships" },
+    { id: "common-problems", label: "Common Problems" },
+    { id: "admission-terms", label: "Admission Terms" },
     { id: "checklist", label: "✓ My Checklist" },
   ];
 
@@ -539,7 +538,7 @@ function AdmissionsRail() {
       {/* 1. Admission Checklist Live Widget */}
       <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-muted">
+          <span className="text-[11px] font-semibold text-muted tracking-wide">
             Readiness Progress
           </span>
           <span className="rounded-full bg-accent-soft px-2 py-0.5 text-xs font-bold text-accent">
@@ -561,9 +560,8 @@ function AdmissionsRail() {
 
       {/* 2. On This Page: Admission Ecosystem anchors */}
       <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
-        <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2.5 flex items-center gap-1">
-          <span>📑</span>
-          <span>Admission Sections</span>
+        <p className="text-[11px] font-semibold text-muted tracking-wide mb-2.5">
+          Admission sections
         </p>
         <nav aria-label="Admissions quick section navigation">
           <ul className="space-y-1 text-xs">
@@ -583,8 +581,8 @@ function AdmissionsRail() {
 
       {/* 3. Key Official Admission Portals */}
       <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs text-xs">
-        <div className="flex items-center gap-1.5 text-muted font-bold uppercase tracking-wider text-[11px] mb-2.5">
-          <span>🏛️</span>
+        <div className="flex items-center gap-1.5 text-muted font-semibold tracking-wide text-[11px] mb-2.5">
+          <span className="trust-official">↗</span>
           <span>Official Portals (AY 2026–27)</span>
         </div>
         <ul className="space-y-2">
@@ -663,8 +661,8 @@ function AdmissionsRail() {
 
       {/* 4. Trust Assurance */}
       <div className="rounded-xl border border-accent/20 bg-accent-soft/30 p-3.5 text-xs leading-relaxed">
-        <p className="font-bold text-accent mb-1 flex items-center gap-1">
-          <span>🛡️</span>
+        <p className="font-semibold text-accent mb-1 flex items-center gap-1">
+          <span className="trust-verified">✓</span>
           <span>Zero Commission / Direct Entry</span>
         </p>
         <p className="text-ink/80 text-[11px]">

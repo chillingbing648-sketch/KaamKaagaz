@@ -70,6 +70,15 @@ export function DocumentItem({
           {localized.shortDescription}
         </p>
 
+        {/* What counts preview */}
+        {localized.examples && localized.examples.length > 0 && (
+          <div className="mt-2 text-xs text-ink/80 flex items-baseline gap-1.5">
+            <span className="font-semibold text-muted text-[11px] uppercase tracking-wide shrink-0">Counts:</span>
+            <span className="line-clamp-1 text-ink/75 font-medium">{localized.examples.slice(0, 3).join(", ")}</span>
+          </div>
+        )}
+
+        {/* Format & Validity metadata chips */}
         {localized.formatAndPrep && (
           <div className="mt-2.5 flex flex-wrap gap-2 text-xs">
             <span className="inline-flex items-center rounded-md bg-paper px-2 py-0.5 font-medium text-muted border border-line/60">
@@ -78,17 +87,34 @@ export function DocumentItem({
             <span className="inline-flex items-center rounded-md bg-paper px-2 py-0.5 font-medium text-muted border border-line/60">
               ✍️ {localized.formatAndPrep.selfAttestation.slice(0, 30)}
             </span>
+            {localized.formatAndPrep.validityOrRecentness && (
+              <span className="inline-flex items-center rounded-md bg-accent-soft px-2 py-0.5 font-medium text-accent border border-accent/20">
+                ⏳ {localized.formatAndPrep.validityOrRecentness.slice(0, 32)}
+              </span>
+            )}
           </div>
         )}
 
-        <div className="mt-3 flex items-center gap-3">
+        <div className="mt-3 flex items-center justify-between gap-3 pt-2 border-t border-line/50">
           <Link
             href={`/process/${slug}/document/${doc.id}`}
-            className="inline-flex min-h-[38px] items-center gap-1 text-xs sm:text-sm font-bold text-accent hover:text-accent-hover hover:underline underline-offset-4 transition-colors"
+            className="inline-flex min-h-[38px] items-center gap-1 text-xs sm:text-sm font-semibold text-accent hover:text-accent-hover hover:underline underline-offset-4 transition-colors"
           >
             <span>{t.process.whatDoesThisMean}</span>
             <span aria-hidden="true">→</span>
           </Link>
+
+          <button
+            type="button"
+            onClick={() => onToggle(doc.id)}
+            className={`inline-flex min-h-[36px] items-center gap-1 rounded-lg px-3 py-1 text-xs font-semibold transition-all cursor-pointer ${
+              checked
+                ? "bg-done text-white shadow-2xs hover:bg-done/90"
+                : "border border-line bg-surface text-ink hover:border-accent hover:text-accent shadow-2xs"
+            }`}
+          >
+            {checked ? "✓ Ready" : `+ ${t.document.markReady}`}
+          </button>
         </div>
       </div>
     </li>

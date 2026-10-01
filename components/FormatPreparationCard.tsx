@@ -19,9 +19,9 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
 
   return (
     <div className="rounded-xl border border-line bg-surface p-5 sm:p-6 shadow-2xs space-y-5">
-      <div className="flex items-center gap-2">
-        <span className="flex size-7 items-center justify-center rounded-lg bg-accent-soft text-accent text-sm font-bold">
-          📋
+      <div className="flex items-center gap-2.5">
+        <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white text-xs font-bold">
+          ▤
         </span>
         <h3 className="text-base sm:text-lg font-bold text-ink">
           {t.document.formatAndPrep}
@@ -32,8 +32,8 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {prep.submission && (
           <div className="rounded-lg bg-paper/70 p-3.5 border border-line/60">
-            <span className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-1">
-              📄 {t.document.submission}
+            <span className="block text-[11px] font-mono font-semibold tracking-wide text-muted mb-1 uppercase">
+              {t.document.submission}
             </span>
             <p className="text-xs sm:text-sm font-bold text-ink leading-snug">
               {prep.submission}
@@ -43,8 +43,8 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
 
         {prep.selfAttestation && (
           <div className="rounded-lg bg-paper/70 p-3.5 border border-line/60">
-            <span className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-1">
-              ✍️ {t.document.selfAttestation}
+            <span className="block text-[11px] font-mono font-semibold tracking-wide text-muted mb-1 uppercase">
+              {t.document.selfAttestation}
             </span>
             <p className="text-xs sm:text-sm font-bold text-ink leading-snug">
               {prep.selfAttestation}
@@ -54,8 +54,8 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
 
         {prep.digitalCopy && (
           <div className="rounded-lg bg-paper/70 p-3.5 border border-line/60">
-            <span className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-1">
-              💻 {t.document.digitalCopy}
+            <span className="block text-[11px] font-mono font-semibold tracking-wide text-muted mb-1 uppercase">
+              {t.document.digitalCopy}
             </span>
             <p className="text-xs sm:text-sm font-bold text-ink leading-snug">
               {prep.digitalCopy}
@@ -65,8 +65,8 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
 
         {prep.fileFormat && (
           <div className="rounded-lg bg-paper/70 p-3.5 border border-line/60">
-            <span className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-1">
-              📐 {t.document.fileFormat}
+            <span className="block text-[11px] font-mono font-semibold tracking-wide text-muted mb-1 uppercase">
+              {t.document.fileFormat}
             </span>
             <p className="text-xs sm:text-sm font-bold text-ink leading-snug">
               {prep.fileFormat}
@@ -78,8 +78,8 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
       {/* Validity / Recentness banner */}
       {prep.validityOrRecentness && (
         <div className="rounded-lg border border-accent/25 bg-accent-soft/40 p-3.5">
-          <span className="block text-[11px] font-bold uppercase tracking-wider text-accent mb-0.5">
-            ⏳ {t.document.validityRecentness}
+          <span className="block text-[11px] font-mono font-semibold tracking-wide text-accent mb-0.5 uppercase">
+            Validity / Recentness
           </span>
           <p className="text-xs sm:text-sm text-ink leading-relaxed font-semibold">
             {prep.validityOrRecentness}
@@ -90,8 +90,9 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
       {/* What if missing alternative guidance */}
       {prep.whatIfMissing && (
         <div className="rounded-lg border border-line bg-paper p-3.5">
-          <span className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-0.5">
-            💡 {t.document.whatIfMissing}
+          <span className="block text-[11px] font-mono font-semibold tracking-wide text-muted mb-0.5 flex items-center gap-1">
+            <span>◌</span>
+            <span>{t.document.whatIfMissing}</span>
           </span>
           <p className="text-xs sm:text-sm text-ink leading-relaxed">
             {prep.whatIfMissing}
@@ -102,17 +103,18 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
       {/* Important official warning / note notice */}
       {prep.importantNotes && (
         <div className="rounded-lg border border-warning-line bg-warning-soft/50 p-3.5">
-          <span className="block text-[11px] font-bold uppercase tracking-wider text-warning mb-0.5">
-            📌 {t.document.importantOfficialNotes}
+          <span className="block text-[11px] font-mono font-semibold tracking-wide text-warning mb-0.5 flex items-center gap-1">
+            <span className="trust-important">!</span>
+            <span>{t.document.importantOfficialNotes}</span>
           </span>
-          <p className="text-xs sm:text-sm text-ink leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink leading-relaxed font-medium">
             {prep.importantNotes}
           </p>
         </div>
       )}
 
       <p className="pt-2 text-[11px] text-muted leading-relaxed border-t border-line/50">
-        ℹ️ {t.document.requirementsVaryWarning}
+        ◌ {t.document.requirementsVaryWarning}
       </p>
     </div>
   );

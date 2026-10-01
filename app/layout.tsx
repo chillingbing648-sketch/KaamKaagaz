@@ -1,15 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Noto_Sans_Devanagari } from "next/font/google";
+import { Manrope, Noto_Sans_Devanagari } from "next/font/google";
 import { LanguageProvider } from "@/lib/i18n/context";
 import { Navbar } from "@/components/Navbar";
 import { ConnectionArea } from "@/components/ConnectionArea";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-manrope",
 });
 
 const notoDevanagari = Noto_Sans_Devanagari({
@@ -52,7 +52,7 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${notoDevanagari.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${notoDevanagari.variable}`}>
       <body className="min-h-screen antialiased flex flex-col justify-between font-sans bg-paper text-ink">
         <LanguageProvider>
           <a
