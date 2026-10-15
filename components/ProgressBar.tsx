@@ -8,7 +8,7 @@ export function ProgressBar({ percent, label }: { percent: number; label: string
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={safePercent}
-      className="h-2 w-full overflow-hidden rounded-full bg-line"
+      className="h-2.5 w-full overflow-hidden rounded-full bg-black/[0.06]"
     >
       <div
         className="h-full rounded-full bg-done transition-[width] duration-300 ease-out"

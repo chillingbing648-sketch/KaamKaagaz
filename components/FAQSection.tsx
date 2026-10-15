@@ -12,33 +12,35 @@ export function FAQSection({ faqs }: { faqs?: FAQ[] }) {
   if (!faqs || faqs.length === 0) return null;
 
   return (
-    <div className="rounded-xl border border-line bg-surface p-4 sm:p-5 shadow-2xs">
-      <div className="flex items-center mb-3">
-        <h3 className="text-base sm:text-lg font-bold text-ink">
+    <div className="rounded-2xl border border-black/[0.06] bg-white p-5 sm:p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+      <div className="flex items-center mb-4">
+        <h3 className="text-base sm:text-lg font-bold text-ink tracking-tight">
           {t.process.faqsTitle}
         </h3>
       </div>
-      <div className="divide-y divide-line/70">
+      <div className="divide-y divide-black/[0.04]">
         {faqs.map((faq, idx) => {
           const isOpen = openIndex === idx;
           const q = getStr(faq.question, language);
           const a = getStr(faq.answer, language);
 
           return (
-            <div key={idx} className="py-3 first:pt-0 last:pb-0">
+            <div key={idx} className="py-3.5 first:pt-0 last:pb-0">
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
                 aria-expanded={isOpen}
-                className="flex w-full items-center justify-between text-left gap-3 text-sm sm:text-base font-semibold text-ink hover:text-accent cursor-pointer"
+                className="flex w-full items-center justify-between text-left gap-3 text-sm sm:text-base font-semibold text-ink hover:text-accent cursor-pointer transition-colors"
               >
-                <span>{q}</span>
-                <span className="shrink-0 text-muted font-bold text-lg">
-                  {isOpen ? "−" : "+"}
+                <span className="tracking-tight">{q}</span>
+                <span className={`shrink-0 flex size-6 items-center justify-center rounded-full bg-black/[0.03] text-muted transition-transform duration-200 ${isOpen ? "rotate-180 text-accent bg-accent-soft" : ""}`}>
+                  <svg className="size-3" viewBox="0 0 12 12" fill="none">
+                    <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </span>
               </button>
               {isOpen && (
-                <div className="mt-2 text-xs sm:text-sm text-muted leading-relaxed pr-6 animate-in fade-in duration-100">
+                <div className="mt-2.5 text-xs sm:text-sm text-muted leading-relaxed pr-6 animate-in fade-in duration-150">
                   {a}
                 </div>
               )}

@@ -18,16 +18,16 @@ export function MarkDone({
   const isDone = done.has(docId);
 
   return (
-    <div className="flex flex-wrap items-center gap-3.5">
+    <div className="flex flex-wrap items-center gap-3">
       {/* Primary interactive toggle button */}
       <button
         type="button"
         aria-pressed={isDone}
         onClick={() => toggle(docId)}
-        className={`inline-flex min-h-[48px] items-center justify-center rounded-xl px-6 font-bold text-sm sm:text-base shadow-xs transition-all duration-150 cursor-pointer active:scale-[0.98] ${
+        className={`inline-flex min-h-[44px] items-center justify-center rounded-full px-6 font-semibold text-sm transition-all duration-200 cursor-pointer active:scale-[0.97] ${
           isDone
-            ? "border-2 border-done/60 bg-done-soft text-done hover:bg-done/15"
-            : "border-2 border-accent bg-accent text-white hover:bg-accent-hover shadow-sm"
+            ? "border border-done/30 bg-done-soft text-done hover:bg-done/15"
+            : "bg-accent text-white hover:bg-accent-hover shadow-xs"
         }`}
       >
         {isDone ? t.document.markReadyUndo : `✓ ${t.document.markReady}`}
@@ -36,7 +36,7 @@ export function MarkDone({
       {/* Secondary outlined button */}
       <Link
         href={`/checklist/${slug}`}
-        className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-line bg-paper/60 px-5 text-sm font-bold text-ink hover:bg-surface hover:border-accent hover:text-accent transition-all shadow-2xs"
+        className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-black/[0.08] bg-black/[0.03] px-5 text-sm font-semibold text-ink hover:bg-black/[0.06] transition-all active:scale-[0.97]"
       >
         {t.process.openChecklist} →
       </Link>

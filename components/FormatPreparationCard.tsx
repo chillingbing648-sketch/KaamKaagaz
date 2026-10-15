@@ -18,21 +18,21 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
   if (!prep) return null;
 
   return (
-    <div className="rounded-xl border border-line bg-surface p-5 sm:p-6 shadow-2xs space-y-5">
-      <div className="flex items-center gap-2.5">
-        <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white text-xs font-bold">
+    <div className="rounded-2xl border border-black/[0.06] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)] space-y-4">
+      <div className="flex items-center gap-2.5 mb-1">
+        <span className="flex size-7 items-center justify-center rounded-full bg-accent-soft text-accent text-xs font-bold">
           ▤
         </span>
-        <h3 className="text-base sm:text-lg font-bold text-ink">
+        <h3 className="text-base sm:text-lg font-bold text-ink tracking-tight">
           {t.document.formatAndPrep}
         </h3>
       </div>
 
       {/* Structured 2x2 or 4-cell Metadata Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {prep.submission && (
-          <div className="rounded-lg bg-paper/70 p-3.5 border border-line/60">
-            <span className="block text-[11px] font-mono font-semibold tracking-wide text-muted mb-1 uppercase">
+          <div className="rounded-xl bg-black/[0.02] p-3.5 border border-black/[0.04]">
+            <span className="block text-[11px] font-semibold tracking-wider text-muted mb-1 uppercase">
               {t.document.submission}
             </span>
             <p className="text-xs sm:text-sm font-bold text-ink leading-snug">
@@ -42,8 +42,8 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
         )}
 
         {prep.selfAttestation && (
-          <div className="rounded-lg bg-paper/70 p-3.5 border border-line/60">
-            <span className="block text-[11px] font-mono font-semibold tracking-wide text-muted mb-1 uppercase">
+          <div className="rounded-xl bg-black/[0.02] p-3.5 border border-black/[0.04]">
+            <span className="block text-[11px] font-semibold tracking-wider text-muted mb-1 uppercase">
               {t.document.selfAttestation}
             </span>
             <p className="text-xs sm:text-sm font-bold text-ink leading-snug">
@@ -53,8 +53,8 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
         )}
 
         {prep.digitalCopy && (
-          <div className="rounded-lg bg-paper/70 p-3.5 border border-line/60">
-            <span className="block text-[11px] font-mono font-semibold tracking-wide text-muted mb-1 uppercase">
+          <div className="rounded-xl bg-black/[0.02] p-3.5 border border-black/[0.04]">
+            <span className="block text-[11px] font-semibold tracking-wider text-muted mb-1 uppercase">
               {t.document.digitalCopy}
             </span>
             <p className="text-xs sm:text-sm font-bold text-ink leading-snug">
@@ -64,8 +64,8 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
         )}
 
         {prep.fileFormat && (
-          <div className="rounded-lg bg-paper/70 p-3.5 border border-line/60">
-            <span className="block text-[11px] font-mono font-semibold tracking-wide text-muted mb-1 uppercase">
+          <div className="rounded-xl bg-black/[0.02] p-3.5 border border-black/[0.04]">
+            <span className="block text-[11px] font-semibold tracking-wider text-muted mb-1 uppercase">
               {t.document.fileFormat}
             </span>
             <p className="text-xs sm:text-sm font-bold text-ink leading-snug">
@@ -77,8 +77,8 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
 
       {/* Validity / Recentness banner */}
       {prep.validityOrRecentness && (
-        <div className="rounded-lg border border-accent/25 bg-accent-soft/40 p-3.5">
-          <span className="block text-[11px] font-mono font-semibold tracking-wide text-accent mb-0.5 uppercase">
+        <div className="rounded-xl border border-accent/20 bg-accent-soft/40 p-3.5">
+          <span className="block text-[11px] font-semibold tracking-wider text-accent mb-0.5 uppercase">
             Validity / Recentness
           </span>
           <p className="text-xs sm:text-sm text-ink leading-relaxed font-semibold">
@@ -89,12 +89,12 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
 
       {/* What if missing alternative guidance */}
       {prep.whatIfMissing && (
-        <div className="rounded-lg border border-line bg-paper p-3.5">
-          <span className="block text-[11px] font-mono font-semibold tracking-wide text-muted mb-0.5 flex items-center gap-1">
+        <div className="rounded-xl border border-black/[0.04] bg-black/[0.02] p-3.5">
+          <span className="block text-[11px] font-semibold tracking-wider text-muted mb-0.5 flex items-center gap-1 uppercase">
             <span>◌</span>
             <span>{t.document.whatIfMissing}</span>
           </span>
-          <p className="text-xs sm:text-sm text-ink leading-relaxed">
+          <p className="text-xs sm:text-sm text-ink/90 leading-relaxed font-medium">
             {prep.whatIfMissing}
           </p>
         </div>
@@ -102,12 +102,12 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
 
       {/* Important official warning / note notice */}
       {prep.importantNotes && (
-        <div className="rounded-lg border border-warning-line bg-warning-soft/50 p-3.5">
-          <span className="block text-[11px] font-mono font-semibold tracking-wide text-warning mb-0.5 flex items-center gap-1">
+        <div className="rounded-xl border border-amber-200/60 bg-amber-50/70 p-3.5">
+          <span className="block text-[11px] font-semibold tracking-wider text-amber-900 mb-0.5 flex items-center gap-1 uppercase">
             <span className="trust-important">!</span>
             <span>{t.document.importantOfficialNotes}</span>
           </span>
-          <p className="text-xs sm:text-sm text-ink leading-relaxed font-medium">
+          <p className="text-xs sm:text-sm text-amber-950 leading-relaxed font-medium">
             {prep.importantNotes}
           </p>
         </div>

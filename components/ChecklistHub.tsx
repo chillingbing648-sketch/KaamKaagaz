@@ -17,22 +17,22 @@ function ServiceChecklistCard({ process }: { process: Process }) {
   const { count, total, percent } = useChecklist(process.slug, ids);
 
   return (
-    <div className="rounded-xl border border-line bg-surface p-5 sm:p-6 shadow-2xs space-y-4">
+    <div className="apple-card p-5 sm:p-6 space-y-4 transition-all duration-200 hover:shadow-md">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <span className="inline-block rounded-md bg-paper px-2 py-0.5 text-[10px] font-semibold text-muted border border-line/60">
+          <span className="inline-block rounded-full bg-black/[0.04] px-2.5 py-0.5 text-[10px] font-semibold text-muted tracking-wide">
             {loc.category}
           </span>
-          <h2 className="text-lg sm:text-xl font-semibold text-ink mt-1">{loc.title}</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-ink mt-1.5 tracking-tight">{loc.title}</h2>
         </div>
-        <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-bold text-accent shrink-0 border border-accent/20">
+        <span className="rounded-full bg-accent-soft/80 px-3 py-1 text-xs font-bold text-accent shrink-0 border border-accent/20">
           {count} / {total} {t.checklist.completed}
         </span>
       </div>
 
       <ProgressBar percent={percent} label={`${loc.title} checklist progress`} />
       <div className="flex items-center justify-between text-xs">
-        <div className="font-mono text-xs text-accent tracking-tight" aria-hidden="true">
+        <div className="font-mono text-xs text-accent font-semibold tracking-tight" aria-hidden="true">
           {'█'.repeat(Math.round(percent / 10))}{'░'.repeat(10 - Math.round(percent / 10))} {percent}%
         </div>
         <span className="text-muted font-medium">
@@ -40,15 +40,15 @@ function ServiceChecklistCard({ process }: { process: Process }) {
         </span>
       </div>
 
-      <div className="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs sm:text-sm">
+      <div className="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs sm:text-sm border-t border-black/[0.04]">
         <span className="text-muted font-medium">
           {percent === 100 ? (
-            <span className="text-done font-bold flex items-center gap-1">
-              <span>✓</span>
+            <span className="text-done font-bold flex items-center gap-1.5">
+              <span className="flex size-4 items-center justify-center rounded-full bg-done/15 text-done text-[10px]">✓</span>
               <span>Ready to apply officially</span>
             </span>
           ) : count === 0 ? (
-            <span>Not started</span>
+            <span className="text-muted">Not started</span>
           ) : (
             <span className="text-ink font-semibold">In progress ({percent}% complete)</span>
           )}
@@ -56,7 +56,7 @@ function ServiceChecklistCard({ process }: { process: Process }) {
 
         <Link
           href={`/checklist/${process.slug}`}
-          className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-accent/30 bg-accent-soft px-4 py-2 text-xs sm:text-sm font-bold text-accent hover:bg-accent hover:text-white transition-all shadow-2xs"
+          className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-accent/20 bg-accent-soft px-4.5 py-2 text-xs sm:text-sm font-semibold text-accent hover:bg-accent hover:text-white transition-all duration-150 active:scale-[0.98] shadow-xs"
         >
           {t.process.openChecklist} →
         </Link>
@@ -71,22 +71,22 @@ function AdmissionChecklistCard() {
   const { counts } = useAdmissionChecklist(validIds);
 
   return (
-    <div className="rounded-xl border border-line bg-surface p-5 sm:p-6 shadow-2xs space-y-4">
+    <div className="apple-card p-5 sm:p-6 space-y-4 transition-all duration-200 hover:shadow-md">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <span className="inline-block rounded-md bg-paper px-2 py-0.5 text-[10px] font-semibold text-muted border border-line/60">
+          <span className="inline-block rounded-full bg-primary-soft/80 px-2.5 py-0.5 text-[10px] font-semibold text-primary tracking-wide border border-primary/10">
             Higher Education
           </span>
-          <h2 className="text-lg sm:text-xl font-semibold text-ink mt-1">Student Admissions</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-ink mt-1.5 tracking-tight">Student Admissions</h2>
         </div>
-        <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-bold text-accent shrink-0 border border-accent/20">
+        <span className="rounded-full bg-accent-soft/80 px-3 py-1 text-xs font-bold text-accent shrink-0 border border-accent/20">
           {counts.ready} / {counts.activeTotal} completed
         </span>
       </div>
 
       <ProgressBar percent={counts.percent} label="Student Admissions checklist progress" />
       <div className="flex items-center justify-between text-xs">
-        <div className="font-mono text-xs text-accent tracking-tight" aria-hidden="true">
+        <div className="font-mono text-xs text-accent font-semibold tracking-tight" aria-hidden="true">
           {'█'.repeat(Math.round(counts.percent / 10))}{'░'.repeat(10 - Math.round(counts.percent / 10))} {counts.percent}%
         </div>
         <span className="text-muted font-medium">
@@ -94,15 +94,15 @@ function AdmissionChecklistCard() {
         </span>
       </div>
 
-      <div className="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs sm:text-sm">
+      <div className="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs sm:text-sm border-t border-black/[0.04]">
         <span className="text-muted font-medium">
           {counts.percent === 100 ? (
-            <span className="text-done font-bold flex items-center gap-1">
-              <span>✓</span>
+            <span className="text-done font-bold flex items-center gap-1.5">
+              <span className="flex size-4 items-center justify-center rounded-full bg-done/15 text-done text-[10px]">✓</span>
               <span>All documents ready for admission</span>
             </span>
           ) : counts.ready === 0 ? (
-            <span>Not started</span>
+            <span className="text-muted">Not started</span>
           ) : (
             <span className="text-ink font-semibold">In progress ({counts.percent}% complete)</span>
           )}
@@ -110,7 +110,7 @@ function AdmissionChecklistCard() {
 
         <Link
           href="/admissions#checklist"
-          className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-accent/30 bg-accent-soft px-4 py-2 text-xs sm:text-sm font-bold text-accent hover:bg-accent hover:text-white transition-all shadow-2xs"
+          className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-accent/20 bg-accent-soft px-4.5 py-2 text-xs sm:text-sm font-semibold text-accent hover:bg-accent hover:text-white transition-all duration-150 active:scale-[0.98] shadow-xs"
         >
           Open admission checklist →
         </Link>
@@ -133,14 +133,14 @@ export function ChecklistHub() {
           ]}
         />
 
-        <header>
-          <span className="inline-block rounded-md bg-paper px-2.5 py-1 text-xs font-semibold tracking-wide text-muted border border-line/60">
+        <header className="space-y-2">
+          <span className="inline-block rounded-full bg-black/[0.04] px-3 py-1 text-xs font-semibold tracking-wide text-muted">
             {t.checklist.personalWorkspace}
           </span>
-          <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold text-ink">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight">
             {t.checklist.myPaperwork}
           </h1>
-          <p className="mt-2 text-sm text-muted">
+          <p className="text-sm text-muted leading-relaxed">
             {t.checklist.savedLocallyNotice}
           </p>
         </header>

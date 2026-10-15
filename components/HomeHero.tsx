@@ -52,28 +52,28 @@ export function HomeHero({
   ];
 
   return (
-    <div className="mb-8 pt-2">
+    <div className="mb-10 pt-2">
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent-soft px-3 py-1 text-xs font-semibold text-accent mb-4 shadow-2xs">
+        <div className="inline-flex items-center gap-2 rounded-full border border-black/[0.06] bg-black/[0.03] px-3.5 py-1 text-xs font-semibold text-ink/80 mb-4 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
           <span aria-hidden="true">🇮🇳</span>
           <span>{t.brand.subTagline}</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-ink">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-ink">
           KaamKaaga<span className="text-accent">Z</span>
         </h1>
 
-        <p className="mt-2 text-lg sm:text-xl font-semibold text-accent">
+        <p className="mt-2 text-lg sm:text-2xl font-semibold text-accent tracking-tight">
           {t.brand.tagline}
         </p>
 
-        <p className="mt-3 text-sm text-muted max-w-lg leading-relaxed">
+        <p className="mt-3 text-sm sm:text-base text-muted max-w-xl leading-relaxed">
           {t.brand.disclaimer}
         </p>
       </div>
 
       <div>
-        <h2 className="text-xs font-semibold text-muted tracking-wide mb-3">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-muted mb-3.5">
           {t.home?.exploreKaam || "Explore your kaam"}
         </h2>
         
@@ -82,15 +82,15 @@ export function HomeHero({
             const isSelected = selectedCategory === category.id;
             const content = (
               <>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-1">
                   <span className={`text-sm font-bold transition-colors ${isSelected ? "text-accent" : "text-ink group-hover:text-accent"}`}>
                     {category.label}
                   </span>
-                  <span className={`text-xs transition-transform group-hover:translate-x-0.5 ${isSelected ? "text-accent" : "text-muted group-hover:text-accent"}`}>
+                  <span className={`text-xs transition-transform duration-200 group-hover:translate-x-0.5 ${isSelected ? "text-accent" : "text-muted group-hover:text-accent"}`}>
                     →
                   </span>
                 </div>
-                <span className="mt-2 text-[11px] text-muted leading-tight font-medium">
+                <span className="mt-2.5 text-[11px] text-muted leading-snug font-medium line-clamp-2">
                   {category.tag}
                 </span>
               </>
@@ -102,10 +102,10 @@ export function HomeHero({
                   key={category.id}
                   type="button"
                   onClick={() => onSelectCategory(category.id)}
-                  className={`group flex flex-col justify-between text-left rounded-xl border p-3.5 transition-all shadow-2xs cursor-pointer ${
+                  className={`group flex flex-col justify-between text-left rounded-2xl p-4 transition-all duration-200 cursor-pointer active:scale-[0.98] ${
                     isSelected
-                      ? "border-accent bg-paper ring-2 ring-accent/20 shadow-xs"
-                      : "border-line bg-surface hover:border-accent hover:bg-paper"
+                      ? "border-2 border-accent bg-accent-soft/60 ring-2 ring-accent/20 shadow-xs"
+                      : "border border-black/[0.06] bg-white hover:border-black/[0.12] hover:shadow-[0_4px_16px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
                   }`}
                 >
                   {content}
@@ -117,10 +117,10 @@ export function HomeHero({
               <Link
                 key={category.id}
                 href={category.href || "/#services"}
-                className={`group flex flex-col justify-between rounded-xl border p-3.5 transition-all shadow-2xs ${
+                className={`group flex flex-col justify-between rounded-2xl p-4 transition-all duration-200 active:scale-[0.98] ${
                   isSelected
-                    ? "border-accent bg-paper ring-2 ring-accent/20 shadow-xs"
-                    : "border-line bg-surface hover:border-accent hover:bg-paper"
+                    ? "border-2 border-accent bg-accent-soft/60 ring-2 ring-accent/20 shadow-xs"
+                    : "border border-black/[0.06] bg-white hover:border-black/[0.12] hover:shadow-[0_4px_16px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
                 }`}
               >
                 {content}

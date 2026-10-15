@@ -32,7 +32,7 @@ export function ContextRail({
     return (
       <aside aria-label="Page context and quick navigation" className="space-y-5">
         {/* 1. Start here: 3 simple steps */}
-        <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+        <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
           <div className="flex items-center gap-1.5 mb-2.5 text-xs font-semibold text-muted tracking-wide">
             <span>{t.nav.startHere}</span>
           </div>
@@ -68,7 +68,7 @@ export function ContextRail({
         </div>
 
         {/* 2. Popular Kaam Quick Jump */}
-        <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+        <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
           <div className="flex items-center justify-between mb-2.5">
             <span className="text-xs font-semibold text-muted tracking-wide">
               {t.nav.quickAccess}
@@ -101,7 +101,7 @@ export function ContextRail({
         </div>
 
         {/* 3. Official Government Portals */}
-        <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+        <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
           <div className="flex items-center gap-1.5 mb-2.5 text-xs font-semibold text-muted tracking-wide">
             <span>{t.nav.officialPortals}</span>
           </div>
@@ -227,7 +227,7 @@ function ProcessRail({
   return (
     <aside aria-label="Process section navigation and status" className="space-y-4">
       {/* Mini Checklist status widget */}
-      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <div className="flex items-center justify-between mb-2">
           <span className="text-[11px] font-semibold text-muted tracking-wide">
             {t.checklist.title}
@@ -257,7 +257,7 @@ function ProcessRail({
       </div>
 
       {/* On This Page: TOC anchors */}
-      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <p className="text-[11px] font-semibold text-muted tracking-wide mb-2.5">
           {t.nav.onThisPage}
         </p>
@@ -285,7 +285,7 @@ function ProcessRail({
       </div>
 
       {/* Official Source Direct Jump */}
-      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs text-xs">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] text-xs">
         <div className="flex items-center gap-1.5 text-muted font-semibold tracking-wide text-[11px] mb-2">
           <span className="trust-official">↗</span>
           <span>{t.officialSource.title}</span>
@@ -328,7 +328,7 @@ function DocumentRail({
   return (
     <aside aria-label="Document context and readiness" className="space-y-4">
       {/* Readiness quick action */}
-      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
           Document Readiness
         </p>
@@ -362,7 +362,7 @@ function DocumentRail({
 
       {/* Quick Metadata At A Glance */}
       {locDoc.formatAndPrep && (
-        <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs text-xs space-y-2.5">
+        <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] text-xs space-y-2.5">
           <p className="text-[11px] font-bold uppercase tracking-wider text-muted">
             Format Snapshot
           </p>
@@ -384,7 +384,7 @@ function DocumentRail({
       )}
 
       {/* Other Documents in this service */}
-      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs text-xs">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] text-xs">
         <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
           All {locProcess.title} Docs
         </p>
@@ -428,7 +428,7 @@ function ChecklistRail({ process }: { process: Process }) {
 
   return (
     <aside aria-label="Checklist progress and actions" className="space-y-4">
-      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-1">
           Your Process
         </p>
@@ -464,7 +464,7 @@ function ChecklistRail({ process }: { process: Process }) {
 
       {/* Unticked Kaagaz Quick Jump */}
       {count < total && (
-        <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs text-xs">
+        <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] text-xs">
           <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
             Remaining Kaagaz
           </p>
@@ -515,7 +515,7 @@ function LegalRail() {
 
   return (
     <aside aria-label="Legal and trust policies directory" className="space-y-4">
-      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2.5">
           Trust & Legal Directory
         </p>
@@ -562,7 +562,7 @@ function AdmissionsRail({ activeSectionId }: { activeSectionId?: string }) {
   return (
     <aside aria-label="Student admissions navigation and status" className="space-y-4">
       {/* 1. Admission Checklist Live Widget */}
-      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <div className="flex items-center justify-between mb-2">
           <span className="text-[11px] font-semibold text-muted tracking-wide">
             Readiness Progress
@@ -585,7 +585,7 @@ function AdmissionsRail({ activeSectionId }: { activeSectionId?: string }) {
       </div>
 
       {/* 2. On This Page: Admission Ecosystem anchors */}
-      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <p className="text-[11px] font-semibold text-muted tracking-wide mb-2.5">
           Admission sections
         </p>
@@ -613,7 +613,7 @@ function AdmissionsRail({ activeSectionId }: { activeSectionId?: string }) {
       </div>
 
       {/* 3. Key Official Admission Portals */}
-      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs text-xs">
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] text-xs">
         <div className="flex items-center gap-1.5 text-muted font-semibold tracking-wide text-[11px] mb-2.5">
           <span className="trust-official">↗</span>
           <span>Official Portals (AY 2026–27)</span>

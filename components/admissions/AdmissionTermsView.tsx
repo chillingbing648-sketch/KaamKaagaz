@@ -22,18 +22,18 @@ export function AdmissionTermsView() {
     <section id="admission-terms" aria-label="Admission Terms Glossary" className="scroll-mt-24">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white text-xs font-black shadow-2xs">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="flex size-7 items-center justify-center rounded-xl bg-accent text-white text-xs font-bold shadow-xs">
               📖
             </span>
             <span className="text-xs font-bold uppercase tracking-wider text-accent">
               PLAIN-LANGUAGE VOCABULARY
             </span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-ink tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
             Admission Terms Demystified
           </h2>
-          <p className="text-xs sm:text-sm text-muted mt-0.5">
+          <p className="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
             Plain language first. Official bureaucratic terminology second.
           </p>
         </div>
@@ -48,8 +48,8 @@ export function AdmissionTermsView() {
             type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search term (e.g. CAP, APAAR, PRN)..."
-            className="w-full min-h-[40px] rounded-xl border border-line bg-surface px-3 py-1.5 text-xs text-ink placeholder:text-muted/70 focus:border-accent focus:outline-none"
+            placeholder="Search term (e.g. CAP, APAAR)..."
+            className="w-full min-h-[40px] rounded-full border border-black/[0.1] bg-white px-4 py-2 text-xs text-ink placeholder:text-muted/60 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none shadow-xs transition-shadow"
           />
         </div>
       </div>
@@ -62,23 +62,23 @@ export function AdmissionTermsView() {
           return (
             <div
               key={item.id}
-              className="rounded-2xl border border-line bg-surface p-5 shadow-2xs hover:border-accent/40 transition-all flex flex-col justify-between"
+              className="apple-card p-5 sm:p-6 transition-all duration-200 hover:shadow-md flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <h3 className="text-lg font-black text-accent tracking-tight">
+                  <h3 className="text-lg font-extrabold text-accent tracking-tight">
                     {item.term}
                   </h3>
-                  <span className="rounded bg-paper px-2 py-0.5 text-[10px] font-semibold text-muted border border-line">
+                  <span className="rounded-full bg-black/[0.04] px-2.5 py-0.5 text-[10px] font-semibold text-muted">
                     Official Term
                   </span>
                 </div>
 
-                <p className="text-xs font-semibold text-ink mb-3 pb-2 border-b border-line/60">
+                <p className="text-xs font-semibold text-ink mb-3 pb-2.5 border-b border-black/[0.04]">
                   {item.officialTerm}
                 </p>
 
-                <div className="space-y-2.5 text-xs">
+                <div className="space-y-3 text-xs">
                   <div>
                     <strong className="text-[10px] uppercase font-bold text-muted block mb-0.5">
                       Plain English Meaning:
@@ -96,7 +96,7 @@ export function AdmissionTermsView() {
               </div>
 
               {item.exampleScenario && (
-                <div className="mt-4 pt-2.5 border-t border-line/60 text-[11px] text-muted bg-paper/60 p-2.5 rounded-lg">
+                <div className="mt-4 pt-3 border-t border-black/[0.04] text-[11px] text-muted bg-black/[0.02] p-3 rounded-xl">
                   <strong className="text-ink font-semibold">Real Example: </strong>
                   {getStr(item.exampleScenario, language)}
                 </div>

@@ -18,11 +18,15 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
           const isLast = index === items.length - 1;
           return (
             <li key={index} className="flex items-center gap-1.5">
-              {index > 0 && <span aria-hidden="true" className="text-muted/60">/</span>}
+              {index > 0 && (
+                <svg className="size-3 text-black/25 shrink-0" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="font-medium text-muted hover:text-accent hover:underline underline-offset-2 transition-colors focus-visible:outline-2 focus-visible:outline-accent"
+                  className="font-medium text-muted hover:text-accent transition-colors focus-visible:outline-2 focus-visible:outline-accent"
                 >
                   {item.label}
                 </Link>

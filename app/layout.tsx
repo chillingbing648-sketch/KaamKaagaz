@@ -48,16 +48,21 @@ export const metadata: Metadata = {
   ],
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1 };
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#fbfbfd",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${manrope.variable} ${notoDevanagari.variable}`}>
-      <body className="min-h-screen antialiased flex flex-col justify-between font-sans bg-paper text-ink">
+      <body className="min-h-screen antialiased flex flex-col justify-between font-sans bg-paper text-ink selection:bg-accent-soft selection:text-accent">
         <LanguageProvider>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-md focus:bg-surface focus:px-4 focus:py-2.5 focus:shadow-md focus:font-semibold focus:text-accent"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-xl focus:bg-surface focus:px-4 focus:py-2.5 focus:shadow-lg focus:font-semibold focus:text-accent focus:ring-2 focus:ring-accent"
           >
             Skip to content
           </a>

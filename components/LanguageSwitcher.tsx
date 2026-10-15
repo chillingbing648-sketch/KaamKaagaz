@@ -55,19 +55,19 @@ export function LanguageSwitcher() {
         aria-expanded={isOpen}
         aria-label={t.nav.selectLanguage}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex min-h-[44px] items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-semibold text-ink shadow-2xs hover:border-accent hover:bg-accent-soft focus-visible:outline-2 focus-visible:outline-accent transition-all cursor-pointer"
+        className="flex min-h-[36px] items-center gap-1.5 rounded-full border border-black/[0.06] bg-black/[0.03] hover:bg-black/[0.06] px-3 py-1 text-xs font-semibold text-ink shadow-[0_1px_2px_rgba(0,0,0,0.02)] focus-visible:outline-2 focus-visible:outline-accent active:scale-[0.97] transition-all cursor-pointer"
       >
-        <span className="text-base leading-none">🌐</span>
+        <span className="text-sm leading-none" aria-hidden="true">🌐</span>
         <span className="font-medium tracking-tight">
           {language === "en" ? "English" : currentOption.nativeLabel}
         </span>
         <svg
           aria-hidden="true"
-          className={`size-4 transition-transform duration-200 text-muted ${isOpen ? "rotate-180 text-accent" : ""}`}
-          viewBox="0 0 20 20"
+          className={`size-3 transition-transform duration-200 text-muted ${isOpen ? "rotate-180 text-accent" : ""}`}
+          viewBox="0 0 12 12"
           fill="none"
         >
-          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
@@ -75,7 +75,7 @@ export function LanguageSwitcher() {
         <div
           role="listbox"
           aria-labelledby="language-menu-button"
-          className="absolute right-0 z-50 mt-1.5 w-44 origin-top-right rounded-lg border border-line bg-surface p-1 shadow-lg ring-1 ring-black/5 animate-in fade-in zoom-in-95 duration-100"
+          className="absolute right-0 z-50 mt-2 w-48 origin-top-right rounded-2xl border border-black/[0.06] bg-white/95 backdrop-blur-xl p-1.5 shadow-[0_12px_32px_rgba(0,0,0,0.12)] animate-in fade-in zoom-in-95 duration-150"
         >
           {LANGUAGES.map((lang) => {
             const isSelected = lang.code === language;
@@ -85,24 +85,24 @@ export function LanguageSwitcher() {
                 role="option"
                 aria-selected={isSelected}
                 onClick={() => handleSelect(lang.code)}
-                className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm font-medium transition-colors cursor-pointer ${
+                className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-xs font-medium transition-colors cursor-pointer ${
                   isSelected
                     ? "bg-accent-soft text-accent font-semibold"
-                    : "text-ink hover:bg-paper hover:text-ink"
+                    : "text-ink hover:bg-black/[0.04]"
                 }`}
               >
                 <span className="flex items-center gap-2">
-                  <span className={isSelected ? "font-bold text-accent" : "text-muted"}>
+                  <span className={isSelected ? "font-bold text-accent" : "text-ink"}>
                     {lang.nativeLabel}
                   </span>
                   {lang.code !== "en" && (
-                    <span className="text-xs text-muted">({lang.label})</span>
+                    <span className="text-[11px] text-muted">({lang.label})</span>
                   )}
                 </span>
                 {isSelected && (
                   <svg
                     aria-hidden="true"
-                    className="size-4 text-accent shrink-0"
+                    className="size-3.5 text-accent shrink-0"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >

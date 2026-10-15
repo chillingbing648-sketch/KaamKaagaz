@@ -241,26 +241,28 @@ export function AdmissionFinder() {
   const result = computeResult();
 
   return (
-    <section aria-label="Interactive Admission Finder" className="rounded-2xl border border-line bg-surface p-5 sm:p-7 shadow-xs">
-      <div className="flex items-center gap-2 mb-2">
-        <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white text-xs font-black shadow-2xs">
-          🧭
-        </span>
-        <span className="text-xs font-bold uppercase tracking-wider text-accent">
-          ADMISSION WAYFINDER
-        </span>
+    <section aria-label="Interactive Admission Finder" className="apple-card p-6 sm:p-8 space-y-6">
+      <div>
+        <div className="flex items-center gap-2 mb-1.5">
+          <span className="flex size-7 items-center justify-center rounded-xl bg-accent text-white text-xs font-bold shadow-xs">
+            🧭
+          </span>
+          <span className="text-xs font-bold uppercase tracking-wider text-accent">
+            ADMISSION WAYFINDER
+          </span>
+        </div>
+
+        <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
+          Which admission portal should you use?
+        </h2>
+        <p className="mt-1 text-xs sm:text-sm text-muted leading-relaxed max-w-2xl">
+          Avoid using fake or outdated websites. Answer 3 quick questions to discover your verified official portal, applicable route, and required documents.
+        </p>
       </div>
 
-      <h2 className="text-xl sm:text-2xl font-black text-ink tracking-tight">
-        Which admission portal should you use?
-      </h2>
-      <p className="mt-1 text-xs sm:text-sm text-muted leading-relaxed max-w-2xl">
-        Avoid using fake or outdated websites. Answer 3 quick questions to discover your verified official portal, applicable route, and required documents.
-      </p>
-
       {/* Step 1: Admission Level */}
-      <div className="mt-6">
-        <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-2.5">
+      <div className="pt-2 border-t border-black/[0.04]">
+        <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-3">
           Step 1: What are you getting admission into?
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -283,14 +285,14 @@ export function AdmissionFinder() {
                   setSelectedLevel(level);
                   setSelectedProgramme("");
                 }}
-                className={`min-h-[46px] rounded-xl border px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-left transition-all cursor-pointer flex items-center justify-between ${
+                className={`min-h-[46px] rounded-2xl border px-4 py-2.5 text-xs sm:text-sm font-semibold text-left transition-all duration-150 cursor-pointer flex items-center justify-between ${
                   isSelected
                     ? "border-accent bg-accent text-white shadow-xs font-bold"
-                    : "border-line bg-paper/60 text-ink hover:border-accent/40 hover:bg-surface"
+                    : "border-black/[0.08] bg-white text-ink hover:border-black/20 hover:bg-black/[0.02]"
                 }`}
               >
                 <span>{level}</span>
-                {isSelected && <span aria-hidden="true">✓</span>}
+                {isSelected && <span aria-hidden="true" className="text-xs">✓</span>}
               </button>
             );
           })}
@@ -299,11 +301,11 @@ export function AdmissionFinder() {
 
       {/* Step 2: Course / Programme (Contextual) */}
       {selectedLevel && programmeOptions[selectedLevel] && (
-        <div className="mt-5 pt-4 border-t border-line/60">
-          <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-2.5">
+        <div className="pt-4 border-t border-black/[0.04]">
+          <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-3">
             Step 2: Choose your specific course or stream
           </label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {programmeOptions[selectedLevel].map((prog) => {
               const isSelected = selectedProgramme === prog.id;
               return (
@@ -311,14 +313,14 @@ export function AdmissionFinder() {
                   key={prog.id}
                   type="button"
                   onClick={() => setSelectedProgramme(prog.id)}
-                  className={`min-h-[44px] rounded-lg border px-3.5 py-2 text-xs font-semibold text-left transition-all cursor-pointer flex items-center justify-between ${
+                  className={`min-h-[44px] rounded-xl border px-4 py-2 text-xs font-semibold text-left transition-all duration-150 cursor-pointer flex items-center justify-between ${
                     isSelected
-                      ? "border-accent bg-accent-soft text-accent border-2 font-bold shadow-2xs"
-                      : "border-line bg-surface text-ink hover:bg-paper"
+                      ? "border-accent/40 bg-accent-soft text-accent font-bold shadow-xs ring-1 ring-accent/30"
+                      : "border-black/[0.08] bg-white text-ink hover:bg-black/[0.02] hover:border-black/15"
                   }`}
                 >
                   <span className="truncate pr-2">{prog.label}</span>
-                  {isSelected && <span className="text-accent text-xs">●</span>}
+                  {isSelected && <span className="size-2 rounded-full bg-accent"></span>}
                 </button>
               );
             })}
@@ -328,16 +330,16 @@ export function AdmissionFinder() {
 
       {/* Step 3: Category / Situation */}
       {selectedLevel && (
-        <div className="mt-5 pt-4 border-t border-line/60">
+        <div className="pt-4 border-t border-black/[0.04]">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-2">
                 Candidacy / State
               </label>
               <select
                 value={selectedRegion}
                 onChange={(e) => setSelectedRegion(e.target.value)}
-                className="w-full min-h-[42px] rounded-lg border border-line bg-surface px-3 py-2 text-xs font-semibold text-ink focus:border-accent focus:outline-none"
+                className="w-full min-h-[42px] rounded-xl border border-black/[0.1] bg-white px-3.5 py-2 text-xs font-semibold text-ink focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
               >
                 <option value="maharashtra">Maharashtra State Candidate (Type A / B)</option>
                 <option value="oms">All India / Outside Maharashtra (OMS)</option>
@@ -346,13 +348,13 @@ export function AdmissionFinder() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-2">
                 Reservation Category
               </label>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full min-h-[42px] rounded-lg border border-line bg-surface px-3 py-2 text-xs font-semibold text-ink focus:border-accent focus:outline-none"
+                className="w-full min-h-[42px] rounded-xl border border-black/[0.1] bg-white px-3.5 py-2 text-xs font-semibold text-ink focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
               >
                 <option value="general">Open / General Category</option>
                 <option value="ews">EWS (Economically Weaker Section - 10%)</option>
@@ -368,22 +370,22 @@ export function AdmissionFinder() {
 
       {/* Result Card: Direct Solution */}
       {result && (
-        <div className="mt-6 pt-5 border-t-2 border-accent/20">
-          <div className="rounded-xl border-2 border-accent bg-accent-soft/20 p-5 sm:p-6 shadow-xs">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-accent/20 pb-3 mb-3">
+        <div className="pt-4 border-t border-black/[0.06]">
+          <div className="rounded-2xl border border-accent/25 bg-gradient-to-b from-accent-soft/30 to-accent-soft/10 p-5 sm:p-7 shadow-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-accent/15 pb-3.5 mb-4">
               <div>
-                <span className="text-[10px] font-black uppercase tracking-wider text-accent block">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-accent block">
                   YOUR VERIFIED OFFICIAL ADMISSION ROUTE
                 </span>
-                <h3 className="text-lg sm:text-xl font-black text-ink">
+                <h3 className="text-lg sm:text-xl font-extrabold text-ink tracking-tight mt-0.5">
                   {result.title}
                 </h3>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[11px] font-bold text-accent bg-accent-soft px-2.5 py-1 rounded-md border border-accent/30">
+                <span className="text-[11px] font-semibold text-accent bg-accent-soft/80 px-2.5 py-1 rounded-full border border-accent/20">
                   {result.academicYear}
                 </span>
-                <span className="text-[11px] font-bold text-done bg-done-soft px-2.5 py-1 rounded-md border border-done/30">
+                <span className="text-[11px] font-semibold text-done bg-done/10 px-2.5 py-1 rounded-full border border-done/20">
                   CURRENT
                 </span>
               </div>
@@ -393,18 +395,18 @@ export function AdmissionFinder() {
               {result.routeExplanation}
             </p>
 
-            <div className="rounded-lg bg-surface border border-accent/30 p-3 mb-4 text-xs">
-              <strong className="text-accent font-bold block mb-1">⚠️ Important Watchout:</strong>
+            <div className="rounded-xl bg-amber-500/10 border border-amber-500/20 p-3.5 mb-4 text-xs">
+              <strong className="text-amber-800 dark:text-amber-300 font-bold block mb-1">⚠️ Important Watchout:</strong>
               <p className="text-ink/80 leading-relaxed">{result.keyNotice}</p>
             </div>
 
             {/* Official Portal Action Box */}
-            <div className="rounded-xl bg-surface border border-line p-4 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+            <div className="apple-card p-4 sm:p-5 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-muted block">
                   Direct Verified Portal
                 </span>
-                <span className="text-sm font-bold text-ink block">
+                <span className="text-sm font-bold text-ink block mt-0.5">
                   {result.portalName}
                 </span>
                 <span className="font-mono text-xs text-accent font-semibold">
@@ -416,7 +418,7 @@ export function AdmissionFinder() {
                 href={result.portalUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-accent-hover transition-all shrink-0"
+                className="apple-btn-primary !rounded-xl min-h-[44px] px-5 text-xs font-semibold flex items-center justify-center gap-1.5 shadow-xs"
               >
                 <span>Open official portal</span>
                 <span aria-hidden="true">↗</span>
@@ -425,13 +427,13 @@ export function AdmissionFinder() {
 
             {/* Key Documents Needed */}
             <div className="mb-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-muted block mb-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-muted block mb-2.5">
                 📋 Key Documents Needed Ready Before Applying:
               </span>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
                 {result.prerequisiteDocs.map((doc, idx) => (
-                  <li key={idx} className="flex items-center gap-2 rounded-lg bg-surface border border-line/70 px-3 py-2 text-ink">
-                    <span className="text-done font-bold">✓</span>
+                  <li key={idx} className="flex items-center gap-2.5 rounded-xl bg-white border border-black/[0.06] px-3.5 py-2.5 text-ink shadow-2xs">
+                    <span className="flex size-4 items-center justify-center rounded-full bg-done/15 text-done text-[10px] font-bold shrink-0">✓</span>
                     <span>{doc}</span>
                   </li>
                 ))}
@@ -439,19 +441,19 @@ export function AdmissionFinder() {
             </div>
 
             {/* Navigation links */}
-            <div className="pt-3 border-t border-accent/20 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div className="pt-3.5 border-t border-accent/20 flex flex-wrap items-center justify-between gap-2 text-xs">
               {result.recommendedRoadmapId && (
                 <a
                   href={`#${result.recommendedRoadmapId}`}
-                  className="font-bold text-accent hover:underline flex items-center gap-1"
+                  className="font-semibold text-accent hover:underline flex items-center gap-1 group"
                 >
                   <span>View full interactive roadmap</span>
-                  <span>↓</span>
+                  <span className="group-hover:translate-y-0.5 transition-transform">↓</span>
                 </a>
               )}
               <a
                 href="#documents"
-                className="font-semibold text-muted hover:text-ink"
+                className="font-semibold text-muted hover:text-ink transition-colors"
               >
                 Inspect document validity rules →
               </a>

@@ -68,29 +68,29 @@ export function StudentDocumentList() {
     <section id="documents" aria-label="Student Admission Documents and Verification" className="scroll-mt-24">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="flex size-7 items-center justify-center rounded-lg bg-accent text-white text-xs font-black shadow-2xs">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="flex size-7 items-center justify-center rounded-xl bg-accent text-white text-xs font-bold shadow-xs">
               📄
             </span>
             <span className="text-xs font-bold uppercase tracking-wider text-accent">
               STUDENT DOCUMENT SYSTEM
             </span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-ink tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
             Documents & “Do I Need This?” Helper
           </h2>
-          <p className="text-xs sm:text-sm text-muted mt-0.5">
+          <p className="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
             Mark your real readiness state. Click any document to see why it is needed, accepted formats, and validity rules.
           </p>
         </div>
 
         {/* Live readiness badge */}
-        <div className="rounded-xl border border-line bg-surface p-3 text-right shadow-2xs shrink-0">
+        <div className="apple-card p-3.5 text-right shadow-xs shrink-0">
           <div className="flex items-center justify-end gap-2 text-xs font-bold text-ink">
-            <span>Readiness:</span>
-            <span className="text-accent text-sm font-black">{counts.percent}%</span>
+            <span className="text-muted font-medium">Readiness:</span>
+            <span className="text-accent text-sm font-extrabold">{counts.percent}%</span>
           </div>
-          <p className="text-[11px] text-muted">
+          <p className="text-[11px] text-muted mt-0.5">
             {counts.ready} of {counts.activeTotal} active documents ready
           </p>
         </div>
@@ -109,10 +109,10 @@ export function StudentDocumentList() {
             key={lvl.id}
             type="button"
             onClick={() => setFilterLevel(lvl.id)}
-            className={`min-h-[38px] rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+            className={`min-h-[38px] rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-150 cursor-pointer ${
               filterLevel === lvl.id
-                ? "bg-accent text-white font-bold shadow-2xs"
-                : "bg-surface border border-line text-ink hover:border-accent"
+                ? "bg-ink text-white font-bold shadow-xs"
+                : "bg-white/90 border border-black/[0.08] text-ink hover:border-black/20 hover:text-black"
             }`}
           >
             {lvl.label}
@@ -132,26 +132,26 @@ export function StudentDocumentList() {
           return (
             <div
               key={doc.id}
-              className={`rounded-2xl border transition-all shadow-2xs bg-surface ${
-                isExpanded ? "border-accent ring-1 ring-accent/20" : "border-line hover:border-accent/40"
+              className={`apple-card transition-all duration-200 ${
+                isExpanded ? "ring-1 ring-accent/30 shadow-md" : "hover:shadow-md"
               }`}
             >
               {/* Document Header Row */}
-              <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="p-4.5 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                    <span className="rounded bg-paper px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted border border-line">
+                    <span className="rounded-full bg-black/[0.04] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted">
                       {doc.shortTag}
                     </span>
                     <span
-                      className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] border ${statusInfo.badgeClass}`}
+                      className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] border ${statusInfo.badgeClass}`}
                     >
                       <span>{statusInfo.icon}</span>
                       <span>{statusInfo.label}</span>
                     </span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-bold text-ink">
+                  <h3 className="text-base sm:text-lg font-bold text-ink tracking-tight">
                     {docName}
                   </h3>
                   <p className="text-xs text-muted mt-0.5 line-clamp-1">
@@ -160,7 +160,7 @@ export function StudentDocumentList() {
                 </div>
 
                 {/* State selector & Helper toggle */}
-                <div className="flex flex-wrap items-center gap-2 self-start sm:self-center shrink-0">
+                <div className="flex flex-wrap items-center gap-2.5 self-start sm:self-center shrink-0">
                   <div className="relative">
                     <label htmlFor={`status-${doc.id}`} className="sr-only">
                       Status for {docName}
@@ -171,7 +171,7 @@ export function StudentDocumentList() {
                       onChange={(e) =>
                         setStatus(doc.id, e.target.value as AdmissionChecklistStatus)
                       }
-                      className="min-h-[42px] rounded-lg border border-line bg-paper px-2.5 py-1.5 text-xs font-bold text-ink cursor-pointer focus:border-accent focus:outline-none"
+                      className="min-h-[42px] rounded-xl border border-black/[0.1] bg-white px-3 py-1.5 text-xs font-semibold text-ink cursor-pointer focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none shadow-2xs"
                     >
                       <option value="READY">✓ READY</option>
                       <option value="MISSING">✕ MISSING</option>
@@ -186,22 +186,22 @@ export function StudentDocumentList() {
                     type="button"
                     onClick={() => toggleExpand(doc.id)}
                     aria-expanded={isExpanded}
-                    className="inline-flex min-h-[42px] items-center gap-1.5 rounded-lg border border-line bg-surface px-3 py-1.5 text-xs font-bold text-ink hover:border-accent hover:text-accent transition-colors cursor-pointer"
+                    className="apple-btn-secondary !rounded-xl min-h-[42px] px-3.5 text-xs font-semibold inline-flex items-center gap-1.5"
                   >
                     <span>{isExpanded ? "Hide Explainer" : "Do I need this?"}</span>
-                    <span aria-hidden="true">{isExpanded ? "▲" : "▼"}</span>
+                    <span aria-hidden="true" className="text-[10px]">{isExpanded ? "▲" : "▼"}</span>
                   </button>
                 </div>
               </div>
 
               {/* “Do I Need This?” Expanded Helper Tray */}
               {isExpanded && (
-                <div className="border-t border-line/70 bg-paper/60 p-5 sm:p-6 rounded-b-2xl animate-in fade-in duration-150">
+                <div className="border-t border-black/[0.06] bg-[#fbfbfd] p-5 sm:p-7 rounded-b-2xl animate-in fade-in duration-150">
                   <div className="max-w-3xl space-y-4 text-xs">
                     {/* Grid of explanations */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
-                        <strong className="text-[11px] font-bold uppercase tracking-wider text-muted block mb-1">
+                      <div className="apple-card p-4 sm:p-5 shadow-2xs">
+                        <strong className="text-[10px] uppercase font-bold tracking-wider text-muted block mb-1">
                           ❓ What is this document?
                         </strong>
                         <p className="text-ink leading-relaxed">
@@ -209,8 +209,8 @@ export function StudentDocumentList() {
                         </p>
                       </div>
 
-                      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
-                        <strong className="text-[11px] font-bold uppercase tracking-wider text-muted block mb-1">
+                      <div className="apple-card p-4 sm:p-5 shadow-2xs">
+                        <strong className="text-[10px] uppercase font-bold tracking-wider text-muted block mb-1">
                           🎯 Why might I need it?
                         </strong>
                         <p className="text-ink leading-relaxed">
@@ -218,8 +218,8 @@ export function StudentDocumentList() {
                         </p>
                       </div>
 
-                      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
-                        <strong className="text-[11px] font-bold uppercase tracking-wider text-muted block mb-1">
+                      <div className="apple-card p-4 sm:p-5 shadow-2xs">
+                        <strong className="text-[10px] uppercase font-bold tracking-wider text-muted block mb-1">
                           👥 Who usually needs it?
                         </strong>
                         <p className="text-ink leading-relaxed">
@@ -227,8 +227,8 @@ export function StudentDocumentList() {
                         </p>
                       </div>
 
-                      <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs">
-                        <strong className="text-[11px] font-bold uppercase tracking-wider text-muted block mb-1">
+                      <div className="apple-card p-4 sm:p-5 shadow-2xs">
+                        <strong className="text-[10px] uppercase font-bold tracking-wider text-muted block mb-1">
                           🏛️ Where do I get it?
                         </strong>
                         <p className="text-ink leading-relaxed">
@@ -238,9 +238,9 @@ export function StudentDocumentList() {
                     </div>
 
                     {/* Format, validity & token rules */}
-                    <div className="rounded-xl border border-line bg-surface p-4 shadow-2xs space-y-3">
+                    <div className="apple-card p-4 sm:p-5 shadow-2xs space-y-3.5">
                       <div>
-                        <strong className="text-[11px] font-bold uppercase tracking-wider text-muted block mb-1">
+                        <strong className="text-[10px] uppercase font-bold tracking-wider text-muted block mb-1">
                           📐 Accepted Format & Originals:
                         </strong>
                         <p className="text-ink leading-relaxed">
@@ -248,8 +248,8 @@ export function StudentDocumentList() {
                         </p>
                       </div>
 
-                      <div className="border-t border-line/60 pt-2.5">
-                        <strong className="text-[11px] font-bold uppercase tracking-wider text-muted block mb-1">
+                      <div className="border-t border-black/[0.04] pt-3">
+                        <strong className="text-[10px] uppercase font-bold tracking-wider text-muted block mb-1">
                           ⏱️ Validity & Expiry Rule:
                         </strong>
                         <p className="text-ink font-semibold leading-relaxed">
@@ -257,8 +257,8 @@ export function StudentDocumentList() {
                         </p>
                       </div>
 
-                      <div className="border-t border-line/60 pt-2.5">
-                        <strong className="text-warning font-bold uppercase tracking-wider text-[11px] block mb-1">
+                      <div className="border-t border-black/[0.04] pt-3">
+                        <strong className="text-amber-800 dark:text-amber-300 font-bold uppercase tracking-wider text-[10px] block mb-1">
                           ⏳ What if my document is currently pending?
                         </strong>
                         <p className="text-ink/90 leading-relaxed">
@@ -268,10 +268,10 @@ export function StudentDocumentList() {
                     </div>
 
                     {/* Official source note */}
-                    <div className="rounded-lg bg-accent-soft border border-accent/25 p-3 text-[11px] text-ink/90 flex items-start gap-2">
-                      <span className="text-accent font-bold">ℹ️</span>
+                    <div className="rounded-2xl bg-accent-soft/60 border border-accent/20 p-4 text-[11px] text-ink/90 flex items-start gap-2.5">
+                      <span className="text-accent font-bold mt-0.5">ℹ️</span>
                       <p className="leading-relaxed">
-                        <strong className="text-accent">Official Rule: </strong>
+                        <strong className="text-accent font-semibold">Official Rule: </strong>
                         {getStr(helper.officialSourceNotice, language)}
                       </p>
                     </div>

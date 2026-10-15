@@ -20,13 +20,13 @@ export function SituationSelector({
   const activeSituation = situations.find((s) => s.id === selectedId);
 
   return (
-    <div className="rounded-xl border border-line bg-surface p-4 sm:p-5 shadow-2xs">
-      <div className="flex items-center justify-between gap-2 mb-1">
+    <div className="rounded-2xl border border-black/[0.06] bg-white p-5 sm:p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+      <div className="flex items-center justify-between gap-2 mb-1.5">
         <div className="flex items-center gap-2">
-          <span className="flex size-7 items-center justify-center rounded-lg bg-accent-soft text-accent text-sm font-semibold">
+          <span className="flex size-7 items-center justify-center rounded-full bg-accent-soft text-accent text-sm font-semibold">
             ?
           </span>
-          <h3 className="text-base sm:text-lg font-bold text-ink">
+          <h3 className="text-base sm:text-lg font-bold text-ink tracking-tight">
             {t.process.situationsTitle}
           </h3>
         </div>
@@ -42,7 +42,7 @@ export function SituationSelector({
         )}
       </div>
 
-      <p className="text-xs sm:text-sm text-muted mb-3.5 leading-relaxed">
+      <p className="text-xs sm:text-sm text-muted mb-4 leading-relaxed">
         Requirements vary depending on your specific case. Choose your situation to filter applicable documents:
       </p>
 
@@ -60,10 +60,10 @@ export function SituationSelector({
               role="radio"
               aria-checked={isSelected}
               onClick={() => onSelect(isSelected ? null : sit.id)}
-              className={`flex items-start gap-3 rounded-xl p-3.5 text-left transition-all cursor-pointer min-h-[52px] ${
+              className={`flex items-start gap-3 rounded-2xl p-4 text-left transition-all duration-200 cursor-pointer min-h-[52px] active:scale-[0.985] ${
                 isSelected
-                  ? "border-2 border-accent bg-accent-soft shadow-xs ring-2 ring-accent/20"
-                  : "border border-line bg-paper/50 hover:border-line/90 hover:bg-paper"
+                  ? "border-2 border-accent bg-accent-soft/60 shadow-xs ring-2 ring-accent/20"
+                  : "border border-black/[0.06] bg-black/[0.015] hover:border-black/[0.12] hover:bg-white"
               }`}
             >
               <div className="pt-0.5 shrink-0">
@@ -71,7 +71,7 @@ export function SituationSelector({
                   className={`flex size-5 items-center justify-center rounded-full border text-[11px] font-black transition-colors ${
                     isSelected
                       ? "border-accent bg-accent text-white"
-                      : "border-muted/40 bg-surface text-transparent"
+                      : "border-black/[0.2] bg-white text-transparent"
                   }`}
                 >
                   ✓
@@ -79,11 +79,11 @@ export function SituationSelector({
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-1">
-                  <p className={`text-sm font-bold leading-tight ${isSelected ? "text-accent" : "text-ink"}`}>
+                  <p className={`text-sm font-bold leading-tight tracking-tight ${isSelected ? "text-accent" : "text-ink"}`}>
                     {nameStr}
                   </p>
                   {isSelected && (
-                    <span className="text-[10px] font-semibold tracking-wide text-accent bg-surface px-1.5 py-0.5 rounded border border-accent/25 shrink-0">
+                    <span className="text-[10px] font-semibold text-accent bg-accent-soft px-2 py-0.5 rounded-full border border-accent/25 shrink-0">
                       Selected
                     </span>
                   )}
