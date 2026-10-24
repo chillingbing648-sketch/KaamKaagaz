@@ -27,7 +27,7 @@ export function CommonMistakes({ mistakes }: { mistakes?: CommonMistake[] }) {
               <span>{getStr(m.mistake, language)}</span>
             </p>
             <p className="mt-1.5 text-xs sm:text-sm text-ink/90 leading-relaxed pl-4">
-              <strong className="text-done font-semibold">How to avoid: </strong>
+              <strong className="text-done font-semibold">{t.common.howToAvoid}: </strong>
               {getStr(m.howToAvoid, language)}
             </p>
           </div>

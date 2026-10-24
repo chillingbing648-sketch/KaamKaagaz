@@ -13,7 +13,7 @@ export function ConnectionArea() {
     >
       <div className="max-w-3xl mb-8">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-soft/80 border border-primary/10 px-3 py-1 text-[11px] font-semibold text-primary tracking-wide mb-2.5">
-          Government ecosystem
+          {t.nav.officialPortals}
         </span>
         <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
           {t.connectionArea.title}
@@ -95,9 +95,9 @@ export function ConnectionArea() {
             </ul>
           </div>
           <div className="mt-5 pt-3.5 border-t border-black/[0.06] text-[11px] text-muted flex items-center justify-between">
-            <span>Direct government portals only.</span>
+            <span>{t.common.directVerified}</span>
             <Link href="/admissions#portal-directory" className="text-accent font-semibold hover:underline">
-              All 7+ portals →
+              {t.common.allPortals} →
             </Link>
           </div>
         </div>
@@ -117,7 +117,7 @@ export function ConnectionArea() {
             <div className="space-y-2.5 text-xs text-ink/80 leading-snug">
               <p className="flex items-center gap-2">
                 <span className="flex size-4 items-center justify-center rounded-full bg-done/10 text-done text-[10px] font-bold">✓</span>
-                <span>Zero server document storage</span>
+                <span>{t.common.footerZeroStorage}</span>
               </p>
               <p className="flex items-center gap-2">
                 <span className="flex size-4 items-center justify-center rounded-full bg-done/10 text-done text-[10px] font-bold">✓</span>
@@ -125,13 +125,13 @@ export function ConnectionArea() {
               </p>
               <p className="flex items-center gap-2">
                 <span className="flex size-4 items-center justify-center rounded-full bg-done/10 text-done text-[10px] font-bold">✓</span>
-                <span>Checklists persist strictly in browser</span>
+                <span>{t.checklist.savedLocallyNotice}</span>
               </p>
             </div>
           </div>
           <div className="mt-5 pt-3.5 border-t border-black/[0.06]">
             <Link
-              href="/privacy"
+              href="/privacy/"
               className="text-xs font-semibold text-accent hover:underline inline-flex items-center gap-1 group"
             >
               <span>{t.legal.privacyTitle}</span>
@@ -154,17 +154,17 @@ export function ConnectionArea() {
             </p>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link href="/disclaimer" className="block text-muted hover:text-ink font-medium transition-colors">
+                <Link href="/disclaimer/" className="block text-muted hover:text-ink font-medium transition-colors">
                   • Civic Disclaimer & Scope
                 </Link>
               </li>
               <li>
-                <Link href="/accessibility" className="block text-muted hover:text-ink font-medium transition-colors">
+                <Link href="/accessibility/" className="block text-muted hover:text-ink font-medium transition-colors">
                   • Accessibility Commitment
                 </Link>
               </li>
               <li>
-                <Link href="/security" className="block text-muted hover:text-ink font-medium transition-colors">
+                <Link href="/security/" className="block text-muted hover:text-ink font-medium transition-colors">
                   • Vulnerability Disclosure
                 </Link>
               </li>
@@ -172,10 +172,10 @@ export function ConnectionArea() {
           </div>
           <div className="mt-5 pt-3.5 border-t border-black/[0.06]">
             <Link
-              href="/legal"
+              href="/legal/"
               className="text-xs font-semibold text-accent hover:underline inline-flex items-center gap-1 group"
             >
-              <span>View all trust policies</span>
+              <span>{t.common.footerTrustLegal}</span>
               <span className="group-hover:translate-x-0.5 transition-transform">→</span>
             </Link>
           </div>

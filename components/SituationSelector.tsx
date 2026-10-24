@@ -84,7 +84,7 @@ export function SituationSelector({
                   </p>
                   {isSelected && (
                     <span className="text-[10px] font-semibold text-accent bg-accent-soft px-2 py-0.5 rounded-full border border-accent/25 shrink-0">
-                      Selected
+                      {t.common.selected}
                     </span>
                   )}
                 </div>

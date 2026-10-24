@@ -30,7 +30,7 @@ export function OfficialSource({
           </span>
           <div>
             <span className="block text-[11px] font-semibold uppercase tracking-wider text-muted">
-              Official source
+              {t.officialSource.title}
             </span>
             <h3 className="text-base sm:text-lg font-bold text-ink tracking-tight">
               {t.officialSource.title}
@@ -39,7 +39,7 @@ export function OfficialSource({
         </div>
 
         <span className="trust-verified flex items-center gap-1 bg-done-soft px-3 py-1 rounded-full border border-done/20 shrink-0">
-          ✓ Verified
+          ✓ {t.common.verified}
         </span>
       </div>
 
@@ -71,7 +71,7 @@ export function OfficialSource({
                 </div>
                 <div className="flex items-center gap-1.5 self-start sm:self-center shrink-0">
                   <span className="inline-flex min-h-[34px] items-center gap-1 rounded-full bg-accent text-white px-4 py-1 text-xs font-semibold shadow-xs group-hover:bg-accent-hover transition-colors">
-                    <span>View official portal</span>
+                    <span>{t.common.openPortal}</span>
                     <span aria-hidden="true">↗</span>
                   </span>
                   <span className="sr-only"> {t.officialSource.openInNewTab}</span>

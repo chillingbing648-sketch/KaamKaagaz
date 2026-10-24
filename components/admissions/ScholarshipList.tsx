@@ -6,7 +6,7 @@ import { getStr } from "@/lib/i18n/localize";
 import { scholarshipSchemes, ScholarshipScheme } from "@/data/admissions";
 
 export function ScholarshipList() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
 
   const categories = [
@@ -30,14 +30,14 @@ export function ScholarshipList() {
               🎓
             </span>
             <span className="text-xs font-bold uppercase tracking-wider text-accent">
-              FINANCIAL SUPPORT & FREESHIPS
+              {t.admissionsHub.financialSupport}
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
-            Maharashtra Scholarships (MahaDBT)
+            {t.admissionsHub.mahaDbtTitle}
           </h2>
           <p className="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
-            Documented criteria from official government departments. We do not decide your eligibility.
+            {t.admissionsHub.mahaDbtSubtitle}
           </p>
         </div>
 
@@ -95,21 +95,21 @@ export function ScholarshipList() {
                 <div className="space-y-3.5 text-xs mb-4">
                   <div>
                     <strong className="text-[10px] font-bold uppercase tracking-wider text-muted block mb-0.5">
-                      💰 Income Criteria:
+                      💰 {t.admissionsHub.incomeLimit}:
                     </strong>
                     <p className="text-ink font-semibold">{scheme.eligibilityIncome}</p>
                   </div>
 
                   <div>
                     <strong className="text-[10px] font-bold uppercase tracking-wider text-muted block mb-0.5">
-                      ✨ Benefit Structure:
+                      ✨ {t.admissionsHub.keyBenefits}:
                     </strong>
                     <p className="text-ink leading-relaxed">{benefits}</p>
                   </div>
 
                   <div>
                     <strong className="text-[10px] font-bold uppercase tracking-wider text-muted block mb-1.5">
-                      📋 Required Documents:
+                      📋 {t.admissionsHub.mandatoryDocs}:
                     </strong>
                     <ul className="space-y-1.5 text-ink/85">
                       {scheme.documentsRequired.map((doc, idx) => (
@@ -131,7 +131,7 @@ export function ScholarshipList() {
                   rel="noopener noreferrer"
                   className="apple-btn-primary !rounded-xl min-h-[40px] px-4 py-2 text-xs font-semibold flex items-center justify-center gap-1.5 shadow-xs"
                 >
-                  <span>Apply on MahaDBT</span>
+                  <span>{t.admissionsHub.applyMahaDbt}</span>
                   <span aria-hidden="true">↗</span>
                 </a>
               </div>

@@ -1,5 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="16" fill="#526DFF"/>
-  <path d="M17 12h20l10 10v30H17z" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M37 12v10h10M23 39l7 7 13-15" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="checkGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F57C00"/>
+      <stop offset="100%" stop-color="#FFA726"/>
+    </linearGradient>
+    <linearGradient id="foldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9800"/>
+      <stop offset="100%" stop-color="#E65100"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Speed lines on left -->
+  <rect x="13" y="39" width="14" height="4.5" rx="2.25" fill="#FF9800"/>
+  <rect x="5" y="48" width="22" height="4.5" rx="2.25" fill="#FF9800"/>
+  <rect x="13" y="57" width="14" height="4.5" rx="2.25" fill="#FF9800"/>
+
+  <!-- Document Body -->
+  <path d="M 38 18 L 64 18 L 78 32 L 78 72 A 9 9 0 0 1 69 81 L 39 81 A 9 9 0 0 1 30 72 L 30 27 A 9 9 0 0 1 39 18 Z" fill="#FDF1DF"/>
+
+  <!-- Folded corner flap -->
+  <path d="M 64 18 L 64 29 A 3 3 0 0 0 67 32 L 78 32 Z" fill="url(#foldGrad)"/>
+
+  <!-- Document horizontal text lines -->
+  <rect x="38" y="34" width="24" height="4.5" rx="2.25" fill="#2E231E"/>
+  <rect x="38" y="43" width="31" height="4.5" rx="2.25" fill="#2E231E"/>
+  <rect x="38" y="52" width="20" height="4.5" rx="2.25" fill="#2E231E"/>
+
+  <!-- Checkmark white halo border -->
+  <path d="M 52 66 L 66 80 L 91 52" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Checkmark body -->
+  <path d="M 52 66 L 66 80 L 91 52" fill="none" stroke="url(#checkGrad)" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

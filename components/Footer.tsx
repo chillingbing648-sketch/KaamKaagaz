@@ -3,6 +3,11 @@
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 
+const basePath =
+  process.env.NEXT_PUBLIC_BASE_PATH !== undefined
+    ? process.env.NEXT_PUBLIC_BASE_PATH
+    : "/KaamKaagaz";
+
 export function Footer() {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
@@ -36,39 +41,55 @@ export function Footer() {
           {/* Group 1: Explore */}
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-ink mb-3.5">
-              Explore
+              {t.common.footerExplore}
             </h3>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <Link
-                  href="/#services"
+                  href="/identity/"
                   className="text-muted hover:text-ink transition-colors"
                 >
-                  {t.nav.services}
+                  {t.nav.identity}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/checklist"
+                  href="/certificates/"
                   className="text-muted hover:text-ink transition-colors"
                 >
-                  {t.nav.checklist}
+                  {t.nav.certificates}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/admissions"
+                  href="/education/"
                   className="text-muted hover:text-ink transition-colors"
                 >
-                  Student Admissions
+                  {t.nav.education}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/#how-it-works"
+                  href="/admissions/"
+                  className="text-muted hover:text-ink transition-colors"
+                >
+                  {t.nav.admissions}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/how-it-works/"
                   className="text-muted hover:text-ink transition-colors"
                 >
                   {t.nav.howItWorks}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/checklist/"
+                  className="text-muted hover:text-ink transition-colors"
+                >
+                  {t.nav.checklist}
                 </Link>
               </li>
             </ul>
@@ -77,9 +98,20 @@ export function Footer() {
           {/* Group 2: Official Sources */}
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-ink mb-3.5">
-              Official Portals
+              {t.common.footerOfficialPortals}
             </h3>
             <ul className="space-y-2.5 text-xs">
+              <li>
+                <a
+                  href="https://myaadhaar.uidai.gov.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between text-muted hover:text-ink transition-colors"
+                >
+                  <span>UIDAI (Aadhaar)</span>
+                  <span className="text-[11px] text-muted group-hover:text-accent group-hover:translate-x-0.5 transition-transform">↗</span>
+                </a>
+              </li>
               <li>
                 <a
                   href="https://www.incometax.gov.in"
@@ -87,7 +119,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="group flex items-center justify-between text-muted hover:text-ink transition-colors"
                 >
-                  <span>Income Tax Department</span>
+                  <span>Income Tax (PAN)</span>
                   <span className="text-[11px] text-muted group-hover:text-accent group-hover:translate-x-0.5 transition-transform">↗</span>
                 </a>
               </li>
@@ -113,18 +145,29 @@ export function Footer() {
                   <span className="text-[11px] text-muted group-hover:text-accent group-hover:translate-x-0.5 transition-transform">↗</span>
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://cetcell.mahacet.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between text-muted hover:text-ink transition-colors"
+                >
+                  <span>Maharashtra CET Cell</span>
+                  <span className="text-[11px] text-muted group-hover:text-accent group-hover:translate-x-0.5 transition-transform">↗</span>
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Group 3: Trust & Legal */}
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-ink mb-3.5">
-              Trust & Legal
+              {t.common.footerTrustLegal}
             </h3>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <Link
-                  href="/privacy"
+                  href="/privacy/"
                   className="text-muted hover:text-ink transition-colors"
                 >
                   {t.legal.privacyTitle}
@@ -132,7 +175,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/cookies"
+                  href="/cookies/"
                   className="text-muted hover:text-ink transition-colors"
                 >
                   {t.legal.cookiesTitle}
@@ -140,7 +183,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/terms"
+                  href="/terms/"
                   className="text-muted hover:text-ink transition-colors"
                 >
                   {t.legal.termsTitle}
@@ -148,7 +191,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/security"
+                  href="/security/"
                   className="text-muted hover:text-ink transition-colors"
                 >
                   {t.legal.securityTitle}
@@ -156,7 +199,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/accessibility"
+                  href="/accessibility/"
                   className="text-muted hover:text-ink transition-colors"
                 >
                   {t.legal.accessibilityTitle}
@@ -164,7 +207,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/disclaimer"
+                  href="/disclaimer/"
                   className="text-muted hover:text-ink transition-colors"
                 >
                   {t.legal.disclaimerTitle}
@@ -178,15 +221,15 @@ export function Footer() {
         <div className="mt-10 rounded-2xl border border-black/[0.06] bg-white/70 p-4.5 text-xs text-muted leading-relaxed shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
           <p className="font-bold text-ink mb-1 flex items-center gap-1.5">
             <span className="size-2 rounded-full bg-accent shrink-0"></span>
-            <span>Notice: {t.officialSource.title}</span>
+            <span>{t.common.footerNotice} {t.officialSource.title}</span>
           </p>
           <p className="text-muted/90">{t.brand.notGovWarning}</p>
         </div>
 
         {/* Bottom copyright & attribution */}
         <div className="mt-8 pt-5 border-t border-black/[0.06] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 text-xs text-muted">
-          <p>© {currentYear} KaamKaagaz · Independent civic information utility.</p>
-          <p className="font-medium text-ink/70">Zero document storage · No ads · No tracking.</p>
+          <p>© {currentYear} KaamKaagaz · {t.common.footerIndependent}</p>
+          <p className="font-medium text-ink/70">{t.common.footerZeroStorage}</p>
         </div>
       </div>
     </footer>

@@ -6,7 +6,7 @@ import { getStr } from "@/lib/i18n/localize";
 import { problemGuides } from "@/data/admissions";
 
 export function ProblemGuidesView() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [openProblemId, setOpenProblemId] = useState<string | null>("prob-which-portal");
 
   const toggleProblem = (id: string) => {
@@ -20,15 +20,15 @@ export function ProblemGuidesView() {
           💡
         </span>
         <span className="text-xs font-bold uppercase tracking-wider text-accent">
-          Troubleshooting
+          {t.admissionsHub.troubleshooting}
         </span>
       </div>
 
       <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
-        Something went wrong?
+        {t.admissionsHub.troubleshootingTitle}
       </h2>
       <p className="mt-1 text-xs sm:text-sm text-muted max-w-2xl leading-relaxed">
-        Real-world solutions for stuck applications, pending documents, name discrepancies, and portal issues.
+        {t.admissionsHub.troubleshootingSubtitle}
       </p>
 
       {/* Quick Diagnostic Symptoms Selector */}
@@ -106,7 +106,7 @@ export function ProblemGuidesView() {
                     {/* 1. SITUATION */}
                     <div className="apple-card p-4 sm:p-5 shadow-2xs">
                       <strong className="text-[10px] font-bold uppercase tracking-wider text-muted block mb-1">
-                        SITUATION
+                        {t.admissionsHub.situation}
                       </strong>
                       <p className="text-ink leading-relaxed font-medium">{situationText}</p>
                     </div>
@@ -114,7 +114,7 @@ export function ProblemGuidesView() {
                     {/* 2. EXPLANATION */}
                     <div className="apple-card p-4 sm:p-5 shadow-2xs">
                       <strong className="text-[10px] font-bold uppercase tracking-wider text-muted block mb-1">
-                        EXPLANATION
+                        {t.admissionsHub.explanation}
                       </strong>
                       <p className="text-ink leading-relaxed">{explanationText}</p>
                     </div>
@@ -122,7 +122,7 @@ export function ProblemGuidesView() {
                     {/* 3. WHAT TO DO NEXT */}
                     <div className="rounded-2xl border border-accent/25 bg-accent-soft/40 p-4.5 sm:p-5 shadow-2xs">
                       <strong className="text-xs font-bold uppercase tracking-wider text-accent block mb-2.5">
-                        WHAT TO DO NEXT
+                        {t.admissionsHub.whatToDo}
                       </strong>
                       <ol className="space-y-2 list-decimal list-inside text-ink/90 font-medium leading-relaxed">
                         {item.actionSteps.map((step, idx) => (
@@ -135,7 +135,7 @@ export function ProblemGuidesView() {
 
                     {/* 4. OFFICIAL SOURCE LINK */}
                     <div className="pt-3 border-t border-black/[0.04] flex items-center justify-between text-xs">
-                      <span className="text-muted">Need to verify current rules?</span>
+                      <span className="text-muted">{t.admissionsHub.officialWarning}</span>
                       <a
                         href="#portal-directory"
                         className="font-semibold text-accent hover:underline inline-flex items-center gap-1 group"

@@ -79,7 +79,7 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
       {prep.validityOrRecentness && (
         <div className="rounded-xl border border-accent/20 bg-accent-soft/40 p-3.5">
           <span className="block text-[11px] font-semibold tracking-wider text-accent mb-0.5 uppercase">
-            Validity / Recentness
+            {t.document.validityRecentness}
           </span>
           <p className="text-xs sm:text-sm text-ink leading-relaxed font-semibold">
             {prep.validityOrRecentness}

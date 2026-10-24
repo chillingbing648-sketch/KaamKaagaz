@@ -29,20 +29,20 @@ export function LegalPageLayout({
           ]}
         />
 
-        <header>
-          <span className="inline-block rounded-md bg-paper px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-muted border border-line/60">
+        <header className="space-y-2">
+          <span className="inline-block rounded-full bg-black/[0.04] px-3 py-1 text-xs font-semibold text-muted">
             Civic Trust & Standards
           </span>
-          <h1 className="mt-2 text-3xl sm:text-4xl font-black text-ink">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight">
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-2 text-base text-muted">{subtitle}</p>
+            <p className="text-base text-muted leading-relaxed">{subtitle}</p>
           )}
-          <p className="mt-1 text-xs text-muted">Last updated: {lastUpdated}</p>
+          <p className="text-xs text-muted">Last updated: {lastUpdated}</p>
         </header>
 
-        <div className="rounded-xl border border-line bg-surface p-5 sm:p-6 shadow-2xs space-y-5 text-sm text-ink leading-relaxed">
+        <div className="apple-card p-6 sm:p-8 space-y-6 text-sm text-ink leading-relaxed shadow-sm">
           {children}
         </div>
       </article>

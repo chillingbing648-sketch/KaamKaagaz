@@ -6,12 +6,12 @@ import { getStr } from "@/lib/i18n/localize";
 import { AdmissionLevel, admissionPortals, AdmissionPortal } from "@/data/admissions";
 
 export function PortalDirectory() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [filterLevel, setFilterLevel] = useState<string>("ALL");
   const [activeCourseModal, setActiveCourseModal] = useState<AdmissionPortal | null>(null);
 
   const levels: { id: string; label: string }[] = [
-    { id: "ALL", label: "All Portals" },
+    { id: "ALL", label: t.admissionsHub.allPortals },
     { id: "11th / FYJC", label: "11th / FYJC" },
     { id: "CET / CAP", label: "CET / CAP" },
     { id: "Undergraduate", label: "University UG / PG" },
@@ -53,7 +53,7 @@ export function PortalDirectory() {
         {/* Status assurance badge */}
         <div className="flex items-center gap-2 self-start sm:self-center px-3.5 py-1.5 rounded-full bg-white border border-black/[0.08] text-xs text-muted shadow-xs">
           <span className="size-2 rounded-full bg-done"></span>
-          <span className="font-medium text-ink/80">Zero third-party agent links</span>
+          <span className="font-medium text-ink/80">{t.admissionsHub.zeroAgentNotice}</span>
         </div>
       </div>
 
@@ -125,28 +125,28 @@ export function PortalDirectory() {
                 <div className="space-y-3 text-xs text-ink/90 border-t border-black/[0.04] pt-3 mb-4">
                   <div>
                     <strong className="text-[10px] uppercase font-bold tracking-wider text-muted block mb-0.5">
-                      WHAT IS IT FOR?
+                      {t.admissionsHub.purpose}
                     </strong>
                     <p className="leading-relaxed text-ink/90">{localizedPurpose}</p>
                   </div>
 
                   <div>
                     <strong className="text-[10px] uppercase font-bold tracking-wider text-muted block mb-0.5">
-                      WHO USES IT?
+                      {t.admissionsHub.whoUses}
                     </strong>
                     <p className="leading-relaxed text-ink/80">{localizedWho}</p>
                   </div>
 
                   <div>
                     <strong className="text-[10px] uppercase font-bold tracking-wider text-muted block mb-0.5">
-                      OFFICIAL AUTHORITY:
+                      {t.admissionsHub.authority}
                     </strong>
                     <p className="text-muted leading-tight">{portal.authority}</p>
                   </div>
 
                   {portal.notes && (
                     <div className="rounded-xl bg-black/[0.02] p-3 border border-black/[0.04] text-[11px] text-ink/80 leading-relaxed">
-                      <strong className="text-accent font-semibold">Note: </strong>
+                      <strong className="text-accent font-semibold">{t.admissionsHub.note} </strong>
                       {localizedNotes}
                     </div>
                   )}
@@ -163,7 +163,7 @@ export function PortalDirectory() {
                       onClick={() => setActiveCourseModal(portal)}
                       className="w-full min-h-[42px] rounded-xl bg-accent-soft border border-accent/25 px-3.5 py-2 text-xs font-semibold text-accent hover:bg-accent hover:text-white transition-all duration-150 shadow-xs flex items-center justify-between cursor-pointer active:scale-[0.98]"
                     >
-                      <span>Choose course-specific CAP route ({portal.courseSpecificRoutes.length} disciplines)</span>
+                      <span>{t.admissionsHub.chooseCap} ({portal.courseSpecificRoutes.length})</span>
                       <span>▼</span>
                     </button>
                     <a
@@ -172,7 +172,7 @@ export function PortalDirectory() {
                       rel="noopener noreferrer"
                       className="apple-btn-secondary w-full !rounded-xl min-h-[42px] text-xs font-semibold flex items-center justify-center gap-1.5 shadow-xs"
                     >
-                      <span>Open CET Cell main portal</span>
+                      <span>{t.admissionsHub.openMainPortal}</span>
                       <span aria-hidden="true">↗</span>
                     </a>
                   </div>
@@ -183,14 +183,14 @@ export function PortalDirectory() {
                     rel="noopener noreferrer"
                     className="apple-btn-primary w-full !rounded-xl min-h-[44px] text-xs font-semibold flex items-center justify-center gap-1.5 shadow-xs"
                   >
-                    <span>Open official portal ({portal.domain})</span>
+                    <span>{t.admissionsHub.openOfficialPortal} ({portal.domain})</span>
                     <span aria-hidden="true">↗</span>
                   </a>
                 )}
 
                 <div className="flex items-center justify-between text-[11px] text-muted pt-1">
-                  <span>Last checked: {portal.lastChecked}</span>
-                  <span className="font-medium text-ink/70">Direct SSL verified</span>
+                  <span>{t.admissionsHub.lastChecked} {portal.lastChecked}</span>
+                  <span className="font-medium text-ink/70">{t.admissionsHub.sslVerified}</span>
                 </div>
               </div>
             </div>
@@ -213,7 +213,7 @@ export function PortalDirectory() {
                   STATE CET CELL — COURSE-SPECIFIC CAP ROUTES
                 </span>
                 <h3 id="course-modal-title" className="text-xl sm:text-2xl font-extrabold text-ink mt-1 tracking-tight">
-                  Select Your Course Discipline
+                  {t.admissionsHub.routeModalTitle}
                 </h3>
                 <p className="text-xs text-muted mt-1 leading-relaxed">
                   The CET Cell does not run a single universal CAP application. Each course has its own specialized portal.
@@ -264,7 +264,7 @@ export function PortalDirectory() {
                 onClick={() => setActiveCourseModal(null)}
                 className="apple-btn-secondary min-h-[40px] !rounded-xl px-5 text-xs font-semibold"
               >
-                Close directory
+                {t.admissionsHub.routeModalClose}
               </button>
             </div>
           </div>

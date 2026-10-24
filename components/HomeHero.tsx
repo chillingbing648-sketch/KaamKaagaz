@@ -3,9 +3,13 @@
 import { useLanguage } from "@/lib/i18n/context";
 import Link from "next/link";
 
+const basePath =
+  process.env.NEXT_PUBLIC_BASE_PATH !== undefined
+    ? process.env.NEXT_PUBLIC_BASE_PATH
+    : "/KaamKaagaz";
+
 export function HomeHero({
   selectedCategory,
-  onSelectCategory,
 }: {
   selectedCategory?: string | null;
   onSelectCategory?: (category: string) => void;
@@ -17,37 +21,37 @@ export function HomeHero({
       id: "identity",
       label: t.home?.categoryIdentity || "Identity",
       tag: t.home?.tagIdentity || "Aadhaar, PAN, Passport",
-      isFilter: true,
+      href: "/identity/",
     },
     {
       id: "certificates",
       label: t.home?.categoryCertificates || "Certificates",
       tag: t.home?.tagCertificates || "Domicile, Caste, Income, Birth",
-      isFilter: true,
+      href: "/certificates/",
     },
     {
       id: "education",
       label: t.home?.categoryEducation || "Education",
       tag: t.home?.tagEducation || "Leaving, Transfer & College",
-      isFilter: true,
+      href: "/education/",
     },
     {
       id: "admissions",
       label: t.home?.categoryAdmissions || "Admissions",
       tag: t.home?.tagAdmissions || "FYJC, CET Cell CAP, Samarth",
-      href: "/admissions",
+      href: "/admissions/",
     },
     {
       id: "scholarships",
       label: t.home?.categoryScholarships || "Scholarships",
       tag: t.home?.tagScholarships || "MahaDBT & Fee Waivers",
-      href: "/admissions#scholarships",
+      href: "/admissions/#scholarships",
     },
     {
       id: "documents",
       label: t.home?.categoryStudentDocs || "Student Documents",
       tag: t.home?.tagStudentDocs || "Validity, APAAR & Proformas",
-      href: "/admissions#documents",
+      href: "/education/#student-docs",
     },
   ];
 
@@ -67,7 +71,7 @@ export function HomeHero({
           {t.brand.tagline}
         </p>
 
-        <p className="mt-3 text-sm sm:text-base text-muted max-w-xl leading-relaxed">
+        <p className="mt-3 inline-block rounded-xl bg-accent-soft/60 border border-accent/20 px-3.5 py-1.5 text-xs sm:text-sm text-accent-hover max-w-xl leading-relaxed font-medium">
           {t.brand.disclaimer}
         </p>
       </div>
@@ -80,8 +84,16 @@ export function HomeHero({
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {categories.map((category) => {
             const isSelected = selectedCategory === category.id;
-            const content = (
-              <>
+            return (
+              <Link
+                key={category.id}
+                href={category.href}
+                className={`group flex flex-col justify-between rounded-2xl p-4 transition-all duration-200 active:scale-[0.98] ${
+                  isSelected
+                    ? "border-2 border-accent bg-accent-soft/60 ring-2 ring-accent/20 shadow-xs"
+                    : "border border-black/[0.06] bg-white hover:border-black/[0.12] hover:shadow-[0_4px_16px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
+                }`}
+              >
                 <div className="flex items-center justify-between gap-1">
                   <span className={`text-sm font-bold transition-colors ${isSelected ? "text-accent" : "text-ink group-hover:text-accent"}`}>
                     {category.label}
@@ -93,37 +105,6 @@ export function HomeHero({
                 <span className="mt-2.5 text-[11px] text-muted leading-snug font-medium line-clamp-2">
                   {category.tag}
                 </span>
-              </>
-            );
-
-            if (category.isFilter && onSelectCategory) {
-              return (
-                <button
-                  key={category.id}
-                  type="button"
-                  onClick={() => onSelectCategory(category.id)}
-                  className={`group flex flex-col justify-between text-left rounded-2xl p-4 transition-all duration-200 cursor-pointer active:scale-[0.98] ${
-                    isSelected
-                      ? "border-2 border-accent bg-accent-soft/60 ring-2 ring-accent/20 shadow-xs"
-                      : "border border-black/[0.06] bg-white hover:border-black/[0.12] hover:shadow-[0_4px_16px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
-                  }`}
-                >
-                  {content}
-                </button>
-              );
-            }
-
-            return (
-              <Link
-                key={category.id}
-                href={category.href || "/#services"}
-                className={`group flex flex-col justify-between rounded-2xl p-4 transition-all duration-200 active:scale-[0.98] ${
-                  isSelected
-                    ? "border-2 border-accent bg-accent-soft/60 ring-2 ring-accent/20 shadow-xs"
-                    : "border border-black/[0.06] bg-white hover:border-black/[0.12] hover:shadow-[0_4px_16px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
-                }`}
-              >
-                {content}
               </Link>
             );
           })}

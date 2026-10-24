@@ -6,7 +6,7 @@ import { getStr } from "@/lib/i18n/localize";
 import { admissionTerms } from "@/data/admissions";
 
 export function AdmissionTermsView() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
 
   const filtered = searchQuery.trim()
@@ -27,14 +27,14 @@ export function AdmissionTermsView() {
               📖
             </span>
             <span className="text-xs font-bold uppercase tracking-wider text-accent">
-              PLAIN-LANGUAGE VOCABULARY
+              {t.admissionsHub.vocabulary}
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
-            Admission Terms Demystified
+            {t.admissionsHub.termsTitle}
           </h2>
           <p className="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
-            Plain language first. Official bureaucratic terminology second.
+            {t.admissionsHub.termsSubtitle}
           </p>
         </div>
 
@@ -48,7 +48,7 @@ export function AdmissionTermsView() {
             type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search term (e.g. CAP, APAAR)..."
+            placeholder={t.admissionsHub.searchTermsPlaceholder}
             className="w-full min-h-[40px] rounded-full border border-black/[0.1] bg-white px-4 py-2 text-xs text-ink placeholder:text-muted/60 focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none shadow-xs transition-shadow"
           />
         </div>
@@ -70,7 +70,7 @@ export function AdmissionTermsView() {
                     {item.term}
                   </h3>
                   <span className="rounded-full bg-black/[0.04] px-2.5 py-0.5 text-[10px] font-semibold text-muted">
-                    Official Term
+                    {t.admissionsHub.bureaucraticTerm}
                   </span>
                 </div>
 
@@ -81,14 +81,14 @@ export function AdmissionTermsView() {
                 <div className="space-y-3 text-xs">
                   <div>
                     <strong className="text-[10px] uppercase font-bold text-muted block mb-0.5">
-                      Plain English Meaning:
+                      {t.admissionsHub.plainMeaning}:
                     </strong>
                     <p className="text-ink leading-relaxed">{meaning}</p>
                   </div>
 
                   <div>
                     <strong className="text-[10px] uppercase font-bold text-muted block mb-0.5">
-                      How It Affects You:
+                      {t.admissionsHub.affectsAdmission}:
                     </strong>
                     <p className="text-ink/80 leading-relaxed">{impact}</p>
                   </div>

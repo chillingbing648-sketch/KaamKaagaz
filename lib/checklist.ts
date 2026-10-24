@@ -235,3 +235,75 @@ export function useAdmissionChecklist(validIds: string[]) {
   return { statuses, setStatus, resetAll, counts };
 }
 
+// ---------------------------------------------------------------------------
+// DATA PERSISTENCE, BACKUP & DISASTER RECOVERY
+// ---------------------------------------------------------------------------
+export interface KaamKaagazBackup {
+  version: 1;
+  app: "kaamkaagaz";
+  exportedAt: string;
+  checklists: State;
+  admissions: AdmissionState;
+}
+
+export function createBackupData(): KaamKaagazBackup {
+  return {
+    version: 1,
+    app: "kaamkaagaz",
+    exportedAt: new Date().toISOString(),
+    checklists: read(),
+    admissions: readAdmission(),
+  };
+}
+
+export function downloadBackupFile(): boolean {
+  try {
+    const backup = createBackupData();
+    const blob = new Blob([JSON.stringify(backup, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const dateStr = new Date().toISOString().split("T")[0];
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `kaamkaagaz-backup-${dateStr}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    return true;
+  } catch (err) {
+    console.error("[KaamKaagaz] Failed to download backup:", err);
+    return false;
+  }
+}
+
+export function restoreBackupData(raw: string): { success: boolean; message: string } {
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") {
+      return { success: false, message: "Invalid backup file: not a JSON object." };
+    }
+
+    const checklists = parse(JSON.stringify(parsed.checklists ?? {}));
+    const admissions = parseAdmission(JSON.stringify(parsed.admissions ?? {}));
+
+    write(checklists);
+    writeAdmission(admissions);
+
+    return {
+      success: true,
+      message: `Restored ${Object.keys(checklists).length} service checklists and ${Object.keys(admissions).length} admission document states.`,
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: err instanceof Error ? err.message : "Failed to parse backup JSON file.",
+    };
+  }
+}
+
+export function clearAllLocalData(): void {
+  write({});
+  writeAdmission({});
+}

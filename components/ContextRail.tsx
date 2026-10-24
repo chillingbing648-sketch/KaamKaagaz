@@ -80,7 +80,7 @@ export function ContextRail({
               return (
                 <Link
                   key={p.slug}
-                  href={`/process/${p.slug}`}
+                  href={`/process/${p.slug}/`}
                   className="group flex items-center justify-between py-1.5 px-2 rounded-lg text-xs font-semibold text-ink hover:bg-accent-soft hover:text-accent transition-colors"
                 >
                   <span className="truncate pr-2">{loc.title}</span>
@@ -90,7 +90,7 @@ export function ContextRail({
             })}
             <div className="pt-2 border-t border-line/60 mt-1.5">
               <Link
-                href="/admissions"
+                href="/admissions/"
                 className="group flex items-center justify-between py-1.5 px-2 rounded-lg text-xs font-bold text-accent bg-accent-soft/50 hover:bg-accent-soft transition-colors"
               >
                 <span className="truncate pr-2">🎓 Student Admissions</span>
@@ -213,7 +213,7 @@ function ProcessRail({
   const { count, total, percent } = useChecklist(process.slug, targetIds);
 
   const sections = [
-    { id: "overview", label: "Overview" },
+    { id: "overview", label: t.common.overview },
     ...(process.situations && process.situations.length > 0 ? [{ id: "situations", label: t.process.situationsTitle }] : []),
     { id: "documents", label: t.process.documentsRequired },
     ...(loc.eligibilityList && loc.eligibilityList.length > 0 ? [{ id: "eligibility", label: t.process.whoCanApply }] : []),
@@ -242,13 +242,13 @@ function ProcessRail({
         <div className="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between">
           <span className="text-xs text-muted">
             {percent === 100 ? (
-              <span className="text-done font-bold">✓ Ready to apply</span>
+              <span className="text-done font-bold">✓ {t.contextRail.readyToApply}</span>
             ) : (
               <span>{total - count} {t.contextRail.docsRemaining}</span>
             )}
           </span>
           <Link
-            href={`/checklist/${process.slug}`}
+            href={`/checklist/${process.slug}/`}
             className="text-xs font-bold text-accent hover:underline"
           >
             {t.contextRail.continueChecklist}
@@ -330,7 +330,7 @@ function DocumentRail({
       {/* Readiness quick action */}
       <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
-          Document Readiness
+          {t.processSnapshot.readiness}
         </p>
         <button
           type="button"
@@ -341,18 +341,18 @@ function DocumentRail({
               : "border border-accent bg-accent text-white hover:bg-accent-hover"
           }`}
         >
-          {isReady ? "✓ Ready (tap to unmark)" : `+ ${t.document.markReady}`}
+          {isReady ? `✓ ${t.common.ready} (${t.document.markReadyUndo})` : `+ ${t.document.markReady}`}
         </button>
 
         <div className="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between text-xs">
           <Link
-            href={`/checklist/${process.slug}`}
+            href={`/checklist/${process.slug}/`}
             className="text-muted hover:text-accent font-medium underline underline-offset-2"
           >
             {t.process.openChecklist} →
           </Link>
           <Link
-            href={`/process/${process.slug}`}
+            href={`/process/${process.slug}/`}
             className="text-muted hover:text-ink font-medium"
           >
             {locProcess.title}
@@ -364,19 +364,19 @@ function DocumentRail({
       {locDoc.formatAndPrep && (
         <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] text-xs space-y-2.5">
           <p className="text-[11px] font-bold uppercase tracking-wider text-muted">
-            Format Snapshot
+            {t.document.formatAndPrep}
           </p>
           <div className="border-b border-line/60 pb-2">
-            <span className="text-muted text-[10px] uppercase font-bold block">Submission</span>
+            <span className="text-muted text-[10px] uppercase font-bold block">{t.document.submission}</span>
             <span className="font-semibold text-ink">{locDoc.formatAndPrep.submission}</span>
           </div>
           <div className="border-b border-line/60 pb-2">
-            <span className="text-muted text-[10px] uppercase font-bold block">Attestation</span>
+            <span className="text-muted text-[10px] uppercase font-bold block">{t.document.selfAttestation}</span>
             <span className="font-semibold text-ink">{locDoc.formatAndPrep.selfAttestation}</span>
           </div>
           {locDoc.formatAndPrep.validityOrRecentness && (
             <div>
-              <span className="text-muted text-[10px] uppercase font-bold block">Validity</span>
+              <span className="text-muted text-[10px] uppercase font-bold block">{t.common.validity}</span>
               <span className="font-semibold text-ink">{locDoc.formatAndPrep.validityOrRecentness}</span>
             </div>
           )}
@@ -386,7 +386,7 @@ function DocumentRail({
       {/* Other Documents in this service */}
       <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] text-xs">
         <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
-          All {locProcess.title} Docs
+          {locProcess.title} · {t.process.documentsRequired}
         </p>
         <ul className="space-y-1">
           {process.documents.map((d) => {
@@ -396,7 +396,7 @@ function DocumentRail({
             return (
               <li key={d.id}>
                 <Link
-                  href={`/process/${process.slug}/document/${d.id}`}
+                  href={`/process/${process.slug}/document/${d.id}/`}
                   className={`flex items-center justify-between py-1 px-1.5 rounded transition-colors ${
                     isCurrent
                       ? "bg-accent-soft text-accent font-bold"
@@ -430,12 +430,12 @@ function ChecklistRail({ process }: { process: Process }) {
     <aside aria-label="Checklist progress and actions" className="space-y-4">
       <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-1">
-          Your Process
+          {t.nav.journeyStatus}
         </p>
         <h3 className="font-bold text-ink text-base mb-2">{loc.title}</h3>
         <ProgressBar percent={percent} label={`${loc.title} checklist progress`} />
         <p className="mt-2 text-xs font-semibold text-muted">
-          {count} of {total} documents ready ({percent}%)
+          {count} {t.common.of} {total} {t.process.documentsRequired} ({percent}%)
         </p>
 
         {percent === 100 ? (
@@ -453,10 +453,10 @@ function ChecklistRail({ process }: { process: Process }) {
         ) : (
           <div className="mt-4 pt-3 border-t border-line">
             <Link
-              href={`/process/${process.slug}`}
+              href={`/process/${process.slug}/`}
               className="inline-flex min-h-[38px] w-full items-center justify-center rounded-lg border border-line bg-surface px-3 text-xs font-semibold text-ink hover:bg-paper transition-colors"
             >
-              ← Back to process guide
+              ← {t.process.backToProcess}
             </Link>
           </div>
         )}
@@ -466,7 +466,7 @@ function ChecklistRail({ process }: { process: Process }) {
       {count < total && (
         <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] text-xs">
           <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
-            Remaining Kaagaz
+            {t.checklist.remaining}
           </p>
           <ul className="space-y-1.5">
             {process.documents
@@ -476,11 +476,11 @@ function ChecklistRail({ process }: { process: Process }) {
                 return (
                   <li key={d.id}>
                     <Link
-                      href={`/process/${process.slug}/document/${d.id}`}
+                      href={`/process/${process.slug}/document/${d.id}/`}
                       className="group flex items-center justify-between py-1 px-1.5 rounded hover:bg-accent-soft hover:text-accent text-ink transition-colors font-medium"
                     >
                       <span className="truncate pr-1.5">{dLoc.name}</span>
-                      <span className="text-accent text-xs">Explain →</span>
+                      <span className="text-accent text-xs">{t.process.viewDetails} →</span>
                     </Link>
                   </li>
                 );
@@ -504,12 +504,12 @@ function LegalRail() {
   const { t } = useLanguage();
 
   const legalLinks = [
-    { href: "/privacy", label: t.legal.privacyTitle },
-    { href: "/cookies", label: t.legal.cookiesTitle },
-    { href: "/terms", label: t.legal.termsTitle },
-    { href: "/security", label: t.legal.securityTitle },
-    { href: "/accessibility", label: t.legal.accessibilityTitle },
-    { href: "/disclaimer", label: t.legal.disclaimerTitle },
+    { href: "/privacy/", label: t.legal.privacyTitle },
+    { href: "/cookies/", label: t.legal.cookiesTitle },
+    { href: "/terms/", label: t.legal.termsTitle },
+    { href: "/security/", label: t.legal.securityTitle },
+    { href: "/accessibility/", label: t.legal.accessibilityTitle },
+    { href: "/disclaimer/", label: t.legal.disclaimerTitle },
     { href: "/.well-known/security.txt", label: "security.txt" },
   ];
 
@@ -545,6 +545,7 @@ function LegalRail() {
 // ADMISSIONS CONTEXT RAIL
 // -------------------------------------------------------------
 function AdmissionsRail({ activeSectionId }: { activeSectionId?: string }) {
+  const { t } = useLanguage();
   const validIds = studentDocuments.map((d) => d.id);
   const { counts } = useAdmissionChecklist(validIds);
 
@@ -565,10 +566,10 @@ function AdmissionsRail({ activeSectionId }: { activeSectionId?: string }) {
       <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <div className="flex items-center justify-between mb-2">
           <span className="text-[11px] font-semibold text-muted tracking-wide">
-            Readiness Progress
+            {t.admissionsHub.readinessTracker}
           </span>
           <span className="rounded-full bg-accent-soft px-2 py-0.5 text-xs font-bold text-accent">
-            {counts.ready} / {counts.activeTotal} Ready
+            {counts.ready} / {counts.activeTotal} {t.common.ready}
           </span>
         </div>
 
@@ -576,10 +577,10 @@ function AdmissionsRail({ activeSectionId }: { activeSectionId?: string }) {
 
         <div className="mt-3 pt-2.5 border-t border-line/60 flex items-center justify-between text-xs">
           <span className="text-muted">
-            {counts.missing > 0 ? `${counts.missing} missing` : "All documents reviewed"}
+            {counts.missing > 0 ? `${counts.missing} ${t.common.missing}` : t.checklist.allReady}
           </span>
           <a href="#checklist" className="font-bold text-accent hover:underline">
-            Manage list →
+            {t.admissionsHub.openChecklist} →
           </a>
         </div>
       </div>
@@ -587,7 +588,7 @@ function AdmissionsRail({ activeSectionId }: { activeSectionId?: string }) {
       {/* 2. On This Page: Admission Ecosystem anchors */}
       <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
         <p className="text-[11px] font-semibold text-muted tracking-wide mb-2.5">
-          Admission sections
+          {t.admissionsHub.title}
         </p>
         <nav aria-label="Admissions quick section navigation">
           <ul className="space-y-1 text-xs">
@@ -616,7 +617,7 @@ function AdmissionsRail({ activeSectionId }: { activeSectionId?: string }) {
       <div className="rounded-2xl border border-black/[0.06] bg-white p-4.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] text-xs">
         <div className="flex items-center gap-1.5 text-muted font-semibold tracking-wide text-[11px] mb-2.5">
           <span className="trust-official">↗</span>
-          <span>Official Portals (AY 2026–27)</span>
+          <span>{t.nav.officialPortals}</span>
         </div>
         <ul className="space-y-2">
           <li>
@@ -696,10 +697,10 @@ function AdmissionsRail({ activeSectionId }: { activeSectionId?: string }) {
       <div className="rounded-xl border border-accent/20 bg-accent-soft/30 p-3.5 text-xs leading-relaxed">
         <p className="font-semibold text-accent mb-1 flex items-center gap-1">
           <span className="trust-verified">✓</span>
-          <span>Zero Commission / Direct Entry</span>
+          <span>{t.admissionsHub.zeroAgentNotice}</span>
         </p>
         <p className="text-ink/80 text-[11px]">
-          KaamKaagaz provides pure wayfinding. We never ask for entrance registration fees or sell student data.
+          {t.brand.disclaimer}
         </p>
       </div>
     </aside>

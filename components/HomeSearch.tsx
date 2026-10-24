@@ -46,7 +46,6 @@ function matches(item: Process, q: string) {
     .join(" ")
     .toLowerCase();
 
-  // If any meaningful keyword from user's sentence matches the haystack
   return searchWords.some((word) => haystack.includes(word));
 }
 
@@ -90,8 +89,8 @@ export function HomeSearch({
   const categoryFilteredItems = items.filter((p) => {
     if (!activeCategory || activeCategory === "all") return true;
     const catLower = p.category.toLowerCase();
-    if (activeCategory === "identity") return catLower.includes("identity");
-    if (activeCategory === "certificates") return catLower.includes("certificate") || catLower.includes("record") || catLower.includes("residence");
+    if (activeCategory === "identity") return catLower.includes("identity") || catLower.includes("tax") || catLower.includes("travel");
+    if (activeCategory === "certificates") return catLower.includes("certificate") || catLower.includes("vital") || catLower.includes("record") || catLower.includes("residence");
     if (activeCategory === "education") return catLower.includes("education") || catLower.includes("academic");
     return true;
   });
@@ -104,8 +103,8 @@ export function HomeSearch({
 
   const categoryTabs = [
     { id: "all", label: t.home?.allKaam || "All kaam", count: items.length },
-    { id: "identity", label: t.home?.categoryIdentity || "Identity", count: items.filter((p) => p.category.toLowerCase().includes("identity")).length },
-    { id: "certificates", label: t.home?.categoryCertificates || "Certificates", count: items.filter((p) => p.category.toLowerCase().includes("certificate") || p.category.toLowerCase().includes("record") || p.category.toLowerCase().includes("residence")).length },
+    { id: "identity", label: t.home?.categoryIdentity || "Identity", count: items.filter((p) => p.category.toLowerCase().includes("identity") || p.category.toLowerCase().includes("tax") || p.category.toLowerCase().includes("travel")).length },
+    { id: "certificates", label: t.home?.categoryCertificates || "Certificates", count: items.filter((p) => p.category.toLowerCase().includes("certificate") || p.category.toLowerCase().includes("vital") || p.category.toLowerCase().includes("record") || p.category.toLowerCase().includes("residence")).length },
     { id: "education", label: t.home?.categoryEducation || "Education", count: items.filter((p) => p.category.toLowerCase().includes("education") || p.category.toLowerCase().includes("academic")).length },
   ];
 
@@ -152,7 +151,7 @@ export function HomeSearch({
 
           {/* Student Admissions Major Kaam Pill */}
           <Link
-            href="/admissions"
+            href="/admissions/"
             className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-3.5 py-1 text-xs sm:text-sm font-bold text-accent hover:bg-accent hover:text-white shadow-xs transition-all active:scale-[0.97]"
           >
             <span>{t.home?.categoryAdmissions || "Student Admissions"}</span>
@@ -161,14 +160,7 @@ export function HomeSearch({
         </div>
       </div>
 
-      {/* 2. Optional Mid-section (How It Works) */}
-      {midSection && (
-        <div className="scroll-mt-24">
-          {midSection}
-        </div>
-      )}
-
-      {/* 3. Search Anything & Category Navigation Section */}
+      {/* 2. Spotlight Search Input & Category Filters */}
       <div id="search-section" className="scroll-mt-24 space-y-4">
         {/* Category Navigation Tabs */}
         <div>
@@ -254,6 +246,37 @@ export function HomeSearch({
           </div>
         </div>
 
+        {/* How It Works Quick Preview Card */}
+        <div className="rounded-2xl border border-black/[0.06] bg-gradient-to-r from-white via-white to-accent-soft/30 p-5 sm:p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="flex size-6 items-center justify-center rounded-lg bg-accent text-white text-xs font-bold">
+                ✓
+              </span>
+              <h3 className="text-base font-bold text-ink">
+                {t.howItWorks.title}
+              </h3>
+            </div>
+            <p className="text-xs sm:text-sm text-muted leading-relaxed">
+              {t.howItWorks.subtitle}
+            </p>
+          </div>
+          <Link
+            href="/how-it-works/"
+            className="apple-btn-secondary !rounded-full px-4 py-2 text-xs font-semibold shrink-0 flex items-center justify-center gap-1 shadow-xs"
+          >
+            <span>{t.common.exploreMore}</span>
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+
+        {/* Optional Mid-section if passed */}
+        {midSection && (
+          <div className="scroll-mt-24">
+            {midSection}
+          </div>
+        )}
+
         {/* Results Header & List */}
         <div className="mt-8 border-t border-black/[0.06] pt-6">
           <div className="flex items-center justify-between mb-4">
@@ -291,32 +314,32 @@ export function HomeSearch({
                 {showAdmissions && (
                   <div id="admissions-section" className="pt-2">
                     <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted mb-2">
-                      <span>Higher Education & Admissions</span>
+                      <span>{t.nav.admissions}</span>
                     </div>
                     <Link
-                      href="/admissions"
+                      href="/admissions/"
                       className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-accent/25 bg-gradient-to-br from-accent-soft/40 via-white to-white p-5 sm:p-6 shadow-[0_2px_12px_rgba(198,78,22,0.06)] transition-all duration-200 hover:border-accent hover:shadow-[0_8px_24px_rgba(198,78,22,0.1)] hover:-translate-y-0.5 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-accent"
                     >
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
                           <span className="inline-block rounded-md bg-accent text-white px-2 py-0.5 text-[10px] font-bold tracking-wide">
-                            Student Admissions
+                            {t.home.categoryAdmissions}
                           </span>
                           <span className="text-[11px] font-semibold text-accent bg-accent-soft px-2 py-0.5 rounded-full border border-accent/20">
                             AY 2026–27
                           </span>
                         </div>
                         <h3 className="text-lg sm:text-xl font-bold text-ink group-hover:text-accent transition-colors tracking-tight">
-                          Student Admissions & Wayfinding
+                          {t.admissionsHub.title}
                         </h3>
                         <p className="mt-1 text-xs sm:text-sm text-muted leading-relaxed">
-                          Find the right portal (FYJC, CET Cell CAP, Mumbai University Samarth, CDOE, PhD) · Step-by-Step Roadmaps · Documents & “Do I Need This?” Helper · MahaDBT Scholarships
+                          {t.admissionsHub.subtitle}
                         </p>
                       </div>
 
                       <div className="flex items-center sm:self-center shrink-0">
                         <span className="inline-flex min-h-[42px] items-center gap-1.5 rounded-full bg-accent text-white px-5 py-2 text-xs sm:text-sm font-semibold shadow-xs group-hover:bg-accent-hover transition-colors">
-                          <span>Enter Admissions</span>
+                          <span>{t.common.explore}</span>
                           <span aria-hidden="true">→</span>
                         </span>
                       </div>

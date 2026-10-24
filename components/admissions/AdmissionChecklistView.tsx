@@ -10,7 +10,7 @@ import {
 import { ProgressBar } from "@/components/ProgressBar";
 
 export function AdmissionChecklistView() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const validIds = studentDocuments.map((d) => d.id);
   const { statuses, setStatus, resetAll, counts } = useAdmissionChecklist(validIds);
 
@@ -24,14 +24,14 @@ export function AdmissionChecklistView() {
                 ✓
               </span>
               <span className="text-xs font-bold uppercase tracking-wider text-accent">
-                MY ADMISSION CHECKLIST
+                {t.admissionsHub.readinessTracker}
               </span>
             </div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
-              Personal Admission Readiness Tracker
+              {t.admissionsHub.trackerTitle}
             </h2>
             <p className="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
-              Saved strictly in your browser. No registration or server sync.
+              {t.admissionsHub.trackerSubtitle}
             </p>
           </div>
 
@@ -40,7 +40,7 @@ export function AdmissionChecklistView() {
             onClick={resetAll}
             className="apple-btn-secondary !rounded-xl self-start sm:self-center min-h-[38px] px-3.5 py-1.5 text-xs font-semibold text-muted hover:text-red-600 hover:border-red-200 transition-colors cursor-pointer"
           >
-            Reset checklist
+            {t.admissionsHub.resetChecklist}
           </button>
         </div>
 
@@ -48,7 +48,7 @@ export function AdmissionChecklistView() {
         <div className="mb-6 rounded-2xl bg-[#fbfbfd] border border-black/[0.06] p-4.5 sm:p-5 shadow-2xs">
           <div className="flex items-center justify-between gap-2 mb-2">
             <span className="text-xs font-bold uppercase tracking-wider text-ink">
-              Preparation Progress
+              {t.admissionsHub.prepProgress}
             </span>
             <span className="text-sm font-extrabold text-accent">
               {counts.percent}%
@@ -61,22 +61,22 @@ export function AdmissionChecklistView() {
           <div className="mt-4 pt-3.5 border-t border-black/[0.04] grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-done"></span>
-              <span className="text-muted">Ready:</span>
+              <span className="text-muted">{t.admissionsHub.readyCount}:</span>
               <strong className="text-ink">{counts.ready}</strong>
             </div>
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-red-500"></span>
-              <span className="text-muted">Missing:</span>
+              <span className="text-muted">{t.admissionsHub.missingCount}:</span>
               <strong className="text-ink">{counts.missing}</strong>
             </div>
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-amber-500"></span>
-              <span className="text-muted">Needs Update:</span>
+              <span className="text-muted">{t.admissionsHub.needsUpdateCount}:</span>
               <strong className="text-ink">{counts.needsUpdate}</strong>
             </div>
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-blue-500"></span>
-              <span className="text-muted">Pending:</span>
+              <span className="text-muted">{t.admissionsHub.pendingCount}:</span>
               <strong className="text-ink">{counts.pending}</strong>
             </div>
           </div>
@@ -132,12 +132,12 @@ export function AdmissionChecklistView() {
                     }
                     className="min-h-[38px] rounded-xl border border-black/[0.1] bg-white px-3 py-1 text-xs font-semibold text-ink cursor-pointer focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none shadow-2xs"
                   >
-                    <option value="READY">✓ READY</option>
-                    <option value="MISSING">✕ MISSING</option>
-                    <option value="NEEDS_UPDATE">↻ NEEDS UPDATE</option>
-                    <option value="PENDING">⏳ PENDING</option>
-                    <option value="NOT_SURE">? NOT SURE</option>
-                    <option value="NOT_APPLICABLE">— NOT APPLICABLE</option>
+                    <option value="READY">✓ {t.admissionsHub.statusReady}</option>
+                    <option value="MISSING">✕ {t.admissionsHub.statusMissing}</option>
+                    <option value="NEEDS_UPDATE">↻ {t.admissionsHub.statusNeedsUpdate}</option>
+                    <option value="PENDING">⏳ {t.admissionsHub.statusPending}</option>
+                    <option value="NOT_SURE">? {t.admissionsHub.statusNotSure}</option>
+                    <option value="NOT_APPLICABLE">— {t.admissionsHub.statusNotApplicable}</option>
                   </select>
                 </div>
               </div>

@@ -46,7 +46,7 @@ const STATUS_CONFIG: Record<
 };
 
 export function StudentDocumentList() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const validIds = studentDocuments.map((d) => d.id);
   const { statuses, setStatus, counts } = useAdmissionChecklist(validIds);
 
@@ -73,11 +73,11 @@ export function StudentDocumentList() {
               📄
             </span>
             <span className="text-xs font-bold uppercase tracking-wider text-accent">
-              STUDENT DOCUMENT SYSTEM
+              {t.admissionsHub.studentDocSystem}
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
-            Documents & “Do I Need This?” Helper
+            {t.admissionsHub.docHelperTitle}
           </h2>
           <p className="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
             Mark your real readiness state. Click any document to see why it is needed, accepted formats, and validity rules.
@@ -99,7 +99,7 @@ export function StudentDocumentList() {
       {/* Filter by admission type */}
       <div className="flex flex-wrap gap-2 mb-6">
         {[
-          { id: "ALL", label: "All Documents" },
+          { id: "ALL", label: t.admissionsHub.filterAll },
           { id: "11th / FYJC", label: "11th / FYJC" },
           { id: "CET / CAP", label: "CET / CAP" },
           { id: "Undergraduate", label: "Undergraduate" },
@@ -173,12 +173,12 @@ export function StudentDocumentList() {
                       }
                       className="min-h-[42px] rounded-xl border border-black/[0.1] bg-white px-3 py-1.5 text-xs font-semibold text-ink cursor-pointer focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none shadow-2xs"
                     >
-                      <option value="READY">✓ READY</option>
-                      <option value="MISSING">✕ MISSING</option>
-                      <option value="NEEDS_UPDATE">↻ NEEDS UPDATE</option>
-                      <option value="PENDING">⏳ PENDING (RECEIPT)</option>
-                      <option value="NOT_SURE">? NOT SURE</option>
-                      <option value="NOT_APPLICABLE">— NOT APPLICABLE</option>
+                      <option value="READY">✓ {t.admissionsHub.statusReady}</option>
+                      <option value="MISSING">✕ {t.admissionsHub.statusMissing}</option>
+                      <option value="NEEDS_UPDATE">↻ {t.admissionsHub.statusNeedsUpdate}</option>
+                      <option value="PENDING">⏳ {t.admissionsHub.statusPending}</option>
+                      <option value="NOT_SURE">? {t.admissionsHub.statusNotSure}</option>
+                      <option value="NOT_APPLICABLE">— {t.admissionsHub.statusNotApplicable}</option>
                     </select>
                   </div>
 

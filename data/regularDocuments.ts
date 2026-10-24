@@ -1,4 +1,5 @@
 import type { Process } from "./processes";
+import { docTranslations } from "@/lib/i18n/regularDocsData";
 
 export const regularProcesses: Process[] = [
   // -------------------------------------------------------------------------
@@ -2836,3 +2837,16 @@ export const regularProcesses: Process[] = [
     },
   },
 ];
+
+// Enrich regularProcesses documents with full localization
+for (const p of regularProcesses) {
+  const trans = docTranslations[p.slug];
+  if (trans) {
+    for (const d of p.documents) {
+      if (!d.localized && trans[d.id]) {
+        d.localized = trans[d.id];
+      }
+    }
+  }
+}
+

@@ -50,7 +50,7 @@ export function Checklist({ process }: { process: Process }) {
               </p>
               <div>
                 <Link
-                  href={`/process/${process.slug}/document/${firstUnticked!.id}`}
+                  href={`/process/${process.slug}/document/${firstUnticked!.id}/`}
                   className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-accent px-5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-accent-hover transition-colors active:scale-[0.98]"
                 >
                   Start preparing {firstLoc.name} →
@@ -67,7 +67,7 @@ export function Checklist({ process }: { process: Process }) {
               </p>
               <div>
                 <Link
-                  href={`/process/${process.slug}/document/${firstUnticked!.id}`}
+                  href={`/process/${process.slug}/document/${firstUnticked!.id}/`}
                   className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-accent px-5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-accent-hover transition-colors active:scale-[0.98]"
                 >
                   Continue checklist: {firstLoc.name} →
@@ -101,7 +101,7 @@ export function Checklist({ process }: { process: Process }) {
               <span aria-hidden="true">↗</span>
             </a>
             <Link
-              href={`/process/${process.slug}`}
+              href={`/process/${process.slug}/`}
               className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-black/[0.08] bg-black/[0.02] px-5 text-xs sm:text-sm font-semibold text-ink hover:bg-black/[0.05] transition-all"
             >
               {t.process.backToProcess}

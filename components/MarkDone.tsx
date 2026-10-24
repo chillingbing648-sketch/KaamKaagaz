@@ -35,7 +35,7 @@ export function MarkDone({
 
       {/* Secondary outlined button */}
       <Link
-        href={`/checklist/${slug}`}
+        href={`/checklist/${slug}/`}
         className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-black/[0.08] bg-black/[0.03] px-5 text-sm font-semibold text-ink hover:bg-black/[0.06] transition-all active:scale-[0.97]"
       >
         {t.process.openChecklist} →

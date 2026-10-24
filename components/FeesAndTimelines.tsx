@@ -35,7 +35,7 @@ export function FeesAndTimelines({
                     {getStr(fee.item, language)}
                   </p>
                   <p className="text-xs text-muted mt-0.5">
-                    Source: {fee.verifiedSource}
+                    {t.common.source}: {fee.verifiedSource}
                   </p>
                 </div>
                 <div className="font-mono text-base font-bold text-accent shrink-0">

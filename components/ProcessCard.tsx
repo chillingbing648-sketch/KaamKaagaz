@@ -27,7 +27,7 @@ export function ProcessCard({
 
   return (
     <Link
-      href={`/process/${process.slug}`}
+      href={`/process/${process.slug}/`}
       className="group flex flex-col gap-3.5 rounded-2xl border border-black/[0.06] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] transition-all duration-200 hover:border-black/[0.12] hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-accent"
     >
       <div className="flex items-start justify-between gap-3">

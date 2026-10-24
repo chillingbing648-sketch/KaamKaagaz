@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { Process } from "@/data/processes";
 import { useLanguage } from "@/lib/i18n/context";
 import { getLocalizedProcess } from "@/lib/i18n/localize";
@@ -17,12 +16,24 @@ import { JourneyRoadmap, JourneyStage } from "./JourneyRoadmap";
 import { ContextRail } from "./ContextRail";
 import { useChecklist } from "@/lib/checklist";
 
+function getCategoryInfo(process: Process, t: any) {
+  const cat = process.category.toLowerCase();
+  if (cat.includes("identity") || cat.includes("tax") || cat.includes("travel")) {
+    return { label: t.nav.identity, href: "/identity/" };
+  }
+  if (cat.includes("education") || cat.includes("academic")) {
+    return { label: t.nav.education, href: "/education/" };
+  }
+  return { label: t.nav.certificates, href: "/certificates/" };
+}
+
 export function ProcessView({ process }: { process: Process }) {
   const { language, t } = useLanguage();
   const [selectedSituationId, setSelectedSituationId] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("overview");
 
   const loc = getLocalizedProcess(process, language);
+  const categoryInfo = getCategoryInfo(process, t);
 
   // Filter documents according to selected situation if one is picked
   const activeSituation = process.situations?.find((s) => s.id === selectedSituationId);
@@ -86,7 +97,8 @@ export function ProcessView({ process }: { process: Process }) {
         {/* Breadcrumb navigation */}
         <Breadcrumb
           items={[
-            { label: t.nav.services, href: "/#services" },
+            { label: t.common.home, href: "/" },
+            { label: categoryInfo.label, href: categoryInfo.href },
             { label: loc.title, isCurrent: true },
           ]}
         />
@@ -119,7 +131,7 @@ export function ProcessView({ process }: { process: Process }) {
           {/* Who it is for */}
           {loc.whoCanApplyText && (
             <div className="rounded-2xl border border-black/[0.06] bg-white p-4 text-xs sm:text-sm text-ink flex items-start gap-2.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
-              <span className="font-mono text-accent font-bold text-xs shrink-0 tracking-wide">WHO IT&apos;S FOR:</span>
+              <span className="font-mono text-accent font-bold text-xs shrink-0 tracking-wide">{t.processSnapshot.whoItsFor}</span>
               <span className="font-medium text-muted-foreground">{loc.whoCanApplyText}</span>
             </div>
           )}
@@ -127,27 +139,27 @@ export function ProcessView({ process }: { process: Process }) {
           {/* Process Snapshot: 5 key metrics in Apple widget style */}
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 pt-1">
             <div className="rounded-2xl border border-black/[0.06] bg-white p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">Documents</span>
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t.processSnapshot.documents}</span>
               <span className="text-2xl font-bold text-ink mt-1 tracking-tight">{process.documents.length}</span>
             </div>
 
             <div className="rounded-2xl border border-black/[0.06] bg-white p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">Steps</span>
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t.processSnapshot.steps}</span>
               <span className="text-2xl font-bold text-ink mt-1 tracking-tight">{process.steps.length}</span>
             </div>
 
             <div className="rounded-2xl border border-black/[0.06] bg-white p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">Situations</span>
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t.processSnapshot.situations}</span>
               <span className="text-2xl font-bold text-ink mt-1 tracking-tight">{process.situations?.length || 1}</span>
             </div>
 
             <div className="rounded-2xl border border-black/[0.06] bg-white p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">Verified</span>
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t.trust.verified}</span>
               <span className="text-xs font-bold text-done truncate mt-2">✓ {process.lastChecked}</span>
             </div>
 
             <div className="col-span-2 sm:col-span-1 rounded-2xl border border-black/[0.06] bg-white p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">Readiness</span>
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t.processSnapshot.readiness}</span>
               <span className={`text-xs font-bold truncate mt-2 ${readyPercent === 100 ? "text-done" : "text-accent"}`}>
                 ◎ {readyPercent}% ({readyCount}/{totalDocs})
               </span>
@@ -172,7 +184,7 @@ export function ProcessView({ process }: { process: Process }) {
             />
             <div className="flex justify-end pt-1">
               <a href="#documents" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
-                <span>{t.process.nextStepPrompt || "Next: Check required documents"}</span>
+                <span>{t.process.nextStepPrompt} {t.process.documentsRequired}</span>
                 <span aria-hidden="true">↓</span>
               </a>
             </div>
@@ -189,16 +201,16 @@ export function ProcessView({ process }: { process: Process }) {
           <DocumentList process={process} activeDocIds={activeDocIds} />
           <div className="mt-4 pt-3 border-t border-black/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
             <span className="text-muted font-medium">
-              {readyPercent === 100 ? (t.process.allDocsReady || "All documents ready") : `${totalDocs - readyCount} ${t.contextRail.docsRemaining || "remaining"}`}
+              {readyPercent === 100 ? t.process.allDocsReady : `${totalDocs - readyCount} ${t.contextRail.docsRemaining}`}
             </span>
             <a href="#steps" className="inline-flex items-center gap-1.5 font-semibold text-accent hover:underline">
-              <span>{t.process.nextStepPrompt || "Next: View application steps & fees"}</span>
+              <span>{t.process.nextStepPrompt} {t.process.stepsTitle}</span>
               <span aria-hidden="true">↓</span>
             </a>
           </div>
         </section>
 
-        {/* 4. How do you prepare? (Eligibility criteria, application steps, fees & timelines) */}
+        {/* 4. Eligibility criteria */}
         {loc.eligibilityList && loc.eligibilityList.length > 0 && (
           <section id="eligibility" aria-labelledby="eligibility-heading" className="scroll-mt-24 rounded-2xl border border-black/[0.06] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
             <h2 id="eligibility-heading" className="text-xl font-bold tracking-tight text-ink mb-3">
@@ -222,7 +234,7 @@ export function ProcessView({ process }: { process: Process }) {
           <ProcessSteps steps={process.steps} />
           <div className="mt-3 flex justify-end">
             <a href="#fees-timelines" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
-              <span>Next: Check official fees and timelines</span>
+              <span>{t.process.nextStepPrompt} {t.process.feesTitle}</span>
               <span aria-hidden="true">↓</span>
             </a>
           </div>
@@ -233,7 +245,7 @@ export function ProcessView({ process }: { process: Process }) {
           <FeesAndTimelines fees={process.fees} timelines={process.timelines} />
           <div className="mt-3 flex justify-end">
             <a href="#official-source" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
-              <span>Next: Verify on official government portal</span>
+              <span>{t.process.nextStepPrompt} {t.officialSource.title}</span>
               <span aria-hidden="true">↓</span>
             </a>
           </div>

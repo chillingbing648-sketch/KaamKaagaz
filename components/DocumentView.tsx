@@ -28,9 +28,23 @@ export function DocumentView({
         {/* Subtle Breadcrumb Wayfinding: Services / Passport / Documents / Address Proof */}
         <Breadcrumb
           items={[
-            { label: t.nav.services, href: "/#services" },
-            { label: locProcess.title, href: `/process/${process.slug}` },
-            { label: t.process.documentsRequired, href: `/process/${process.slug}#documents` },
+            { label: t.nav.home, href: "/" },
+            {
+              label:
+                process.category === "identity"
+                  ? t.nav.identity
+                  : process.category === "education"
+                  ? t.nav.education
+                  : t.nav.certificates,
+              href:
+                process.category === "identity"
+                  ? "/identity/"
+                  : process.category === "education"
+                  ? "/education/"
+                  : "/certificates/",
+            },
+            { label: locProcess.title, href: `/process/${process.slug}/` },
+
             { label: locDoc.name, isCurrent: true },
           ]}
         />
@@ -51,7 +65,7 @@ export function DocumentView({
         {/* Readiness Checklist Action Bar */}
         <div className="p-5 sm:p-6 rounded-2xl border border-black/[0.06] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-3">
-            Checklist Status
+            {t.checklist.title}
           </p>
           <MarkDone
             slug={process.slug}

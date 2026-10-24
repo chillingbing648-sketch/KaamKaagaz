@@ -20,7 +20,7 @@ export function JourneyRoadmap({ currentStage, hasSituations = true }: JourneyRo
   const { t } = useLanguage();
 
   const allStages: { id: JourneyStage; label: string; anchor: string }[] = [
-    { id: "overview", label: "Overview", anchor: "#overview" },
+    { id: "overview", label: t.common.overview, anchor: "#overview" },
     ...(hasSituations ? [{ id: "situation" as JourneyStage, label: t.journey.situation, anchor: "#situations" }] : []),
     { id: "documents", label: t.journey.documents, anchor: "#documents" },
     { id: "eligibility", label: t.journey.eligibility, anchor: "#eligibility" },
@@ -49,7 +49,7 @@ export function JourneyRoadmap({ currentStage, hasSituations = true }: JourneyRo
           </span>
         </div>
         <span className="text-xs font-semibold text-muted bg-black/[0.04] px-2.5 py-0.5 rounded-full">
-          {currentIndex + 1} of {stages.length}
+          {currentIndex + 1} {t.common.of} {stages.length}
         </span>
       </div>
 

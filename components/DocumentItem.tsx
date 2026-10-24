@@ -65,7 +65,7 @@ export function DocumentItem({
           </button>
           {checked && (
             <span className="inline-flex items-center gap-1 rounded-full bg-done/15 px-2.5 py-0.5 text-xs font-bold text-done">
-              ✓ Ready
+              ✓ {t.common.ready}
             </span>
           )}
         </div>
@@ -77,7 +77,7 @@ export function DocumentItem({
         {/* What counts preview */}
         {localized.examples && localized.examples.length > 0 && (
           <div className="mt-2 text-xs text-ink/80 flex items-baseline gap-1.5">
-            <span className="font-semibold text-muted text-[11px] uppercase tracking-wider shrink-0">Counts:</span>
+            <span className="font-semibold text-muted text-[11px] uppercase tracking-wider shrink-0">{t.common.counts}:</span>
             <span className="line-clamp-1 text-ink/70 font-medium">{localized.examples.slice(0, 3).join(", ")}</span>
           </div>
         )}
@@ -86,14 +86,14 @@ export function DocumentItem({
         {localized.formatAndPrep && (
           <div className="mt-3 flex flex-wrap gap-1.5 text-xs">
             <span className="inline-flex items-center gap-1 rounded-full bg-black/[0.03] px-2.5 py-0.5 font-medium text-muted border border-black/[0.04]">
-              <span className="text-muted font-mono text-[10px]">FORMAT:</span> {localized.formatAndPrep.submission.split(",")[0].slice(0, 35)}
+              <span className="text-muted font-mono text-[10px]">{t.common.format.toUpperCase()}:</span> {localized.formatAndPrep.submission.split(",")[0].slice(0, 35)}
             </span>
             <span className="inline-flex items-center gap-1 rounded-full bg-black/[0.03] px-2.5 py-0.5 font-medium text-muted border border-black/[0.04]">
               <span className="text-muted font-mono text-[10px]">SIGN:</span> {localized.formatAndPrep.selfAttestation.slice(0, 30)}
             </span>
             {localized.formatAndPrep.validityOrRecentness && (
               <span className="inline-flex items-center gap-1 rounded-full bg-accent-soft px-2.5 py-0.5 font-medium text-accent border border-accent/20">
-                <span className="text-accent font-mono text-[10px]">VALIDITY:</span> {localized.formatAndPrep.validityOrRecentness.slice(0, 32)}
+                <span className="text-accent font-mono text-[10px]">{t.common.validity.toUpperCase()}:</span> {localized.formatAndPrep.validityOrRecentness.slice(0, 32)}
               </span>
             )}
           </div>
@@ -101,7 +101,7 @@ export function DocumentItem({
 
         <div className="mt-3.5 flex items-center justify-between gap-3 pt-2.5 border-t border-black/[0.04]">
           <Link
-            href={`/process/${slug}/document/${doc.id}`}
+            href={`/process/${slug}/document/${doc.id}/`}
             className="inline-flex min-h-[34px] items-center gap-1 text-xs sm:text-sm font-semibold text-accent hover:underline underline-offset-4 transition-colors"
           >
             <span>{t.process.whatDoesThisMean}</span>
@@ -117,7 +117,7 @@ export function DocumentItem({
                 : "border border-black/[0.08] bg-black/[0.02] text-ink hover:bg-black/[0.06]"
             }`}
           >
-            {checked ? "✓ Ready" : `+ ${t.document.markReady}`}
+            {checked ? `✓ ${t.common.ready}` : `+ ${t.document.markReady}`}
           </button>
         </div>
       </div>

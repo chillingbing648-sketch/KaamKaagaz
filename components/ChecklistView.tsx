@@ -18,8 +18,9 @@ export function ChecklistView({ process }: { process: Process }) {
       <div className="min-w-0 flex-1 lg:max-w-3xl space-y-6">
         <Breadcrumb
           items={[
-            { label: t.nav.services, href: "/#services" },
-            { label: loc.title, href: `/process/${process.slug}` },
+            { label: t.nav.home, href: "/" },
+            { label: t.nav.checklist, href: "/checklist/" },
+            { label: loc.title, href: `/process/${process.slug}/` },
             { label: t.checklist.title, isCurrent: true },
           ]}
         />

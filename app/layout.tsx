@@ -19,7 +19,15 @@ const notoDevanagari = Noto_Sans_Devanagari({
   variable: "--font-devanagari",
 });
 
+const basePath =
+  process.env.NEXT_PUBLIC_BASE_PATH !== undefined
+    ? process.env.NEXT_PUBLIC_BASE_PATH
+    : "/KaamKaagaz";
+const svgIconPath = basePath ? `${basePath}/favicon.svg` : "/favicon.svg";
+const pngIconPath = basePath ? `${basePath}/favicon.png` : "/favicon.png";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kaamkaagaz.org"),
   title: {
     default: "KAAMKAAGAZ · Kaagaz samjho. Kaam karo.",
     template: "%s · KAAMKAAGAZ",
@@ -27,10 +35,46 @@ export const metadata: Metadata = {
   description:
     "Paperwork, made simple. Plain-language step-by-step guidance for Aadhaar Card, PAN Card, Passport, Birth Certificate, Domicile, Caste & Student Admissions.",
   icons: {
-    icon: "/KaamKaagaz/favicon.svg",
-    shortcut: "/KaamKaagaz/favicon.svg",
-    apple: "/KaamKaagaz/favicon.svg",
+    icon: [
+      { url: svgIconPath, type: "image/svg+xml" },
+      { url: pngIconPath, type: "image/png" },
+    ],
+    shortcut: svgIconPath,
+    apple: pngIconPath,
   },
+  openGraph: {
+    title: "KAAMKAAGAZ · Kaagaz samjho. Kaam karo.",
+    description:
+      "Plain-language, step-by-step guidance for Indian government civil documents and student admissions.",
+    url: "https://kaamkaagaz.org",
+    siteName: "KaamKaagaz",
+    images: [
+      {
+        url: basePath ? `${basePath}/kaamkaagaz-logo.png` : "/kaamkaagaz-logo.png",
+        alt: "KaamKaagaz Logo",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "KAAMKAAGAZ · Civic Paperwork Utility",
+    description:
+      "Plain-language, step-by-step guidance for Indian government civil documents and student admissions.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  referrer: "strict-origin-when-cross-origin",
   keywords: [
     "KAAMKAAGAZ",
     "Aadhaar Card",

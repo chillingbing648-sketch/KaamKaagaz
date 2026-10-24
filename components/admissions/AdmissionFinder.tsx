@@ -20,7 +20,7 @@ interface FinderResult {
 }
 
 export function AdmissionFinder() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
 
   const [selectedLevel, setSelectedLevel] = useState<AdmissionLevel | "">("");
   const [selectedProgramme, setSelectedProgramme] = useState<string>("");
@@ -248,12 +248,12 @@ export function AdmissionFinder() {
             🧭
           </span>
           <span className="text-xs font-bold uppercase tracking-wider text-accent">
-            ADMISSION WAYFINDER
+            {t.admissionsNavigator.title}
           </span>
         </div>
 
         <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
-          Which admission portal should you use?
+          {t.admissionsNavigator.subtitle}
         </h2>
         <p className="mt-1 text-xs sm:text-sm text-muted leading-relaxed max-w-2xl">
           Avoid using fake or outdated websites. Answer 3 quick questions to discover your verified official portal, applicable route, and required documents.
@@ -263,7 +263,7 @@ export function AdmissionFinder() {
       {/* Step 1: Admission Level */}
       <div className="pt-2 border-t border-black/[0.04]">
         <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-3">
-          Step 1: What are you getting admission into?
+          1: {t.admissionsNavigator.stepPathway}
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
           {(
@@ -303,7 +303,7 @@ export function AdmissionFinder() {
       {selectedLevel && programmeOptions[selectedLevel] && (
         <div className="pt-4 border-t border-black/[0.04]">
           <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-3">
-            Step 2: Choose your specific course or stream
+            2: {t.admissionsNavigator.stepRoute}
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {programmeOptions[selectedLevel].map((prog) => {
@@ -375,7 +375,7 @@ export function AdmissionFinder() {
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-accent/15 pb-3.5 mb-4">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-accent block">
-                  YOUR VERIFIED OFFICIAL ADMISSION ROUTE
+                  {t.admissionsNavigator.stepPortal}
                 </span>
                 <h3 className="text-lg sm:text-xl font-extrabold text-ink tracking-tight mt-0.5">
                   {result.title}
@@ -420,7 +420,7 @@ export function AdmissionFinder() {
                 rel="noopener noreferrer"
                 className="apple-btn-primary !rounded-xl min-h-[44px] px-5 text-xs font-semibold flex items-center justify-center gap-1.5 shadow-xs"
               >
-                <span>Open official portal</span>
+                <span>{t.admissionsHub.openOfficialPortal}</span>
                 <span aria-hidden="true">↗</span>
               </a>
             </div>
@@ -428,7 +428,7 @@ export function AdmissionFinder() {
             {/* Key Documents Needed */}
             <div className="mb-4">
               <span className="text-xs font-bold uppercase tracking-wider text-muted block mb-2.5">
-                📋 Key Documents Needed Ready Before Applying:
+                📋 {t.admissionsHub.whatYouNeed}:
               </span>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
                 {result.prerequisiteDocs.map((doc, idx) => (
@@ -447,7 +447,7 @@ export function AdmissionFinder() {
                   href={`#${result.recommendedRoadmapId}`}
                   className="font-semibold text-accent hover:underline flex items-center gap-1 group"
                 >
-                  <span>View full interactive roadmap</span>
+                  <span>{t.admissionsNavigator.nextStep}</span>
                   <span className="group-hover:translate-y-0.5 transition-transform">↓</span>
                 </a>
               )}
@@ -455,7 +455,7 @@ export function AdmissionFinder() {
                 href="#documents"
                 className="font-semibold text-muted hover:text-ink transition-colors"
               >
-                Inspect document validity rules →
+                {t.admissionsHub.docHelperTitle} →
               </a>
             </div>
           </div>

@@ -6,7 +6,7 @@ import { getStr } from "@/lib/i18n/localize";
 import { admissionRoadmaps, AdmissionRoadmap } from "@/data/admissions";
 
 export function AdmissionRoadmapView() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [selectedRoadmapId, setSelectedRoadmapId] = useState<string>("roadmap-fyjc");
 
   const currentRoadmap =
@@ -19,15 +19,15 @@ export function AdmissionRoadmapView() {
           🗺️
         </span>
         <span className="text-xs font-bold uppercase tracking-wider text-accent">
-          ADMISSION ROADMAPS
+          {t.admissionsHub.badge}
         </span>
       </div>
 
       <h2 className="text-xl sm:text-2xl font-extrabold text-ink tracking-tight">
-        Visual Journey: Step-by-Step
+        {t.admissionsHub.title}
       </h2>
       <p className="mt-1 text-xs sm:text-sm text-muted max-w-2xl leading-relaxed">
-        Understand exactly what happens at every stage — from registration and verification to allotment and final college confirmation.
+        {t.admissionsHub.subtitle}
       </p>
 
       {/* Roadmap selector tabs */}
@@ -75,7 +75,7 @@ export function AdmissionRoadmapView() {
           </div>
 
           <span className="text-xs font-semibold text-done bg-done/10 px-3 py-1.5 rounded-full border border-done/20">
-            ✓ Source-Backed Sequence
+            {t.admissionsHub.verifiedSequence}
           </span>
         </div>
 
@@ -102,7 +102,7 @@ export function AdmissionRoadmapView() {
                       {stepTitle}
                     </h4>
                     <span className="text-[10px] font-semibold uppercase tracking-wider text-muted bg-black/[0.03] px-2.5 py-0.5 rounded-full border border-black/[0.04]">
-                      Step {step.stepNumber} of {currentRoadmap.steps.length}
+                      {t.admissionsHub.stepOf.replace("{x}", String(step.stepNumber)).replace("{y}", String(currentRoadmap.steps.length))}
                     </span>
                   </div>
 
@@ -113,7 +113,7 @@ export function AdmissionRoadmapView() {
                   {/* What you need box */}
                   <div className="rounded-xl bg-white border border-black/[0.06] p-3.5 text-xs mb-3 shadow-2xs">
                     <strong className="text-[10px] uppercase font-bold tracking-wider text-muted block mb-1">
-                      🗂️ What You Need Ready:
+                      🗂️ {t.admissionsHub.whatYouNeed}:
                     </strong>
                     <p className="text-ink font-medium leading-relaxed">{stepNeed}</p>
                   </div>
@@ -122,7 +122,7 @@ export function AdmissionRoadmapView() {
                   {stepAfter && (
                     <div className="rounded-xl bg-accent-soft/50 border border-accent/20 p-3.5 text-xs leading-relaxed text-ink/90">
                       <strong className="text-accent font-bold block mb-1">
-                        ⚡ What Happens After You Submit:
+                        ⚡ {t.admissionsHub.afterSubmission}:
                       </strong>
                       <p>{stepAfter}</p>
                     </div>
@@ -154,13 +154,13 @@ export function AdmissionRoadmapView() {
         {/* Bottom confirmation box */}
         <div className="mt-8 pt-5 border-t border-black/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-muted">
           <p>
-            Always save payment receipts and system-generated allotment forms as PDFs.
+            {t.admissionsHub.saveReceipts}
           </p>
           <a
             href="#checklist"
             className="apple-btn-secondary !rounded-xl min-h-[40px] px-4 text-xs font-semibold inline-flex items-center gap-1.5"
           >
-            <span>Open your document checklist</span>
+            <span>{t.admissionsHub.openChecklist}</span>
             <span>→</span>
           </a>
         </div>
