@@ -256,7 +256,7 @@ export function AdmissionFinder() {
           {t.admissionsNavigator.subtitle}
         </h2>
         <p className="mt-1 text-xs sm:text-sm text-muted leading-relaxed max-w-2xl">
-          Avoid using fake or outdated websites. Answer 3 quick questions to discover your verified official portal, applicable route, and required documents.
+          {t.admissionsNavigator.finderHint}
         </p>
       </div>
 
@@ -334,34 +334,34 @@ export function AdmissionFinder() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-2">
-                Candidacy / State
+                {t.admissionsNavigator.candidacyLabel}
               </label>
               <select
                 value={selectedRegion}
                 onChange={(e) => setSelectedRegion(e.target.value)}
                 className="w-full min-h-[42px] rounded-xl border border-black/[0.1] bg-white px-3.5 py-2 text-xs font-semibold text-ink focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
               >
-                <option value="maharashtra">Maharashtra State Candidate (Type A / B)</option>
-                <option value="oms">All India / Outside Maharashtra (OMS)</option>
-                <option value="jk">J&K Migrant / Defense / PwD Quota</option>
+                <option value="maharashtra">{t.admissionsNavigator.stateCandidate}</option>
+                <option value="oms">{t.admissionsNavigator.omsCandidate}</option>
+                <option value="jk">{t.admissionsNavigator.specialQuota}</option>
               </select>
             </div>
 
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-ink mb-2">
-                Reservation Category
+                {t.admissionsNavigator.categoryLabel}
               </label>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="w-full min-h-[42px] rounded-xl border border-black/[0.1] bg-white px-3.5 py-2 text-xs font-semibold text-ink focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
               >
-                <option value="general">Open / General Category</option>
-                <option value="ews">EWS (Economically Weaker Section - 10%)</option>
-                <option value="obc">OBC (Other Backward Class)</option>
-                <option value="sc">SC (Scheduled Caste)</option>
-                <option value="st">ST (Scheduled Tribe)</option>
-                <option value="vjnt">VJ / NT / SBC Categories</option>
+                <option value="general">{t.admissionsNavigator.catGeneral}</option>
+                <option value="ews">{t.admissionsNavigator.catEws}</option>
+                <option value="obc">{t.admissionsNavigator.catObc}</option>
+                <option value="sc">{t.admissionsNavigator.catSc}</option>
+                <option value="st">{t.admissionsNavigator.catSt}</option>
+                <option value="vjnt">{t.admissionsNavigator.catVjnt}</option>
               </select>
             </div>
           </div>
@@ -386,7 +386,7 @@ export function AdmissionFinder() {
                   {result.academicYear}
                 </span>
                 <span className="text-[11px] font-semibold text-done bg-done/10 px-2.5 py-1 rounded-full border border-done/20">
-                  CURRENT
+                  {t.common.verified}
                 </span>
               </div>
             </div>
@@ -396,7 +396,7 @@ export function AdmissionFinder() {
             </p>
 
             <div className="rounded-xl bg-amber-500/10 border border-amber-500/20 p-3.5 mb-4 text-xs">
-              <strong className="text-amber-800 dark:text-amber-300 font-bold block mb-1">⚠️ Important Watchout:</strong>
+              <strong className="text-amber-800 dark:text-amber-300 font-bold block mb-1">⚠️ {t.admissionsHub.officialWarning}</strong>
               <p className="text-ink/80 leading-relaxed">{result.keyNotice}</p>
             </div>
 
@@ -404,7 +404,7 @@ export function AdmissionFinder() {
             <div className="apple-card p-4 sm:p-5 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-muted block">
-                  Direct Verified Portal
+                  {t.admissionsHub.verifiedPortal}
                 </span>
                 <span className="text-sm font-bold text-ink block mt-0.5">
                   {result.portalName}

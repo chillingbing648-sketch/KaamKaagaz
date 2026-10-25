@@ -62,20 +62,20 @@ export function AdmissionsHub() {
                 </Link>
               </li>
               <li className="text-black/30">›</li>
-              <li className="text-ink font-semibold">Student Admissions</li>
+              <li className="text-ink font-semibold">{t.nav.admissions}</li>
             </ol>
           </nav>
 
           <div className="inline-flex items-center gap-2 rounded-full bg-accent-soft/80 px-3 py-1 text-[11px] font-semibold text-accent tracking-wide mb-3 border border-accent/15">
-            <span>Student Admissions · AY 2026–27</span>
+            <span>{t.admissionsHub.badge}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink tracking-tight">
-            Student Admissions & Wayfinding
+            {t.admissionsHub.title}
           </h1>
 
           <p className="mt-2.5 text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
-            Find the right admission route, understand what you need, prepare valid documents, and reach the correct official portal.
+            {t.admissionsHub.subtitle}
           </p>
 
           {/* Admission Navigator Guided Stepper */}

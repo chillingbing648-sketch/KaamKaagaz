@@ -124,7 +124,7 @@ export function ScholarshipList() {
               </div>
 
               <div className="pt-4 border-t border-black/[0.04] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <span className="text-[11px] text-muted">Verified: {scheme.lastChecked}</span>
+                <span className="text-[11px] text-done font-medium">✓ {t.common.verified}</span>
                 <a
                   href={scheme.officialPortal}
                   target="_blank"

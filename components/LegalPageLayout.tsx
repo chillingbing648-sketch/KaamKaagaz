@@ -3,6 +3,7 @@
 import { ReactNode } from "react";
 import { Breadcrumb } from "./Breadcrumb";
 import { ContextRail } from "./ContextRail";
+import { useLanguage } from "@/lib/i18n/context";
 
 interface LegalPageLayoutProps {
   title: string;
@@ -17,14 +18,16 @@ export function LegalPageLayout({
   lastUpdated = "30 September 2026",
   children,
 }: LegalPageLayoutProps) {
+  const { t } = useLanguage();
+
   return (
     <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
       {/* Main Working Area */}
       <article className="min-w-0 flex-1 lg:max-w-3xl space-y-6">
         <Breadcrumb
           items={[
-            { label: "Home", href: "/" },
-            { label: "Trust & Legal", href: "/legal" },
+            { label: t.common.home, href: "/" },
+            { label: t.common.footerTrustLegal, href: "/legal" },
             { label: title, isCurrent: true },
           ]}
         />

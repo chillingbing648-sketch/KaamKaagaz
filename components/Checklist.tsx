@@ -26,7 +26,7 @@ export function Checklist({ process }: { process: Process }) {
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div>
             <span className="text-[11px] font-semibold uppercase tracking-wider text-muted block mb-0.5">
-              YOUR CHECKLIST
+              {t.checklist.title}
             </span>
             <p className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
               {count} / {total} {t.checklist.completed.toUpperCase()}
@@ -53,7 +53,7 @@ export function Checklist({ process }: { process: Process }) {
                   href={`/process/${process.slug}/document/${firstUnticked!.id}/`}
                   className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-accent px-5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-accent-hover transition-colors active:scale-[0.98]"
                 >
-                  Start preparing {firstLoc.name} →
+                  {t.process.checkRequiredDocs}: {firstLoc.name} →
                 </Link>
               </div>
             </div>
@@ -62,7 +62,7 @@ export function Checklist({ process }: { process: Process }) {
           {count > 0 && count < total && firstLoc && (
             <div className="space-y-3">
               <p className="text-sm text-muted">
-                <span className="font-semibold text-ink">{remainingCount} document{remainingCount > 1 ? "s" : ""} remaining</span>. Next up:{" "}
+                <span className="font-semibold text-ink">{remainingCount} {t.checklist.remaining}</span>. {t.checklist.next}{" "}
                 <strong className="text-ink font-semibold">{firstLoc.name}</strong>.
               </p>
               <div>
@@ -70,7 +70,7 @@ export function Checklist({ process }: { process: Process }) {
                   href={`/process/${process.slug}/document/${firstUnticked!.id}/`}
                   className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-accent px-5 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-accent-hover transition-colors active:scale-[0.98]"
                 >
-                  Continue checklist: {firstLoc.name} →
+                  {t.process.continueNextStep}: {firstLoc.name} →
                 </Link>
               </div>
             </div>
@@ -80,7 +80,7 @@ export function Checklist({ process }: { process: Process }) {
             <div className="rounded-2xl border border-done/30 bg-done-soft/60 p-4 text-done">
               <p className="font-bold text-base flex items-center gap-2">
                 <span>🎉</span>
-                <span>You&apos;re ready. All documents prepared!</span>
+                <span>{t.common.readyToApplyOfficially}</span>
               </p>
               <p className="text-xs text-done/90 mt-1 leading-relaxed font-medium">
                 {t.checklist.allReady}
@@ -113,7 +113,7 @@ export function Checklist({ process }: { process: Process }) {
       {/* Document Items List */}
       <div>
         <h2 className="text-xs font-semibold uppercase tracking-wider text-muted mb-3.5">
-          Document Verification List
+          {t.process.documentsRequired}
         </h2>
         <ul className="space-y-3">
           {process.documents.map((d) => (

@@ -115,9 +115,11 @@ export function ProcessView({ process }: { process: Process }) {
             <span className="inline-block rounded-full bg-black/[0.04] px-3 py-1 text-xs font-semibold tracking-wide text-muted border border-black/[0.04]">
               {loc.category}
             </span>
-            <span className="text-[11px] font-mono font-medium text-muted bg-black/[0.03] px-2.5 py-0.5 rounded-full">
-              AY 2026–27
-            </span>
+            {(process.category.toLowerCase().includes("education") || process.category.toLowerCase().includes("academic")) && (
+              <span className="text-[11px] font-mono font-medium text-muted bg-black/[0.03] px-2.5 py-0.5 rounded-full">
+                AY 2026–27
+              </span>
+            )}
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-ink">
@@ -155,7 +157,7 @@ export function ProcessView({ process }: { process: Process }) {
 
             <div className="rounded-2xl border border-black/[0.06] bg-white p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">{t.trust.verified}</span>
-              <span className="text-xs font-bold text-done truncate mt-2">✓ {process.lastChecked}</span>
+              <span className="text-xs font-bold text-done truncate mt-2">✓ {t.common.verified}</span>
             </div>
 
             <div className="col-span-2 sm:col-span-1 rounded-2xl border border-black/[0.06] bg-white p-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
@@ -184,7 +186,7 @@ export function ProcessView({ process }: { process: Process }) {
             />
             <div className="flex justify-end pt-1">
               <a href="#documents" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
-                <span>{t.process.nextStepPrompt} {t.process.documentsRequired}</span>
+                <span>{t.process.checkRequiredDocs}</span>
                 <span aria-hidden="true">↓</span>
               </a>
             </div>
@@ -204,7 +206,7 @@ export function ProcessView({ process }: { process: Process }) {
               {readyPercent === 100 ? t.process.allDocsReady : `${totalDocs - readyCount} ${t.contextRail.docsRemaining}`}
             </span>
             <a href="#steps" className="inline-flex items-center gap-1.5 font-semibold text-accent hover:underline">
-              <span>{t.process.nextStepPrompt} {t.process.stepsTitle}</span>
+              <span>{t.process.continueNextStep} ({t.process.stepsTitle})</span>
               <span aria-hidden="true">↓</span>
             </a>
           </div>
@@ -234,7 +236,7 @@ export function ProcessView({ process }: { process: Process }) {
           <ProcessSteps steps={process.steps} />
           <div className="mt-3 flex justify-end">
             <a href="#fees-timelines" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
-              <span>{t.process.nextStepPrompt} {t.process.feesTitle}</span>
+              <span>{t.process.continueNextStep} ({t.process.feesTitle})</span>
               <span aria-hidden="true">↓</span>
             </a>
           </div>
@@ -245,7 +247,7 @@ export function ProcessView({ process }: { process: Process }) {
           <FeesAndTimelines fees={process.fees} timelines={process.timelines} />
           <div className="mt-3 flex justify-end">
             <a href="#official-source" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
-              <span>{t.process.nextStepPrompt} {t.officialSource.title}</span>
+              <span>{t.process.continueNextStep} ({t.officialSource.title})</span>
               <span aria-hidden="true">↓</span>
             </a>
           </div>

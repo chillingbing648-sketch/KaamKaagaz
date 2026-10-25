@@ -16,63 +16,103 @@ export function HowItWorks() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
-        {/* Step 1: FIND */}
-        <div className="rounded-2xl border border-black/[0.06] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 items-stretch">
+        {/* Step 1: EXPLORE */}
+        <div className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-3">
               <span className="flex size-6 items-center justify-center rounded-full bg-black/[0.05] text-ink text-xs font-bold font-mono">
                 1
               </span>
-              <span className="font-mono text-xs tracking-wider font-semibold text-muted uppercase">
-                FIND ⌕
+              <span className="font-mono text-[11px] tracking-wider font-semibold text-muted uppercase">
+                EXPLORE ⌕
               </span>
             </div>
-            <h3 className="text-base font-bold text-ink tracking-tight">
+            <h3 className="text-sm sm:text-base font-bold text-ink tracking-tight">
               {t.howItWorks.step1Title}
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-muted leading-relaxed">
+            <p className="mt-1.5 text-xs text-muted leading-relaxed">
               {t.howItWorks.step1Desc}
             </p>
           </div>
         </div>
 
-        {/* Step 2: PREPARE */}
-        <div className="rounded-2xl border border-black/[0.06] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between">
+        {/* Step 2: UNDERSTAND */}
+        <div className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-3">
               <span className="flex size-6 items-center justify-center rounded-full bg-black/[0.05] text-ink text-xs font-bold font-mono">
                 2
               </span>
-              <span className="font-mono text-xs tracking-wider font-semibold text-muted uppercase">
-                PREPARE ▤
+              <span className="font-mono text-[11px] tracking-wider font-semibold text-muted uppercase">
+                UNDERSTAND 💡
               </span>
             </div>
-            <h3 className="text-base font-bold text-ink tracking-tight">
+            <h3 className="text-sm sm:text-base font-bold text-ink tracking-tight">
               {t.howItWorks.step2Title}
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-muted leading-relaxed">
+            <p className="mt-1.5 text-xs text-muted leading-relaxed">
               {t.howItWorks.step2Desc}
             </p>
           </div>
         </div>
 
-        {/* Step 3: VERIFY */}
-        <div className="rounded-2xl border border-black/[0.06] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between">
+        {/* Step 3: PREPARE */}
+        <div className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent text-xs font-bold font-mono">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="flex size-6 items-center justify-center rounded-full bg-black/[0.05] text-ink text-xs font-bold font-mono">
                 3
               </span>
-              <span className="font-mono text-xs tracking-wider font-semibold text-accent uppercase">
+              <span className="font-mono text-[11px] tracking-wider font-semibold text-muted uppercase">
+                PREPARE ▤
+              </span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-ink tracking-tight">
+              {t.howItWorks.step3Title}
+            </h3>
+            <p className="mt-1.5 text-xs text-muted leading-relaxed">
+              {t.howItWorks.step3Desc}
+            </p>
+          </div>
+        </div>
+
+        {/* Step 4: VERIFY */}
+        <div className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent text-xs font-bold font-mono">
+                4
+              </span>
+              <span className="font-mono text-[11px] tracking-wider font-semibold text-accent uppercase">
                 VERIFY ✓
               </span>
             </div>
-            <h3 className="text-base font-bold text-ink tracking-tight">
-              {t.howItWorks.step3Title}
+            <h3 className="text-sm sm:text-base font-bold text-ink tracking-tight">
+              {t.howItWorks.step4Title}
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-muted leading-relaxed">
-              {t.howItWorks.step3Desc}
+            <p className="mt-1.5 text-xs text-muted leading-relaxed">
+              {t.howItWorks.step4Desc}
+            </p>
+          </div>
+        </div>
+
+        {/* Step 5: ACT */}
+        <div className="rounded-2xl border border-accent/20 bg-accent-soft/30 p-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all flex flex-col justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="flex size-6 items-center justify-center rounded-full bg-accent text-white text-xs font-bold font-mono">
+                5
+              </span>
+              <span className="font-mono text-[11px] tracking-wider font-semibold text-accent uppercase">
+                ACT ↗
+              </span>
+            </div>
+            <h3 className="text-sm sm:text-base font-bold text-ink tracking-tight">
+              {t.howItWorks.step5Title}
+            </h3>
+            <p className="mt-1.5 text-xs text-muted leading-relaxed">
+              {t.howItWorks.step5Desc}
             </p>
           </div>
         </div>

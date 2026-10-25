@@ -55,15 +55,15 @@ export function LanguageSwitcher() {
         aria-expanded={isOpen}
         aria-label={t.nav.selectLanguage}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex min-h-[36px] items-center gap-1.5 rounded-full border border-black/[0.06] bg-black/[0.03] hover:bg-black/[0.06] px-3 py-1 text-xs font-semibold text-ink shadow-[0_1px_2px_rgba(0,0,0,0.02)] focus-visible:outline-2 focus-visible:outline-accent active:scale-[0.97] transition-all cursor-pointer"
+        className="flex min-h-[36px] sm:min-h-[38px] items-center gap-1.5 rounded-full border border-black/[0.08] bg-white hover:bg-black/[0.03] px-3.5 py-1 text-xs font-bold text-ink shadow-[0_1px_3px_rgba(0,0,0,0.04)] focus-visible:outline-2 focus-visible:outline-accent active:scale-[0.95] transition-all duration-150 ease-out cursor-pointer hover:border-black/[0.16]"
       >
         <span className="text-sm leading-none" aria-hidden="true">🌐</span>
-        <span className="font-medium tracking-tight">
+        <span className="font-semibold tracking-tight">
           {language === "en" ? "English" : currentOption.nativeLabel}
         </span>
         <svg
           aria-hidden="true"
-          className={`size-3 transition-transform duration-200 text-muted ${isOpen ? "rotate-180 text-accent" : ""}`}
+          className={`size-3 transition-transform duration-200 ease-out text-muted ${isOpen ? "rotate-180 text-accent" : ""}`}
           viewBox="0 0 12 12"
           fill="none"
         >
@@ -75,7 +75,7 @@ export function LanguageSwitcher() {
         <div
           role="listbox"
           aria-labelledby="language-menu-button"
-          className="absolute right-0 z-50 mt-2 w-48 origin-top-right rounded-2xl border border-black/[0.06] bg-white/95 backdrop-blur-xl p-1.5 shadow-[0_12px_32px_rgba(0,0,0,0.12)] animate-in fade-in zoom-in-95 duration-150"
+          className="absolute right-0 z-50 mt-2 w-52 origin-top-right rounded-2xl border border-black/[0.08] bg-white/98 backdrop-blur-2xl p-1.5 shadow-[0_16px_40px_rgba(0,0,0,0.12)] transition-all duration-150 ease-out"
         >
           {LANGUAGES.map((lang) => {
             const isSelected = lang.code === language;
@@ -85,14 +85,14 @@ export function LanguageSwitcher() {
                 role="option"
                 aria-selected={isSelected}
                 onClick={() => handleSelect(lang.code)}
-                className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-xs font-medium transition-colors cursor-pointer ${
+                className={`group flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-left text-xs font-semibold transition-all duration-150 ease-out active:scale-[0.98] cursor-pointer ${
                   isSelected
-                    ? "bg-accent-soft text-accent font-semibold"
-                    : "text-ink hover:bg-black/[0.04]"
+                    ? "bg-accent-soft text-accent font-bold"
+                    : "text-ink hover:bg-accent-soft/50 hover:text-accent"
                 }`}
               >
                 <span className="flex items-center gap-2">
-                  <span className={isSelected ? "font-bold text-accent" : "text-ink"}>
+                  <span className={isSelected ? "font-bold text-accent" : "text-ink group-hover:text-accent transition-colors"}>
                     {lang.nativeLabel}
                   </span>
                   {lang.code !== "en" && (
@@ -102,7 +102,7 @@ export function LanguageSwitcher() {
                 {isSelected && (
                   <svg
                     aria-hidden="true"
-                    className="size-3.5 text-accent shrink-0"
+                    className="size-3.5 text-accent shrink-0 animate-in zoom-in-75 duration-150"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >

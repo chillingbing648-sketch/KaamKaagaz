@@ -51,9 +51,14 @@ export function DocumentView({
 
         {/* Document Header */}
         <header className="space-y-3">
-          <span className="inline-block rounded-full bg-black/[0.04] px-3 py-1 text-xs font-semibold tracking-wide text-muted border border-black/[0.04]">
-            {locProcess.title} · {t.process.documentsRequired}
-          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-block rounded-full bg-black/[0.04] px-3 py-1 text-xs font-semibold tracking-wide text-muted border border-black/[0.04]">
+              {locProcess.title} · {t.process.documentsRequired}
+            </span>
+            <span className="inline-block rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-bold text-accent border border-accent/20">
+              {t.document.requiredBadge}
+            </span>
+          </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-ink">
             {locDoc.name}
           </h1>
@@ -111,9 +116,13 @@ export function DocumentView({
               {t.document.commonExamples}
             </h2>
           </div>
-          <p className="text-xs text-muted mb-4">
+          <p className="text-xs text-muted mb-3">
             {t.document.examplesNotice}
           </p>
+          <div className="mb-4 rounded-xl border border-accent/20 bg-accent-soft/30 p-3 text-xs text-accent font-semibold flex items-center gap-2">
+            <span aria-hidden="true">💡</span>
+            <span>{t.document.oneSufficient}</span>
+          </div>
           <ul className="list-disc space-y-2.5 pl-5 text-sm sm:text-base text-ink">
             {locDoc.examples.map((item, idx) => (
               <li key={idx} className="leading-snug">

@@ -84,9 +84,9 @@ export function OfficialSource({
 
       {/* Verification footer metadata */}
       <div className="mt-5 pt-3.5 border-t border-black/[0.04] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-muted">
-        <span>
-          {t.officialSource.lastReviewed}{" "}
-          <strong className="trust-verified">{lastChecked}</strong>
+        <span className="flex items-center gap-1.5 font-medium text-ink/80">
+          <span className="text-done font-bold">✓</span>
+          <span>{t.common.directVerified}</span>
         </span>
         <span className="text-[11px] text-muted font-medium">
           {t.officialSource.verifyNotice}

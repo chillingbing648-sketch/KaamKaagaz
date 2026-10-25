@@ -189,7 +189,7 @@ export function PortalDirectory() {
                 )}
 
                 <div className="flex items-center justify-between text-[11px] text-muted pt-1">
-                  <span>{t.admissionsHub.lastChecked} {portal.lastChecked}</span>
+                  <span className="text-done font-medium">✓ {t.admissionsHub.verifiedPortal}</span>
                   <span className="font-medium text-ink/70">{t.admissionsHub.sslVerified}</span>
                 </div>
               </div>

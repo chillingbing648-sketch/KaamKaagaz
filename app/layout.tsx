@@ -19,12 +19,16 @@ const notoDevanagari = Noto_Sans_Devanagari({
   variable: "--font-devanagari",
 });
 
+const isProd = process.env.NODE_ENV === "production";
 const basePath =
   process.env.NEXT_PUBLIC_BASE_PATH !== undefined
     ? process.env.NEXT_PUBLIC_BASE_PATH
-    : "/KaamKaagaz";
-const svgIconPath = basePath ? `${basePath}/favicon.svg` : "/favicon.svg";
-const pngIconPath = basePath ? `${basePath}/favicon.png` : "/favicon.png";
+    : isProd
+      ? "/KaamKaagaz"
+      : "";
+const svgIconPath = basePath ? `${basePath}/favicon.svg?v=20261025` : "/favicon.svg?v=20261025";
+const pngIconPath = basePath ? `${basePath}/favicon.png?v=20261025` : "/favicon.png?v=20261025";
+const icoIconPath = basePath ? `${basePath}/favicon.ico?v=20261025` : "/favicon.ico?v=20261025";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kaamkaagaz.org"),
@@ -36,11 +40,14 @@ export const metadata: Metadata = {
     "Paperwork, made simple. Plain-language step-by-step guidance for Aadhaar Card, PAN Card, Passport, Birth Certificate, Domicile, Caste & Student Admissions.",
   icons: {
     icon: [
+      { url: icoIconPath, sizes: "any" },
       { url: svgIconPath, type: "image/svg+xml" },
-      { url: pngIconPath, type: "image/png" },
+      { url: pngIconPath, type: "image/png", sizes: "192x192" },
     ],
-    shortcut: svgIconPath,
-    apple: pngIconPath,
+    shortcut: icoIconPath,
+    apple: [
+      { url: pngIconPath, sizes: "180x180", type: "image/png" },
+    ],
   },
   openGraph: {
     title: "KAAMKAAGAZ · Kaagaz samjho. Kaam karo.",

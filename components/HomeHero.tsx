@@ -3,10 +3,13 @@
 import { useLanguage } from "@/lib/i18n/context";
 import Link from "next/link";
 
+const isProd = process.env.NODE_ENV === "production";
 const basePath =
   process.env.NEXT_PUBLIC_BASE_PATH !== undefined
     ? process.env.NEXT_PUBLIC_BASE_PATH
-    : "/KaamKaagaz";
+    : isProd
+      ? "/KaamKaagaz"
+      : "";
 
 export function HomeHero({
   selectedCategory,
@@ -58,7 +61,7 @@ export function HomeHero({
   return (
     <div className="mb-10 pt-2">
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 rounded-full border border-black/[0.06] bg-black/[0.03] px-3.5 py-1 text-xs font-semibold text-ink/80 mb-4 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+        <div className="inline-flex items-center gap-2 rounded-full border border-black/[0.06] bg-black/[0.03] px-3.5 py-1 text-xs font-semibold text-ink/80 mb-3 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
           <span aria-hidden="true">🇮🇳</span>
           <span>{t.brand.subTagline}</span>
         </div>
@@ -67,13 +70,19 @@ export function HomeHero({
           KaamKaaga<span className="text-accent">Z</span>
         </h1>
 
-        <p className="mt-2 text-lg sm:text-2xl font-semibold text-accent tracking-tight">
+        <p className="mt-1.5 text-lg sm:text-2xl font-bold text-accent tracking-tight">
           {t.brand.tagline}
         </p>
 
-        <p className="mt-3 inline-block rounded-xl bg-accent-soft/60 border border-accent/20 px-3.5 py-1.5 text-xs sm:text-sm text-accent-hover max-w-xl leading-relaxed font-medium">
-          {t.brand.disclaimer}
-        </p>
+        {/* Impactful Bold Value Proposition */}
+        <div className="mt-4 flex items-start gap-3 rounded-2xl bg-gradient-to-r from-accent-soft/90 via-accent-soft/40 to-white/60 border border-accent/25 p-3.5 sm:p-4 text-xs sm:text-sm max-w-2xl shadow-[0_2px_8px_rgba(198,78,22,0.06)]">
+          <span className="flex size-5.5 items-center justify-center rounded-full bg-accent text-white text-[11px] font-black shrink-0 mt-0.5 shadow-2xs">
+            ✓
+          </span>
+          <p className="font-semibold text-ink leading-relaxed">
+            {t.brand.heroValueProp}
+          </p>
+        </div>
       </div>
 
       <div>
@@ -81,28 +90,28 @@ export function HomeHero({
           {t.home?.exploreKaam || "Explore your kaam"}
         </h2>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3.5">
           {categories.map((category) => {
             const isSelected = selectedCategory === category.id;
             return (
               <Link
                 key={category.id}
                 href={category.href}
-                className={`group flex flex-col justify-between rounded-2xl p-4 transition-all duration-200 active:scale-[0.98] ${
+                className={`group flex flex-col justify-between rounded-2xl p-3.5 sm:p-4.5 transition-all duration-200 ease-out active:scale-[0.97] ${
                   isSelected
-                    ? "border-2 border-accent bg-accent-soft/60 ring-2 ring-accent/20 shadow-xs"
-                    : "border border-black/[0.06] bg-white hover:border-black/[0.12] hover:shadow-[0_4px_16px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
+                    ? "border-2 border-accent bg-accent-soft/70 ring-2 ring-accent/20 shadow-sm -translate-y-0.5"
+                    : "border border-black/[0.07] bg-white hover:border-accent/40 hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:-translate-y-1 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
                 }`}
               >
-                <div className="flex items-center justify-between gap-1">
-                  <span className={`text-sm font-bold transition-colors ${isSelected ? "text-accent" : "text-ink group-hover:text-accent"}`}>
+                <div className="flex items-center justify-between gap-1.5">
+                  <span className={`text-xs sm:text-sm font-bold tracking-tight transition-colors ${isSelected ? "text-accent" : "text-ink group-hover:text-accent"}`}>
                     {category.label}
                   </span>
-                  <span className={`text-xs transition-transform duration-200 group-hover:translate-x-0.5 ${isSelected ? "text-accent" : "text-muted group-hover:text-accent"}`}>
+                  <span className={`text-xs transition-transform duration-200 ease-out group-hover:translate-x-1 ${isSelected ? "text-accent" : "text-muted group-hover:text-accent"}`}>
                     →
                   </span>
                 </div>
-                <span className="mt-2.5 text-[11px] text-muted leading-snug font-medium line-clamp-2">
+                <span className="mt-2 text-[10.5px] sm:text-[11px] text-muted leading-snug font-medium line-clamp-2 group-hover:text-ink/80 transition-colors">
                   {category.tag}
                 </span>
               </Link>

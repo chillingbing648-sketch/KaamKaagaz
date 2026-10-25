@@ -8,10 +8,13 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { processes } from "@/data/processes";
 import { getLocalizedProcess } from "@/lib/i18n/localize";
 
+const isProd = process.env.NODE_ENV === "production";
 const basePath =
   process.env.NEXT_PUBLIC_BASE_PATH !== undefined
     ? process.env.NEXT_PUBLIC_BASE_PATH
-    : "/KaamKaagaz";
+    : isProd
+      ? "/KaamKaagaz"
+      : "";
 
 export function Navbar() {
   const { language, t } = useLanguage();
@@ -77,11 +80,11 @@ export function Navbar() {
         </Link>
 
         {/* Zone 2: Navigation = Apple Segmented Controller */}
-        <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-0.5 p-1 rounded-full bg-black/[0.04] border border-black/[0.04]">
+        <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-1 p-1 rounded-full bg-black/[0.04] border border-black/[0.04]">
           {/* Services Category Dropdown Menu */}
           <div className="relative" ref={servicesMenuRef}>
             <div
-              className={`inline-flex items-center rounded-full transition-all duration-200 ${
+              className={`inline-flex items-center rounded-full transition-all duration-150 ease-out active:scale-[0.96] ${
                 isServicesActive
                   ? "text-ink bg-white shadow-[0_1px_4px_rgba(0,0,0,0.08)] font-bold"
                   : "text-muted hover:text-ink hover:bg-black/[0.02]"
@@ -91,11 +94,11 @@ export function Navbar() {
                 type="button"
                 onClick={() => setServicesMenuOpen(!servicesMenuOpen)}
                 aria-expanded={servicesMenuOpen}
-                className="inline-flex min-h-[34px] items-center gap-1 px-3.5 py-1 text-xs font-semibold cursor-pointer"
+                className="inline-flex min-h-[34px] items-center gap-1.5 px-3.5 py-1 text-xs font-semibold cursor-pointer transition-colors"
               >
                 <span>{t.nav.services}</span>
                 <svg
-                  className={`size-3 transition-transform duration-200 ${servicesMenuOpen ? "rotate-180" : ""}`}
+                  className={`size-3 transition-transform duration-200 ease-out ${servicesMenuOpen ? "rotate-180 text-accent" : "text-muted"}`}
                   viewBox="0 0 12 12"
                   fill="none"
                 >
@@ -105,9 +108,9 @@ export function Navbar() {
             </div>
 
             {servicesMenuOpen && (
-              <div className="absolute left-0 mt-2 w-64 rounded-2xl border border-black/[0.06] bg-white/95 backdrop-blur-xl p-2 shadow-[0_12px_32px_rgba(0,0,0,0.12)] z-50 animate-in fade-in zoom-in-95 duration-150">
-                <div className="px-3 py-1.5 border-b border-black/[0.04] pb-2 mb-1">
-                  <p className="text-[11px] font-semibold text-muted tracking-tight">
+              <div className="absolute left-0 mt-2 w-64 rounded-2xl border border-black/[0.08] bg-white/98 backdrop-blur-2xl p-2 shadow-[0_16px_40px_rgba(0,0,0,0.12)] z-50 origin-top-left transition-all duration-150 ease-out animate-in fade-in zoom-in-95">
+                <div className="px-3 py-1.5 border-b border-black/[0.05] pb-2 mb-1">
+                  <p className="text-[11px] font-bold text-muted uppercase tracking-wider">
                     {t.categories.filterServices}
                   </p>
                 </div>
@@ -115,27 +118,27 @@ export function Navbar() {
                   <Link
                     href="/identity/"
                     onClick={() => setServicesMenuOpen(false)}
-                    className="flex flex-col px-3 py-2 text-xs font-medium text-ink hover:bg-black/[0.04] hover:text-accent rounded-xl transition-colors"
+                    className="group flex flex-col px-3.5 py-2 text-xs font-medium text-ink hover:bg-accent-soft/80 hover:text-accent rounded-xl transition-all duration-150 ease-out active:scale-[0.98]"
                   >
-                    <span className="font-bold">{t.nav.identity}</span>
+                    <span className="font-bold group-hover:translate-x-0.5 transition-transform duration-150">{t.nav.identity}</span>
                     <span className="text-[10px] text-muted">{t.home.tagIdentity}</span>
                   </Link>
 
                   <Link
                     href="/certificates/"
                     onClick={() => setServicesMenuOpen(false)}
-                    className="flex flex-col px-3 py-2 text-xs font-medium text-ink hover:bg-black/[0.04] hover:text-accent rounded-xl transition-colors"
+                    className="group flex flex-col px-3.5 py-2 text-xs font-medium text-ink hover:bg-accent-soft/80 hover:text-accent rounded-xl transition-all duration-150 ease-out active:scale-[0.98]"
                   >
-                    <span className="font-bold">{t.nav.certificates}</span>
+                    <span className="font-bold group-hover:translate-x-0.5 transition-transform duration-150">{t.nav.certificates}</span>
                     <span className="text-[10px] text-muted">{t.home.tagCertificates}</span>
                   </Link>
 
                   <Link
                     href="/education/"
                     onClick={() => setServicesMenuOpen(false)}
-                    className="flex flex-col px-3 py-2 text-xs font-medium text-ink hover:bg-black/[0.04] hover:text-accent rounded-xl transition-colors"
+                    className="group flex flex-col px-3.5 py-2 text-xs font-medium text-ink hover:bg-accent-soft/80 hover:text-accent rounded-xl transition-all duration-150 ease-out active:scale-[0.98]"
                   >
-                    <span className="font-bold">{t.nav.education}</span>
+                    <span className="font-bold group-hover:translate-x-0.5 transition-transform duration-150">{t.nav.education}</span>
                     <span className="text-[10px] text-muted">{t.home.tagEducation}</span>
                   </Link>
                 </div>
@@ -146,7 +149,7 @@ export function Navbar() {
           {/* Admissions Direct Page */}
           <Link
             href="/admissions/"
-            className={`inline-flex min-h-[34px] items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold transition-all duration-200 ${
+            className={`inline-flex min-h-[34px] items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold transition-all duration-150 ease-out active:scale-[0.96] ${
               isAdmissionsActive
                 ? "text-accent bg-white shadow-[0_1px_4px_rgba(0,0,0,0.08)] font-bold"
                 : "text-muted hover:text-ink hover:bg-black/[0.02]"
@@ -159,7 +162,7 @@ export function Navbar() {
           {/* How It Works Dedicated Page */}
           <Link
             href="/how-it-works/"
-            className={`inline-flex min-h-[34px] items-center px-3.5 py-1 rounded-full text-xs font-semibold transition-all duration-200 ${
+            className={`inline-flex min-h-[34px] items-center px-3.5 py-1 rounded-full text-xs font-semibold transition-all duration-150 ease-out active:scale-[0.96] ${
               isHowItWorksActive
                 ? "text-ink bg-white shadow-[0_1px_4px_rgba(0,0,0,0.08)] font-bold"
                 : "text-muted hover:text-ink hover:bg-black/[0.02]"
@@ -168,10 +171,10 @@ export function Navbar() {
             {t.nav.howItWorks}
           </Link>
 
-          {/* Checklist quick picker dropdown */}
+          {/* Checklist quick picker dropdown (Scroll down List) */}
           <div className="relative" ref={checklistMenuRef}>
             <div
-              className={`inline-flex items-center rounded-full transition-all duration-200 ${
+              className={`inline-flex items-center rounded-full transition-all duration-150 ease-out active:scale-[0.96] ${
                 isChecklistActive
                   ? "text-accent bg-white shadow-[0_1px_4px_rgba(0,0,0,0.08)] font-bold"
                   : "text-muted hover:text-ink hover:bg-black/[0.02]"
@@ -191,7 +194,7 @@ export function Navbar() {
                 className="inline-flex min-h-[34px] items-center justify-center pr-3 pl-1 text-xs text-muted hover:text-ink cursor-pointer"
               >
                 <svg
-                  className={`size-3 transition-transform duration-200 ${checklistMenuOpen ? "rotate-180" : ""}`}
+                  className={`size-3 transition-transform duration-200 ease-out ${checklistMenuOpen ? "rotate-180 text-accent" : "text-muted"}`}
                   viewBox="0 0 12 12"
                   fill="none"
                 >
@@ -201,20 +204,22 @@ export function Navbar() {
             </div>
 
             {checklistMenuOpen && (
-              <div className="absolute right-0 mt-2 w-64 rounded-2xl border border-black/[0.06] bg-white/95 backdrop-blur-xl p-2 shadow-[0_12px_32px_rgba(0,0,0,0.12)] z-50 animate-in fade-in zoom-in-95 duration-150">
-                <div className="flex items-center justify-between px-3 py-1.5 border-b border-black/[0.04] pb-2 mb-1">
-                  <p className="text-[11px] font-semibold text-muted tracking-tight">
+              <div className="absolute right-0 mt-2 w-72 rounded-2xl border border-black/[0.08] bg-white/98 backdrop-blur-2xl p-2 shadow-[0_16px_40px_rgba(0,0,0,0.12)] z-50 origin-top-right transition-all duration-150 ease-out animate-in fade-in zoom-in-95">
+                <div className="flex items-center justify-between px-3 py-1.5 border-b border-black/[0.05] pb-2 mb-1">
+                  <p className="text-[11px] font-bold text-muted uppercase tracking-wider">
                     {t.checklist.title}
                   </p>
                   <Link
                     href="/checklist/"
                     onClick={() => setChecklistMenuOpen(false)}
-                    className="text-xs font-semibold text-accent hover:underline"
+                    className="text-xs font-bold text-accent hover:underline flex items-center gap-0.5"
                   >
-                    {t.nav.viewAll} →
+                    <span>{t.nav.viewAll}</span>
+                    <span aria-hidden="true">→</span>
                   </Link>
                 </div>
-                <div className="space-y-0.5">
+                {/* Scrollable document list with smooth scrollbar */}
+                <div className="max-h-[320px] overflow-y-auto space-y-0.5 pr-0.5 scrollbar-thin">
                   {processes.map((p) => {
                     const loc = getLocalizedProcess(p, language);
                     return (
@@ -222,10 +227,10 @@ export function Navbar() {
                         key={p.slug}
                         href={`/checklist/${p.slug}/`}
                         onClick={() => setChecklistMenuOpen(false)}
-                        className="flex items-center justify-between px-3 py-2 text-xs font-medium text-ink hover:bg-black/[0.04] hover:text-accent rounded-xl transition-colors"
+                        className="group flex items-center justify-between px-3.5 py-2 text-xs font-semibold text-ink hover:bg-accent-soft/80 hover:text-accent rounded-xl transition-all duration-150 ease-out active:scale-[0.98]"
                       >
-                        <span className="truncate pr-2">{loc.title}</span>
-                        <span className="text-muted text-xs shrink-0">→</span>
+                        <span className="truncate pr-2 group-hover:translate-x-0.5 transition-transform duration-150">{loc.title}</span>
+                        <span className="text-muted text-xs shrink-0 group-hover:text-accent group-hover:translate-x-1 transition-all duration-150">→</span>
                       </Link>
                     );
                   })}
@@ -242,47 +247,47 @@ export function Navbar() {
       </div>
 
       {/* Mobile Sub-Navigation Bar: Apple-style segmented pill controller */}
-      <div className="md:hidden border-t border-black/[0.05] bg-white/90 backdrop-blur-md px-3 py-1.5">
-        <div className="grid grid-cols-4 gap-1 p-0.5 rounded-xl bg-black/[0.04]">
+      <div className="md:hidden border-t border-black/[0.06] bg-white/95 backdrop-blur-xl px-2.5 sm:px-3 py-2">
+        <div className="grid grid-cols-4 gap-1 p-1 rounded-2xl bg-black/[0.04]">
           <Link
             href="/identity/"
-            className={`flex min-h-[38px] items-center justify-center px-1 rounded-lg text-center text-[11px] font-semibold transition-all duration-150 ${
+            className={`flex min-h-[40px] items-center justify-center px-1 rounded-xl text-center text-xs font-semibold active:scale-[0.96] transition-all duration-150 ease-out ${
               isServicesActive
-                ? "text-ink bg-white shadow-[0_1px_3px_rgba(0,0,0,0.08)] font-bold"
+                ? "text-ink bg-white shadow-[0_1px_3px_rgba(0,0,0,0.1)] font-bold"
                 : "text-muted hover:text-ink"
             }`}
           >
-            {t.nav.services}
+            <span className="truncate">{t.nav.services}</span>
           </Link>
           <Link
             href="/admissions/"
-            className={`flex min-h-[38px] items-center justify-center px-1 rounded-lg text-center text-[11px] font-semibold transition-all duration-150 ${
+            className={`flex min-h-[40px] items-center justify-center px-1 rounded-xl text-center text-xs font-semibold active:scale-[0.96] transition-all duration-150 ease-out ${
               isAdmissionsActive
-                ? "text-accent bg-white shadow-[0_1px_3px_rgba(0,0,0,0.08)] font-bold"
+                ? "text-accent bg-white shadow-[0_1px_3px_rgba(0,0,0,0.1)] font-bold"
                 : "text-muted hover:text-ink"
             }`}
           >
-            {t.nav.admissions}
+            <span className="truncate">{t.nav.admissions}</span>
           </Link>
           <Link
             href="/how-it-works/"
-            className={`flex min-h-[38px] items-center justify-center px-1 rounded-lg text-center text-[11px] font-semibold transition-all duration-150 ${
+            className={`flex min-h-[40px] items-center justify-center px-1 rounded-xl text-center text-xs font-semibold active:scale-[0.96] transition-all duration-150 ease-out ${
               isHowItWorksActive
-                ? "text-ink bg-white shadow-[0_1px_3px_rgba(0,0,0,0.08)] font-bold"
+                ? "text-ink bg-white shadow-[0_1px_3px_rgba(0,0,0,0.1)] font-bold"
                 : "text-muted hover:text-ink"
             }`}
           >
-            {t.nav.howItWorks}
+            <span className="truncate">{t.nav.howItWorks}</span>
           </Link>
           <Link
             href="/checklist/"
-            className={`flex min-h-[38px] items-center justify-center px-1 rounded-lg text-center text-[11px] font-semibold transition-all duration-150 ${
+            className={`flex min-h-[40px] items-center justify-center px-1 rounded-xl text-center text-xs font-semibold active:scale-[0.96] transition-all duration-150 ease-out ${
               isChecklistActive
-                ? "text-accent bg-white shadow-[0_1px_3px_rgba(0,0,0,0.08)] font-bold"
+                ? "text-accent bg-white shadow-[0_1px_3px_rgba(0,0,0,0.1)] font-bold"
                 : "text-muted hover:text-ink"
             }`}
           >
-            {t.nav.checklist}
+            <span className="truncate">{t.nav.checklist}</span>
           </Link>
         </div>
       </div>

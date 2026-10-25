@@ -113,6 +113,17 @@ export function FormatPreparationCard({ prep }: { prep?: FormatAndPrepProps }) {
         </div>
       )}
 
+      {/* Practical Fictional Example */}
+      <div className="rounded-xl border border-blue-200/60 bg-blue-50/50 p-3.5">
+        <span className="block text-[11px] font-semibold tracking-wider text-blue-900 mb-0.5 flex items-center gap-1 uppercase">
+          <span>✍️</span>
+          <span>{t.document.practicalExample}</span>
+        </span>
+        <p className="text-xs sm:text-sm text-blue-950 leading-relaxed font-medium">
+          {t.document.practicalExampleText}
+        </p>
+      </div>
+
       <p className="pt-2 text-[11px] text-muted leading-relaxed border-t border-line/50">
         ◌ {t.document.requirementsVaryWarning}
       </p>

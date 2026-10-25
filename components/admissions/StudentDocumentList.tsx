@@ -11,39 +11,58 @@ import {
 
 const STATUS_CONFIG: Record<
   AdmissionChecklistStatus,
-  { label: string; badgeClass: string; icon: string }
+  { key: string; badgeClass: string; icon: string }
 > = {
   READY: {
-    label: "READY",
+    key: "statusReady",
     badgeClass: "bg-done-soft text-done border-done/40 font-bold",
     icon: "✓",
   },
   MISSING: {
-    label: "MISSING",
+    key: "statusMissing",
     badgeClass: "bg-red-50 text-red-700 border-red-200 font-bold",
     icon: "✕",
   },
   NEEDS_UPDATE: {
-    label: "NEEDS UPDATE",
+    key: "statusNeedsUpdate",
     badgeClass: "bg-amber-50 text-amber-800 border-amber-300 font-bold",
     icon: "↻",
   },
   PENDING: {
-    label: "PENDING (TOKEN)",
+    key: "statusPending",
     badgeClass: "bg-blue-50 text-blue-700 border-blue-200 font-bold",
     icon: "⏳",
   },
   NOT_SURE: {
-    label: "NOT SURE",
+    key: "statusNotSure",
     badgeClass: "bg-gray-100 text-gray-700 border-gray-300 font-semibold",
     icon: "?",
   },
   NOT_APPLICABLE: {
-    label: "NOT APPLICABLE",
+    key: "statusNotApplicable",
     badgeClass: "bg-gray-50 text-gray-400 border-gray-200 font-medium",
     icon: "—",
   },
 };
+
+function getStatusLabel(status: AdmissionChecklistStatus, t: any) {
+  switch (status) {
+    case "READY":
+      return t.admissionsHub.statusReady;
+    case "MISSING":
+      return t.admissionsHub.statusMissing;
+    case "NEEDS_UPDATE":
+      return t.admissionsHub.statusNeedsUpdate;
+    case "PENDING":
+      return t.admissionsHub.statusPending;
+    case "NOT_SURE":
+      return t.admissionsHub.statusNotSure;
+    case "NOT_APPLICABLE":
+      return t.admissionsHub.statusNotApplicable;
+    default:
+      return t.admissionsHub.statusNotSure;
+  }
+}
 
 export function StudentDocumentList() {
   const { language, t } = useLanguage();
@@ -147,7 +166,7 @@ export function StudentDocumentList() {
                       className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] border ${statusInfo.badgeClass}`}
                     >
                       <span>{statusInfo.icon}</span>
-                      <span>{statusInfo.label}</span>
+                      <span>{getStatusLabel(currentStatus, t)}</span>
                     </span>
                   </div>
 

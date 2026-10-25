@@ -292,7 +292,7 @@ function ProcessRail({
         </div>
         <p className="font-semibold text-ink mb-1">{process.officialSource.name}</p>
         <p className="text-muted text-[11px] mb-3 leading-relaxed">
-          {t.officialSource.lastReviewed} <strong>{process.lastChecked}</strong>
+          {t.officialSource.verifyNotice}
         </p>
         <a
           href={process.officialSource.url}

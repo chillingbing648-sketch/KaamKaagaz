@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "tsc --noEmit",
-    "test": "npx tsx --test tests/core-audit.test.ts"
+    "test": "npx --yes tsx --test tests/core-audit.test.ts"
   },
   "dependencies": {
     "next": "^15.1.0",

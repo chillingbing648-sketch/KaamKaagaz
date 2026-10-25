@@ -5,6 +5,7 @@ export interface LocaleTranslations {
     name: string;
     tagline: string;
     subTagline: string;
+    heroValueProp: string;
     disclaimer: string;
     notGovWarning: string;
   };
@@ -92,6 +93,10 @@ export interface LocaleTranslations {
     step2Desc: string;
     step3Title: string;
     step3Desc: string;
+    step4Title: string;
+    step4Desc: string;
+    step5Title: string;
+    step5Desc: string;
   };
   process: {
     documentsRequired: string;
@@ -114,6 +119,8 @@ export interface LocaleTranslations {
     viewDetails: string;
     whatDoesThisMean: string;
     backToProcess: string;
+    checkRequiredDocs: string;
+    continueNextStep: string;
   };
   document: {
     whatIsIt: string;
@@ -133,6 +140,11 @@ export interface LocaleTranslations {
     markReady: string;
     markReadyUndo: string;
     backTo: string;
+    requiredBadge: string;
+    optionalBadge: string;
+    oneSufficient: string;
+    practicalExample: string;
+    practicalExampleText: string;
   };
   checklist: {
     title: string;
@@ -180,6 +192,18 @@ export interface LocaleTranslations {
     stepReadiness: string;
     stepReadinessDesc: string;
     nextStep: string;
+    finderHint: string;
+    candidacyLabel: string;
+    categoryLabel: string;
+    stateCandidate: string;
+    omsCandidate: string;
+    specialQuota: string;
+    catGeneral: string;
+    catEws: string;
+    catObc: string;
+    catSc: string;
+    catSt: string;
+    catVjnt: string;
   };
   diagnostic: {
     somethingWrong: string;

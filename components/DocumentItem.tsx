@@ -54,15 +54,20 @@ export function DocumentItem({
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <button
-            type="button"
-            onClick={() => onToggle(doc.id)}
-            className={`cursor-pointer text-left text-base sm:text-lg font-bold leading-tight tracking-tight transition-colors ${
-              checked ? "text-done line-through decoration-done/40" : "text-ink group-hover:text-accent"
-            }`}
-          >
-            {localized.name}
-          </button>
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              type="button"
+              onClick={() => onToggle(doc.id)}
+              className={`cursor-pointer text-left text-base sm:text-lg font-bold leading-tight tracking-tight transition-colors ${
+                checked ? "text-done line-through decoration-done/40" : "text-ink group-hover:text-accent"
+              }`}
+            >
+              {localized.name}
+            </button>
+            <span className="inline-flex items-center rounded-full bg-accent-soft px-2 py-0.5 text-[10px] font-bold text-accent border border-accent/20">
+              {t.document.requiredBadge}
+            </span>
+          </div>
           {checked && (
             <span className="inline-flex items-center gap-1 rounded-full bg-done/15 px-2.5 py-0.5 text-xs font-bold text-done">
               ✓ {t.common.ready}
@@ -74,11 +79,16 @@ export function DocumentItem({
           {localized.shortDescription}
         </p>
 
-        {/* What counts preview */}
+        {/* What counts preview & 1 sufficient guidance */}
         {localized.examples && localized.examples.length > 0 && (
-          <div className="mt-2 text-xs text-ink/80 flex items-baseline gap-1.5">
-            <span className="font-semibold text-muted text-[11px] uppercase tracking-wider shrink-0">{t.common.counts}:</span>
-            <span className="line-clamp-1 text-ink/70 font-medium">{localized.examples.slice(0, 3).join(", ")}</span>
+          <div className="mt-2 text-xs text-ink/80">
+            <div className="flex items-baseline gap-1.5">
+              <span className="font-semibold text-muted text-[11px] uppercase tracking-wider shrink-0">{t.common.counts}:</span>
+              <span className="line-clamp-1 text-ink/70 font-medium">{localized.examples.slice(0, 3).join(", ")}</span>
+            </div>
+            <p className="text-[11px] text-muted font-medium mt-0.5">
+              💡 {t.document.oneSufficient}
+            </p>
           </div>
         )}
 
@@ -89,7 +99,7 @@ export function DocumentItem({
               <span className="text-muted font-mono text-[10px]">{t.common.format.toUpperCase()}:</span> {localized.formatAndPrep.submission.split(",")[0].slice(0, 35)}
             </span>
             <span className="inline-flex items-center gap-1 rounded-full bg-black/[0.03] px-2.5 py-0.5 font-medium text-muted border border-black/[0.04]">
-              <span className="text-muted font-mono text-[10px]">SIGN:</span> {localized.formatAndPrep.selfAttestation.slice(0, 30)}
+              <span className="text-muted font-mono text-[10px]">{t.document.selfAttestation.toUpperCase()}:</span> {localized.formatAndPrep.selfAttestation.slice(0, 30)}
             </span>
             {localized.formatAndPrep.validityOrRecentness && (
               <span className="inline-flex items-center gap-1 rounded-full bg-accent-soft px-2.5 py-0.5 font-medium text-accent border border-accent/20">

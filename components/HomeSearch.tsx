@@ -138,10 +138,10 @@ export function HomeSearch({
                 key={process.slug}
                 type="button"
                 onClick={() => setQuery(isSelected ? "" : process.title)}
-                className={`inline-flex min-h-[36px] items-center rounded-full px-3.5 py-1 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer active:scale-[0.97] ${
+                className={`inline-flex min-h-[38px] items-center rounded-full px-4 py-1.5 text-xs sm:text-sm font-semibold transition-all duration-150 ease-out cursor-pointer active:scale-[0.95] ${
                   isSelected
-                    ? "bg-accent text-white shadow-xs font-bold"
-                    : "border border-black/[0.06] bg-black/[0.02] text-ink hover:bg-black/[0.05] hover:border-black/[0.12]"
+                    ? "bg-accent text-white shadow-xs font-bold -translate-y-0.5"
+                    : "border border-black/[0.08] bg-black/[0.02] text-ink hover:bg-black/[0.06] hover:border-black/[0.16] hover:-translate-y-0.5"
                 }`}
               >
                 {loc.title}
@@ -152,7 +152,7 @@ export function HomeSearch({
           {/* Student Admissions Major Kaam Pill */}
           <Link
             href="/admissions/"
-            className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-3.5 py-1 text-xs sm:text-sm font-bold text-accent hover:bg-accent hover:text-white shadow-xs transition-all active:scale-[0.97]"
+            className="inline-flex min-h-[38px] items-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-4 py-1.5 text-xs sm:text-sm font-bold text-accent hover:bg-accent hover:text-white shadow-xs transition-all duration-150 ease-out active:scale-[0.95] hover:-translate-y-0.5"
           >
             <span>{t.home?.categoryAdmissions || "Student Admissions"}</span>
             <span aria-hidden="true" className="text-xs">→</span>
@@ -186,14 +186,14 @@ export function HomeSearch({
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveCategory(tab.id === "all" ? null : tab.id)}
-                  className={`inline-flex min-h-[36px] items-center gap-1.5 rounded-full px-3.5 py-1 text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-[0.97] ${
+                  className={`inline-flex min-h-[38px] items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-150 ease-out cursor-pointer active:scale-[0.95] ${
                     isSelected
-                      ? "bg-ink text-white shadow-xs font-bold"
-                      : "border border-black/[0.06] bg-white text-ink hover:bg-black/[0.03]"
+                      ? "bg-ink text-white shadow-xs font-bold -translate-y-0.5"
+                      : "border border-black/[0.08] bg-white text-ink hover:bg-black/[0.04] hover:border-black/[0.16] hover:-translate-y-0.5"
                   }`}
                 >
                   <span>{tab.label}</span>
-                  <span className={`text-[10px] rounded-full px-1.5 py-0.2 ${isSelected ? "bg-white/20 text-white" : "bg-black/[0.05] text-muted"}`}>
+                  <span className={`text-[10px] rounded-full px-2 py-0.5 font-bold ${isSelected ? "bg-white/20 text-white" : "bg-black/[0.06] text-ink/70"}`}>
                     {tab.count}
                   </span>
                 </button>
